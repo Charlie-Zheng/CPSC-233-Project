@@ -1,6 +1,21 @@
 package main;
 
+import java.util.Arrays;
+
 public class Unit {
+	public Unit(Unit unit) {
+		super();
+		this.baseStats = Arrays.copyOf(unit.baseStats, unit.baseStats.length);
+		this.currentHP = unit.currentHP;
+		this.range = unit.range;
+		this.moveType = unit.moveType;
+		this.isFriendly = unit.isFriendly;
+		this.hasMoved = unit.hasMoved;
+		this.x =unit.x;
+		this.y = unit.y;
+		this.name = unit.name;
+	}
+
 	private int[] baseStats = { 1, 0, 0, 0 };// default unit has 1 HP, 0 in every other stat
 	private int currentHP;
 
@@ -26,7 +41,15 @@ public class Unit {
 	public int[] getBaseStats() {
 		return baseStats;
 	}
-
+/**
+ * returns true if unit has below 0 HP
+ * @param damage
+ * @return
+ */
+	public boolean takeDamage(int damage) {
+		currentHP -= damage;
+		return currentHP <= 0;
+	}
 	public int getRange() {
 		return range;
 	}

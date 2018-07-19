@@ -1,32 +1,76 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PlayerText {
-	private static Unit unit;
 
-	public static boolean playerTurn() {
-		while (playerHasUnmovedUnits()) {
+	private static Map map;
+
+	public static boolean playerTurn(Map inputMap) {
+		map = inputMap;
+		Unit selectedUnit;
+		boolean gameOver = false;
+		resetHasMoved();
+		while (playerHasUnmovedUnits() && !gameOver) {
+			map.displayMap();
 			System.out.print("Please select a friendly unit by entering its name: ");
-			unit = GameText.unitNameInput();
-			while (!unit.isFriendly()) {
+			selectedUnit = GameText.unitNameInput();
+			while (!selectedUnit.isFriendly()) {
 				System.out.println("That is not a friendly unit");
-				unit = GameText.unitNameInput();
+				selectedUnit = GameText.unitNameInput();
 			}
-			System.out.println("The selected unit is: \n" + unit);
+			System.out.println("The selected unit is: \n" + selectedUnit);
 			System.out.println("Enter an ~ to unselect.\nThe @ represents locations this unit can move to");
-			GameText.getMap().displayAvailableMoves(unit);
-			while (!playerMove())
+			map.displayAvailableMoves(selectedUnit);
+			while (!playerMove(selectedUnit))
 				System.out.println("That is not a valid move");
-			GameText.getMap().displayAttackOptions(unit);
+			map.displayAttackOptions(selectedUnit);
+			boolean[][] availableAttacks = map.findAvailableTargets(selectedUnit);
 			System.out.println("Select an enemy unit to attack: (Select self to not attack)");
-			//TODO Add code here to ask for combat options and etc.
+			Unit target = GameText.unitNameInput();
+
+			while ((target.isFriendly() || !availableAttacks[target.getY()][target.getX()]) && target != selectedUnit) {
+				if (availableAttacks[target.getY()][target.getX()])
+					System.out.println("That is not an enemy unit");
+				else
+					System.out.println("Target out of range");
+				target = GameText.unitNameInput();
+			}
+			if (target != selectedUnit) {
+				Combat.doCombat(selectedUnit, target);
+			}
+			map.updateHeroDeaths();
+			gameOver = gameOver();
 		}
-		return false;
+
+		return gameOver;
 	}
 
-	private static boolean playerMove() {
+	private static void resetHasMoved() {
+		ArrayList<Unit> unitList = map.getUnitList();
+		for (Unit unit : unitList) {
+			if (unit.isFriendly())
+				unit.setHasMoved(false);
+		}
+	}
+
+	private static boolean gameOver() {
+		ArrayList<Unit> unitList = map.getUnitList();
+		boolean enemiesAllDead = true;
+		boolean friendiesAllDead = true;
+		for (Unit unit : unitList) {
+			if (unit.isFriendly())
+				friendiesAllDead = false;
+			else
+				enemiesAllDead = false;
+		}
+		return friendiesAllDead || enemiesAllDead;
+
+	}
+
+	private static boolean playerMove(Unit selectedUnit) {
 		System.out.println("How far would you like to move up?");
 		String temp = errorTrapInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
 		if (temp.equals("~")) {
@@ -40,9 +84,9 @@ public class PlayerText {
 		}
 		int xOffset = Integer.parseInt(temp);
 
-		if (GameText.getMap().checkMoveLegal(unit, xOffset, yOffset)) {
-			GameText.getMap().moveHero(unit,xOffset,yOffset);
-			unit.setHasMoved(true);
+		if (map.checkMoveLegal(selectedUnit, xOffset, yOffset)) {
+			map.moveHero(selectedUnit, xOffset, yOffset);
+			selectedUnit.setHasMoved(true);
 			return true;
 		}
 
@@ -50,7 +94,7 @@ public class PlayerText {
 	}
 
 	private static boolean playerHasUnmovedUnits() {
-		for (Unit unit : GameText.getMap().getUnitList()) {
+		for (Unit unit : map.getUnitList()) {
 			if (unit.isFriendly() && !unit.hasMoved()) {
 				return true;
 			}

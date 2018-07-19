@@ -5,30 +5,35 @@ import java.util.Scanner;
 
 public class GameText {
 	private static Map map;
+
 	public static void main(String[] args) {
 		boolean gameOver = false;
-				map = new Map("src/assets/map_1_1.txt");
-				map.displayMap();
-				PlayerText.playerTurn();
-			
-	}
-	
+		map = new Map("src/assets/map_1_1.txt");
+		Scanner wait = new Scanner(System.in);
+		while (!gameOver) {
+			gameOver = PlayerText.playerTurn(map);
+			if (!gameOver) {
+				System.out.println("Your turn is over, now it's the AI's turn, press enter to continue");
+				wait.nextLine();
+				gameOver = AI.computerTurn(map);
+			}
+		}
+		map.displayMap();
 
-	
-	
-	
+	}
+
 	public static Unit unitNameInput() {
 		Scanner input = new Scanner(System.in);
-		
+
 		Unit unit = getMap().getUnit(input.nextLine());
-		while(unit == null) {
+		while (unit == null) {
 			System.out.println("That is not a valid unit name");
 			unit = getMap().getUnit(input.nextLine());
 		}
 		return unit;
-		
+
 	}
-	
+
 	/**
 	 * @param max
 	 *            The maximum integer the user can input.
@@ -69,16 +74,8 @@ public class GameText {
 		return userInput;// user has succesfully entered a valid integer, return that integer.
 	}
 
-
-
-
-
 	public static Map getMap() {
 		return map;
 	}
-
-
-
-
 
 }

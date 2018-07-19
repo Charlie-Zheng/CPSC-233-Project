@@ -27,6 +27,18 @@ public class Map {
 
 	}
 
+	public void updateHeroDeaths() {
+		for (int y = 0; y < MAXY; y++) {
+			for (int x = 0; x < MAXX; x++) {
+				Unit unit = unitMap[y][x];
+				if (unit != null && unit.getCurrentHP() < 0) {
+					unitList.remove(unitMap[y][x]);
+					unitMap[y][x] = null;
+				}
+			}
+		}
+	}
+
 	private void readHeroSpawns(String mapName) {
 		File mapFile = new File(mapName.substring(0, mapName.indexOf(".")) + "_spawn.txt");
 
@@ -96,6 +108,7 @@ public class Map {
 	}
 
 	public void displayAvailableMoves(Unit unit) {
+		System.out.println("\n\n\n");
 		boolean[][] availableMoves = findAvailableMoves(unit);
 
 		for (int j = 0; j < terrainMap.length; j++) {
@@ -167,6 +180,29 @@ public class Map {
 	// return new boolean[MAXY][MAXX];
 	//
 	// }
+
+	/**
+	 * finds the available targets of the given unit if the unit were at the x, y
+	 * coordinate
+	 * 
+	 * @param unit
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean[][] findAvailableTargets(Unit unit, int unitX, int unitY) {
+
+		boolean[][] availableTargets = new boolean[MAXY][MAXX];
+		for (int y = 0; y < MAXY; y++) {
+			for (int x = 0; x < MAXX; x++) {
+				if (Math.abs(unitX - x) + Math.abs(unitY - y) == unit.getRange())
+					availableTargets[y][x] = true;
+			}
+		}
+		return availableTargets;
+
+	}
+
 	public boolean[][] findAvailableMoves(Unit unit) {
 		int y = unit.getY();
 		int x = unit.getX();
@@ -218,9 +254,11 @@ public class Map {
 	 * @param newY
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
-		unitMap[newY][newX] = unitMap[y][x];
-		unitMap[y][x] = null;
-		unitMap[newY][newX].setYX(newY, newX);
+		if (x != newX || y != newY) {
+			unitMap[newY][newX] = unitMap[y][x];
+			unitMap[y][x] = null;
+			unitMap[newY][newX].setYX(newY, newX);
+		}
 	}
 
 	public void moveHero(Unit unit, int xOffset, int yOffset) {
@@ -246,6 +284,7 @@ public class Map {
 	}
 
 	public void displayMap() {
+		System.out.println("\n\n\n");
 		for (int y = 0; y < terrainMap.length; y++) {
 			for (int x = 0; x < terrainMap[0].length; x++) {
 				if (unitMap[y][x] != null) {
@@ -269,6 +308,7 @@ public class Map {
 	// System.out.println();
 	// }
 	public void displayAttackOptions(Unit unit) {
+		System.out.println("\n\n\n");
 		boolean[][] availableTargets = findAvailableTargets(unit);
 
 		for (int j = 0; j < terrainMap.length; j++) {
@@ -295,10 +335,12 @@ public class Map {
 	}
 
 	public boolean[][] findAvailableTargets(Unit unit) {
+		int unitX = unit.getX();
+		int unitY = unit.getY();
 		boolean[][] availableTargets = new boolean[MAXY][MAXX];
 		for (int y = 0; y < MAXY; y++) {
 			for (int x = 0; x < MAXX; x++) {
-				if (Math.abs(unit.getX() - x) + Math.abs(unit.getY() - y) == unit.getRange())
+				if (Math.abs(unitX - x) + Math.abs(unitY - y) == unit.getRange())
 					availableTargets[y][x] = true;
 			}
 		}
