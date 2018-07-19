@@ -24,7 +24,6 @@ public class Map {
 		readHeroSpawns(TerrainFile);
 		spawnHeroes("src/assets/friendlyHeroes.txt", true);
 		spawnHeroes("src/assets/enemyHeroes.txt", false);
-
 	}
 
 	public void updateHeroDeaths() {
@@ -41,7 +40,6 @@ public class Map {
 
 	private void readHeroSpawns(String mapName) {
 		File mapFile = new File(mapName.substring(0, mapName.indexOf(".")) + "_spawn.txt");
-
 		try {
 			Scanner fileReader = new Scanner(mapFile);
 			for (int lineNum = 0; lineNum < MAXY; lineNum++) {
@@ -92,10 +90,10 @@ public class Map {
 			}
 			fileReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("friendlyHeroes.txt file is not set up correctly");
+			System.out.println(heroFileName + " file is not set up correctly");
+
 			e.printStackTrace();
 		}
-
 	}
 
 	public boolean checkMoveLegal(Unit unit, int xOffset, int yOffset) {
@@ -133,54 +131,8 @@ public class Map {
 
 	}
 
-	/**
-	 * Finds available moves of the unit at the given coordinates using a
-	 * breadth-first search from the origin coordinates
-	 * 
-	 * @param x
-	 * @param y
-	 */
-	// public boolean[][] findAvailableMoves(int x, int y) {
-	//
-	// if (unitMap[y][x] != null) {
-	// Queue<int[]> queue = new LinkedList<int[]>();
-	// Unit unit = unitMap[y][x];
-	// boolean[][] availableMoves = new boolean[MAXY][MAXX];
-	// availableMoves[y][x] = true;
-	// int[] temp = { x, y, MoveRules.initialMoves(unit.getMoveType()) };
-	// queue.add(temp);
-	// while (!queue.isEmpty()) {
-	// int[] values = queue.remove();
-	// for (int i = 0; i < 4; i++) {
-	// int newX = values[0] + (int) Math.round(Math.cos(i / 2d * Math.PI));
-	// int newY = values[1] + (int) Math.round(Math.sin(i / 2d * Math.PI));
-	// int movesLeft = values[2];
-	//
-	// if (0 <= newX && newX < MAXX && 0 <= newY && newY < MAXY &&
-	// !availableMoves[newY][newX]) {
-	// int moveCost = MoveRules.moveCost(terrainMap[newY][newX],
-	// unit.getMoveType());
-	//
-	// if (moveCost <= movesLeft) {
-	// if (unitMap[newY][newX] != unit && unitMap[newY][newX] != null) {
-	// availableMoves[newY][newX] = false;
-	// } else
-	// availableMoves[newY][newX] = true;
-	// if (movesLeft - moveCost > 0) {
-	// int[] temp2 = { newX, newY, movesLeft - moveCost };
-	// queue.add(temp2);
-	// }
-	// }
-	// }
-	// }
-	// }
-	//
-	// return availableMoves;
-	// }
-	// return new boolean[MAXY][MAXX];
-	//
-	// }
 
+	
 	/**
 	 * finds the available targets of the given unit if the unit were at the x, y
 	 * coordinate
@@ -202,13 +154,18 @@ public class Map {
 		return availableTargets;
 
 	}
-
+	/**
+	 * Finds available moves of the given unit using a
+	 * breadth-first search from the origin coordinates
+	 * 
+	 * @param unit
+	 *            The unit to find the possible moves for
+	 */
 	public boolean[][] findAvailableMoves(Unit unit) {
 		int y = unit.getY();
 		int x = unit.getX();
 		if (unitMap[y][x] != null) {
 			Queue<int[]> queue = new LinkedList<int[]>();
-
 			boolean[][] availableMoves = new boolean[MAXY][MAXX];
 			availableMoves[y][x] = true;
 			int[] temp = { x, y, MoveRules.initialMoves(unit.getMoveType()) };
@@ -362,6 +319,7 @@ public class Map {
 							map[lineNum][x] = terrain;
 							break;
 						}
+						
 					}
 
 				}
