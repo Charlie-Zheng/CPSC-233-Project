@@ -7,12 +7,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -27,6 +29,8 @@ public class GameGUI extends Application {
 	private Map map;
 	private ImageView[][] terrainDisplay;
 	private ImageView[][] unitDisplay;
+	private Stage stage;
+	private PlayerGUI player;
 
 	public static void main(String[] args) {
 
@@ -36,8 +40,9 @@ public class GameGUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		boolean gameOver = false;
 		map = new Map("src/assets/map_1_1.txt");
+		player = new PlayerGUI(map);
 		sceneWidth = (int) (map.MAXX * TerrainGUI.getImagewidth());
 		sceneHeight = (int) (map.MAXY * TerrainGUI.getImageheight());
 		root = new Group();
@@ -46,10 +51,16 @@ public class GameGUI extends Application {
 		scene = new Scene(root, sceneWidth, sceneHeight, Color.hsb(255 * 0.0, 0, 0.5, 1));
 		primaryStage.setTitle("Arena Sim");
 		primaryStage.setScene(scene);
+
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
-
 		primaryStage.show();
+		while (!gameOver) {
+			gameOver = player.turn();
+			if (!gameOver) {
+				gameOver = AI.computerTurn(map);
+			}
+		}
 
 	}
 
@@ -71,6 +82,7 @@ public class GameGUI extends Application {
 				}
 				terrainDisplay[y][x].setX(x * TerrainGUI.getImagewidth());
 				terrainDisplay[y][x].setY(y * TerrainGUI.getImageheight());
+				terrainDisplay[y][x].setOnMouseClicked(new SelectedTile(x, y, player));
 				root.getChildren().add(terrainDisplay[y][x]);
 			}
 		}
@@ -88,9 +100,10 @@ public class GameGUI extends Application {
 					default:
 						break;
 					}
-					UnitGUI.applyFactionColor(unitDisplay[y][x],map.getUnitMap()[y][x].isFriendly());
+					UnitGUI.applyFactionColor(unitDisplay[y][x], map.getUnitMap()[y][x].isFriendly());
 					unitDisplay[y][x].setX(x * UnitGUI.getImagewidth());
 					unitDisplay[y][x].setY(y * UnitGUI.getImageheight());
+					unitDisplay[y][x].setMouseTransparent(true);
 					root.getChildren().add(unitDisplay[y][x]);
 				}
 			}

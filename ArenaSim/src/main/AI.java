@@ -28,7 +28,7 @@ public class AI {
 		ArrayList<AIMove> availableMoves = new ArrayList<AIMove>();
 		ArrayList<Unit> unitList = map.getUnitList();
 		for (Unit unit : unitList) {
-			if (!unit.isFriendly()) {
+			if (!unit.isFriendly() && !unit.hasMoved()) {
 				int unitX = unit.getX();
 				int unitY = unit.getY();
 				boolean[][] availableMovesOfUnit = map.findAvailableMoves(unit);
