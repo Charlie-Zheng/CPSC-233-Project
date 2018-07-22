@@ -3,34 +3,47 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class GameText {
-	private static Map map;
+public class GameText { // new class Game Text
+	private static Map map; // creating new object map
 
-	public static void main(String[] args) {
-		boolean gameOver = false;
-		map = new Map("src/assets/map_1_1.txt");
+	/**
+	 * main method, use to display the map while the game can still continue,
+	 * display actions of both sides
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) { // main method
+		boolean gameOver = false; // while the game is not yet finished
+		map = new Map("src/assets/map_1_1.txt"); // new Map as read from the file, creating new map object
 		Scanner wait = new Scanner(System.in);
-		while (!gameOver) {
+		while (!gameOver) { // checking the turn
 			gameOver = PlayerText.playerTurn(map);
-			if (!gameOver) {
-				System.out.println("Your turn is over, now it's the AI's turn, press enter to continue");
-				wait.nextLine();
+			if (!gameOver) { // if the turn is over
+				System.out.println("Your turn is over, now it's the AI's turn, press enter to continue"); // messages
+				wait.nextLine(); // wait for AI move
 				gameOver = AI.computerTurn(map);
 			}
 		}
-		map.displayMap();
+		map.displayMap(); // display the map after both friendly and enemies units have moved
 
 	}
 
-	public static Unit unitNameInput() {
+	/**
+	 * Prompts the user to selected a unit, and keeps looping until the user has
+	 * selected a valid unit
+	 * 
+	 * @return an unit object from the unit name the user has selected
+	 */
+	public static Unit unitNameInput() { // get Unit name method
 		Scanner input = new Scanner(System.in);
 
-		Unit unit = getMap().getUnit(input.nextLine());
-		while (unit == null) {
-			System.out.println("That is not a valid unit name");
-			unit = getMap().getUnit(input.nextLine());
+		Unit unit = getMap().getUnit(input.nextLine()); // get Unit name on the console
+		while (unit == null) { // if the name of the unit is not empty
+			System.out.println("That is not a valid unit name"); // message if the unit name doesn't match the name on
+																	// the map
+			unit = getMap().getUnit(input.nextLine()); // get new unit name on the console until the name match
 		}
-		return unit;
+		return unit; // return unit if that's the case (while terminte the loop)
 
 	}
 
@@ -71,9 +84,14 @@ public class GameText {
 																		// be true.
 				hasFailedInput = true;
 		} while (hasFailedInput); // if the user failed the input, loop back and ask them for input again.
-		return userInput;// user has succesfully entered a valid integer, return that integer.
+		return userInput;// user has successfully entered a valid integer, return that integer.
 	}
 
+	/**
+	 * getter method of Map class, return an map type object
+	 * 
+	 * @return map
+	 */
 	public static Map getMap() {
 		return map;
 	}
