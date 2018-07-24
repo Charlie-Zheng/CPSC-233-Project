@@ -56,7 +56,7 @@ public class AI {
 
 		// Store the list of units from the map
 		ArrayList<Unit> unitList = map.getUnitList();
-		// interate through each unit the AI can control
+		// Iterate through each unit the AI can control
 		for (Unit unit : unitList) {
 			if (!unit.isFriendly() && !unit.hasMoved()) {
 				int unitX = unit.getX();
@@ -163,13 +163,14 @@ public class AI {
 			else
 				enemiesAllDead = false;
 		}
-		//If either of the factions' units are all dead, the game is over
+		// If either of the factions' units are all dead, the game is over
 		return friendiesAllDead || enemiesAllDead;
 
 	}
 
 	/**
 	 * Generates a random integer between the given max and min values
+	 * 
 	 * @param min
 	 *            The minimum integer that can be generated.
 	 * @param max

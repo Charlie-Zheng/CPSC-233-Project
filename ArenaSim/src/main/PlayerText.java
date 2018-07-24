@@ -223,7 +223,7 @@ public class PlayerText {
 	/**
 	 * Checks if the player still has units to move
 	 * 
-	 * @return True if the player still hsa units to mvoe
+	 * @return True if the player still has units to move
 	 */
 	private static boolean playerHasUnmovedUnits() {
 		/*

@@ -16,7 +16,6 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		gui.setSelectedX(x);
 		gui.setSelectedY(y);
 		System.out.println("x: " + x + "\ty: " + y);
-		gui.notify();
 	}
 
 }
