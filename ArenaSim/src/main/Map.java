@@ -256,7 +256,7 @@ public class Map {
 
 	/**
 	 * Moves the given hero at the given location to the new location. Does not
-	 * check legality of move.
+	 * check legality of move
 	 * 
 	 * @param x
 	 * @param y
@@ -264,7 +264,8 @@ public class Map {
 	 * @param newY
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
-		if (x != newX || y != newY) { // Move only if different locations
+		if (x != newX || y != newY && unitMap[y][x] != null  && unitMap[newY][newX] != null) { // Move only if different locations
+			
 			unitMap[newY][newX] = unitMap[y][x]; // copy heroes into new position
 			unitMap[y][x] = null; // previous heroes' position set to null
 			unitMap[newY][newX].setYX(newY, newX); // setting new position for heroes

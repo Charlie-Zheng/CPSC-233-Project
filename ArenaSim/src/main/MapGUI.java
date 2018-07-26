@@ -5,7 +5,9 @@ package main;
 
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 
 /**
  * Class used to display the map
@@ -16,12 +18,13 @@ public class MapGUI {
 	private ImageView[][] terrainDisplay;
 	private ImageView[][] unitDisplay;
 	private Group root;
- private Map map;
-	public MapGUI(Map map,ImageView[][] terrainDisplay, ImageView[][] unitDisplay, Group root) {
-		this.map=map;
+	private Map map;
+
+	public MapGUI(Map map, ImageView[][] terrainDisplay, ImageView[][] unitDisplay, Group root) {
+		this.map = map;
 		this.terrainDisplay = terrainDisplay;
-		this.unitDisplay=unitDisplay;
-		this.root=root;
+		this.unitDisplay = unitDisplay;
+		this.root = root;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -41,15 +44,21 @@ public class MapGUI {
 				default:
 					break;
 				}
-				terrainDisplay[y][x].setX(x * TerrainGUI.getImagewidth());
-				terrainDisplay[y][x].setY(y * TerrainGUI.getImageheight());
+				// terrainDisplay[y][x].setX(x * TerrainGUI.getImagewidth());
+				// terrainDisplay[y][x].setY(y * TerrainGUI.getImageheight());
 				terrainDisplay[y][x].setOnMouseClicked(new SelectedTile(x, y));
 				terrainDisplay[y][x].setOnMouseEntered(new HighlightTile(terrainDisplay[y][x], true));
 				terrainDisplay[y][x].setOnMouseExited(new HighlightTile(terrainDisplay[y][x], false));
-				terrain.add(terrainDisplay[y][x],x,y);
+				terrain.add(terrainDisplay[y][x], x, y);
 			}
+
 		}
+		root.getChildren().add(terrain);
 		UnitGUI.initializeImages();
+		// GridPane unit = new GridPane();
+		// unit.getRowConstraints().addAll(new RowConstraints(UnitGUI.getImagewidth()));
+		// unit.getColumnConstraints().add(new
+		// ColumnConstraints(UnitGUI.getImageheight()));
 		for (int y = 0; y < map.MAXY; y++) {
 			for (int x = 0; x < map.MAXX; x++) {
 				if (map.getUnitMap()[y][x] != null) {
@@ -70,8 +79,6 @@ public class MapGUI {
 					root.getChildren().add(unitDisplay[y][x]);
 				}
 			}
-
 		}
-
 	}
 }

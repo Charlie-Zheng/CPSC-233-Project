@@ -23,6 +23,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent e) {
 		System.out.println("x: " + x + "\ty: " + y);
+		
 	}
 
 }
