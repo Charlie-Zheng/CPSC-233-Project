@@ -11,10 +11,17 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		this.x = x;
 		this.y = y;
 	}
+	/**
+	 * @param x2
+	 * @param y2
+	 */
+	public SelectedTile(int x, int y) {
+		// TODO Auto-generated constructor stub
+		this.x = x;
+		this.y = y;
+	}
 	@Override
 	public void handle(MouseEvent e) {
-		gui.setSelectedX(x);
-		gui.setSelectedY(y);
 		System.out.println("x: " + x + "\ty: " + y);
 	}
 
