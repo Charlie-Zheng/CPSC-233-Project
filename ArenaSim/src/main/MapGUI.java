@@ -5,6 +5,7 @@ package main;
 
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 /**
  * Class used to display the map
@@ -27,7 +28,7 @@ public class MapGUI {
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[map.MAXY][map.MAXY];
 		unitDisplay = new ImageView[map.MAXY][map.MAXY];
-
+		GridPane terrain = new GridPane();
 		TerrainGUI.initializeImages();
 		for (int y = 0; y < map.MAXY; y++) {
 			for (int x = 0; x < map.MAXX; x++) {
@@ -45,7 +46,7 @@ public class MapGUI {
 				terrainDisplay[y][x].setOnMouseClicked(new SelectedTile(x, y));
 				terrainDisplay[y][x].setOnMouseEntered(new HighlightTile(terrainDisplay[y][x], true));
 				terrainDisplay[y][x].setOnMouseExited(new HighlightTile(terrainDisplay[y][x], false));
-				root.getChildren().add(terrainDisplay[y][x]);
+				terrain.add(terrainDisplay[y][x],x,y);
 			}
 		}
 		UnitGUI.initializeImages();
