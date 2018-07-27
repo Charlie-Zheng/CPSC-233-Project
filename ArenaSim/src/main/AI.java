@@ -72,7 +72,7 @@ public class AI {
 							// found
 							map.moveHero(unitX, unitY, x, y);
 							// find the available targets if the unit had moved to the given location
-							boolean[][] availableTargetsOfUnit = map.findAvailableTargets(unit);
+							boolean[][] availableTargetsOfUnit = map.findRange(unit);
 
 							for (int j = 0, maxJ = availableTargetsOfUnit.length; j < maxJ; j++) {
 								for (int i = 0, maxI = availableTargetsOfUnit[j].length; i < maxI; i++) {

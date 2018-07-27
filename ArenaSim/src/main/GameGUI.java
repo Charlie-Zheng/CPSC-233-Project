@@ -30,7 +30,7 @@ public class GameGUI extends Application {
 	private Group root;
 	private Map map;
 	private ImageView[][] terrainDisplay;
-	private ImageView[][] unitDisplay;
+	private ImageView[] unitDisplay;
 	private Stage stage;
 	private PlayerGUI player;
 	private MapGUI mapGUI;

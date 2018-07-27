@@ -105,7 +105,7 @@ public class PlayerText {
 			while (!playerMove(selectedUnit))
 				System.out.println("That is not a valid move");
 			map.displayAttackOptions(selectedUnit);
-			boolean[][] availableAttacks = map.findAvailableTargets(selectedUnit);
+			boolean[][] availableAttacks = map.findRange(selectedUnit);
 			System.out.println("Select an enemy unit to attack: (Select self to not attack)");
 			Unit target = GameText.unitNameInput();
 

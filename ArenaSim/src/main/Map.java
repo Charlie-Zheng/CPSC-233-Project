@@ -235,11 +235,12 @@ public class Map {
 						if (moveCost <= movesLeft) {
 							if (unitMap[newY][newX] != unit && unitMap[newY][newX] != null) { // checking if the newX
 																								// and newY position has
-																								// an unit in in yet
+																								// // an unit in in yet
 								availableMoves[newY][newX] = false;
 							} else
 								availableMoves[newY][newX] = true;
-							if (movesLeft - moveCost > 0) {
+							if (movesLeft - moveCost > 0 && (unitMap[newY][newX] == null
+									|| unitMap[newY][newX].isFriendly() == unit.isFriendly())) {
 								int[] temp2 = { newX, newY, movesLeft - moveCost };
 								queue.add(temp2); // add another temp element to the queue
 							}
@@ -264,8 +265,9 @@ public class Map {
 	 * @param newY
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
-		if (x != newX || y != newY && unitMap[y][x] != null  && unitMap[newY][newX] != null) { // Move only if different locations
-			
+		if (x != newX || y != newY && unitMap[y][x] != null && unitMap[newY][newX] != null) { // Move only if different
+																								// locations
+
 			unitMap[newY][newX] = unitMap[y][x]; // copy heroes into new position
 			unitMap[y][x] = null; // previous heroes' position set to null
 			unitMap[newY][newX].setYX(newY, newX); // setting new position for heroes
@@ -359,7 +361,7 @@ public class Map {
 	 *            as an Object of Unit class return nothing
 	 */
 	public void displayAttackOptions(Unit unit) {
-		boolean[][] availableTargets = findAvailableTargets(unit); // find available target
+		boolean[][] availableTargets = findRange(unit); // find available target
 
 		for (int j = 0; j < terrainMap.length; j++) { // loop through then 2 dimension matrix (which is the map)
 			for (int i = 0; i < terrainMap[0].length; i++) {
@@ -386,13 +388,13 @@ public class Map {
 	}
 
 	/**
-	 * Determine if the target is available for actions or not
+	 * Find the available tiles the unit can attack
 	 * 
 	 * @param unit
 	 *            as an Object of Unit class
-	 * @return boolean value
+	 * @return a boolean array representing tiles the unit can attack
 	 */
-	public boolean[][] findAvailableTargets(Unit unit) {
+	public boolean[][] findRange(Unit unit) {
 		boolean[][] availableTargets = new boolean[MAXY][MAXX]; // cannot let the target be outside of the map
 		for (int y = 0; y < MAXY; y++) { // loop through the map on the Y axis
 			for (int x = 0; x < MAXX; x++) { // loop through the map on the X axis
