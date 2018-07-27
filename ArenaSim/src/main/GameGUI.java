@@ -49,7 +49,7 @@ public class GameGUI extends Application {
 		sceneWidth = (int) (map.MAXX * TerrainGUI.getImagewidth());
 		sceneHeight = (int) (map.MAXY * TerrainGUI.getImageheight());
 		root = new Group();
-		mapGUI = new MapGUI(map,terrainDisplay,unitDisplay,root);
+		mapGUI = new MapGUI(map, terrainDisplay, unitDisplay, root);
 		mapGUI.loadMapGUI();
 
 		scene = new Scene(root, sceneWidth, sceneHeight, Color.hsb(255 * 0.0, 0, 0.5, 1));

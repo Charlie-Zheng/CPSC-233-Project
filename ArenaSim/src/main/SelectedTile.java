@@ -27,8 +27,8 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 	@Override
 	public void handle(MouseEvent e) {
-		//Highlights moveable tiles to be blue
-		if (!selectingMove && !selectingAttack) {//what happens when you click while not selecting a move or an attack
+		// Highlights moveable tiles to be blue
+		if (!selectingMove && !selectingAttack) {// what happens when you click while not selecting a move or an attack
 			mapGUI.updateUnitsOnMap();
 			selectedUnit = map.getUnitMap()[y][x];
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
@@ -37,12 +37,13 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				boolean[][] AttackRange = map.findRange(selectedUnit);
 				for (int y = 0; y < map.MAXY; y++) {
 					for (int x = 0; x < map.MAXX; x++) {
-						//Indicates what grid the user's unit is able to move on in blue
+						// Indicates what grid the user's unit is able to move on in blue
 						if (availableMoves[y][x])
 							mapGUI.addBlue(y, x);
+
+						// shows the user the current unit's available attack range in red.
 						
-						//shows the user the current unit's available attack range in red.
-						if(AttackRange[y][x] && availableMoves[y][x]) {
+						if (AttackRange[y][x]) {
 							mapGUI.addRed(y, x);
 						}
 					}
@@ -56,12 +57,12 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				mapGUI.removeAllColours();
 				for (int y = 0; y < map.MAXY; y++) {
 					for (int x = 0; x < map.MAXX; x++) {
-						
+
 						if (AIMoves[y][x])
 							mapGUI.addYellow(y, x);
-						
-						if(AttackRangeAI[y][x] &&AIMoves[y][x])
-							mapGUI.addRed(y,x);
+
+						if (AttackRangeAI[y][x] && AIMoves[y][x])
+							mapGUI.addRed(y, x);
 					}
 				}
 			}
@@ -73,12 +74,11 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			for (int i = 0; i < map.MAXY; i++) {
 				for (int j = 0; j < map.MAXX; j++) {
 					if (availableMoves[i][j]) {
-						mapGUI.moveUnitsOnGUI(selectedUnit,y, x, availableMoves[y][x]);
+						mapGUI.moveUnitsOnGUI(selectedUnit, y, x, availableMoves[y][x]);
 					}
 				}
 			}
 
-			
 			mapGUI.updateUnitsOnMap();
 			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
