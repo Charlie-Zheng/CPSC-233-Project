@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -28,9 +30,10 @@ public class GameGUI extends Application {
 	private Group root;
 	private Map map;
 	private ImageView[][] terrainDisplay;
-	private ImageView[][] unitDisplay;
+	private ImageView[] unitDisplay;
 	private Stage stage;
 	private PlayerGUI player;
+	private MapGUI mapGUI;
 
 	public static void main(String[] args) {
 
@@ -46,7 +49,8 @@ public class GameGUI extends Application {
 		sceneWidth = (int) (map.MAXX * TerrainGUI.getImagewidth());
 		sceneHeight = (int) (map.MAXY * TerrainGUI.getImageheight());
 		root = new Group();
-		loadMapGUI();
+		mapGUI = new MapGUI(map,terrainDisplay,unitDisplay,root);
+		mapGUI.loadMapGUI();
 
 		scene = new Scene(root, sceneWidth, sceneHeight, Color.hsb(255 * 0.0, 0, 0.5, 1));
 		primaryStage.setTitle("Arena Sim");
@@ -55,60 +59,12 @@ public class GameGUI extends Application {
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		while (!gameOver) {
-			gameOver = player.turn();
-			if (!gameOver) {
-				gameOver = AI.computerTurn(map);
-			}
-		}
-
-	}
-
-	public void loadMapGUI() {
-		terrainDisplay = new ImageView[map.MAXY][map.MAXY];
-		unitDisplay = new ImageView[map.MAXY][map.MAXY];
-
-		TerrainGUI.initializeImages();
-		for (int y = 0; y < map.MAXY; y++) {
-			for (int x = 0; x < map.MAXX; x++) {
-				switch (map.getTerrainMap()[y][x]) {
-				case TREE:
-					terrainDisplay[y][x] = new ImageView(TerrainGUI.getTreeImage());
-					break;
-				case FLAT:
-					terrainDisplay[y][x] = new ImageView(TerrainGUI.getFlatImage());
-				default:
-					break;
-				}
-				terrainDisplay[y][x].setX(x * TerrainGUI.getImagewidth());
-				terrainDisplay[y][x].setY(y * TerrainGUI.getImageheight());
-				terrainDisplay[y][x].setOnMouseClicked(new SelectedTile(x, y, player));
-				root.getChildren().add(terrainDisplay[y][x]);
-			}
-		}
-		UnitGUI.initializeImages();
-		for (int y = 0; y < map.MAXY; y++) {
-			for (int x = 0; x < map.MAXX; x++) {
-				if (map.getUnitMap()[y][x] != null) {
-					switch (map.getUnitMap()[y][x].getMoveType()) {
-					case CAVALRY:
-						unitDisplay[y][x] = UnitGUI.getHorse();
-
-						break;
-					case INFANTRY:
-						unitDisplay[y][x] = UnitGUI.getSword();
-					default:
-						break;
-					}
-					UnitGUI.applyFactionColor(unitDisplay[y][x], map.getUnitMap()[y][x].isFriendly());
-					unitDisplay[y][x].setX(x * UnitGUI.getImagewidth());
-					unitDisplay[y][x].setY(y * UnitGUI.getImageheight());
-					unitDisplay[y][x].setMouseTransparent(true);
-					root.getChildren().add(unitDisplay[y][x]);
-				}
-			}
-
-		}
+		// while (!gameOver) {
+		// gameOver = player.turn();
+		// if (!gameOver) {
+		// gameOver = AI.computerTurn(map);
+		// }
+		// }
 
 	}
 

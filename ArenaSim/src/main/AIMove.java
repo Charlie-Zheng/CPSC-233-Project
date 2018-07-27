@@ -1,7 +1,7 @@
 package main;
 
 public class AIMove {
-	// Instance variables that the AIMove encasulates
+	// Instance variables that the AIMove encapsulates
 	// The unit is the unit to move
 	private Unit unit;
 	// x,y represent the location to move to

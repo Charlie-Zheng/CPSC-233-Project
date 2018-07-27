@@ -38,11 +38,11 @@ public final class UnitGUI {
 			unitImage.setEffect(enemyEffect);
 	}
 
-	public static ImageView getSword() {
-		return new ImageView(unitImages[0]);
+	public static Image getSword() {
+		return unitImages[0];
 	}
 
-	public static ImageView getHorse() {
-		return new ImageView(unitImages[1]);
+	public static Image getHorse() {
+		return unitImages[1];
 	}
 }

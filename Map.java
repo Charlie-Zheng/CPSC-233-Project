@@ -265,7 +265,8 @@ public class Map {
 	 * @param newY
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
-		if (x != newX || y != newY  && unitMap[y][x] != null && unitMap[newY][newX] == null) { // Move only if different
+		if (x != newX || y != newY) { 
+			//&& unitMap[y][x] != null && unitMap[newY][newX] != null) { // Move only if different
 		//}
 																								// locations
 
@@ -399,7 +400,7 @@ public class Map {
 		boolean[][] availableTargets = new boolean[MAXY][MAXX]; // cannot let the target be outside of the map
 		for (int y = 0; y < MAXY; y++) { // loop through the map on the Y axis
 			for (int x = 0; x < MAXX; x++) { // loop through the map on the X axis
-				if (Math.abs(unit.getX() - x) + Math.abs(unit.getY() - y) == unit.getRange()) // get the Range that unit
+				if (Math.abs(unit.getX() - x) + Math.abs(unit.getY() - y) <= unit.getRange()) // get the Range that unit
 																								// can make actions
 					availableTargets[y][x] = true; // If the range is correct, set the target to be true
 			}
