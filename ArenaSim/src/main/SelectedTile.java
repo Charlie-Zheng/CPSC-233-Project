@@ -37,6 +37,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 					for (int x = 0; x < map.MAXX; x++) {
 						if (availableMoves[y][x])
 							mapGUI.addBlue(y, x);
+
 					}
 				}
 
@@ -48,7 +49,22 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 				}
 			}
-		} else {// What happens when you are selecting a move
+		} else {
+			System.out.println(x + " " + y);
+			// System.out.println(map.getUnitList());
+			map.findAvailableMoves(selectedUnit);
+			boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
+			for (int i = 0; i < map.MAXY; i++) {
+				for (int j = 0; j < map.MAXX; j++) {
+					if (availableMoves[i][j]) {
+						mapGUI.moveUnitsOnGUI(y, x, availableMoves[y][x]);
+					}
+				}
+			}
+
+			
+			mapGUI.updateUnitsOnMap();
+			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
 
 			mapGUI.removeAllColours();

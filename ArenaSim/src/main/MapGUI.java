@@ -35,6 +35,7 @@ public class MapGUI {
 	public void addBlue(int y, int x) {
 		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.5));
 	}
+	
 
 	public void removeColour(int y, int x) {
 		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.0));
@@ -60,6 +61,21 @@ public class MapGUI {
 		}
 	}
 
+	/**move Units on GUI map
+	 * 
+	 * @param y: new y position of unit
+	 * @param x: new x position of unit
+	 * @param okay: boolean value, check if unit can have legal move
+	 */
+	public void moveUnitsOnGUI(int y, int x, boolean okay) {
+		for (Unit unit : map.getUnitList()) {
+			if (unit.isFriendly() && okay) {
+				Unit friendlyUnit = unit;
+				friendlyUnit.setYX(y, x);
+			}
+		}
+	}
+	
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[map.MAXY][map.MAXY];
 		unitDisplay = new ImageView[map.getUnitList().size()];

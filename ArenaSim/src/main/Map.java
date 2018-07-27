@@ -265,7 +265,9 @@ public class Map {
 	 * @param newY
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
-		if (x != newX || y != newY && unitMap[y][x] != null && unitMap[newY][newX] != null) { // Move only if different
+		if (x != newX || y != newY) { 
+			//&& unitMap[y][x] != null && unitMap[newY][newX] != null) { // Move only if different
+		//}
 																								// locations
 
 			unitMap[newY][newX] = unitMap[y][x]; // copy heroes into new position
