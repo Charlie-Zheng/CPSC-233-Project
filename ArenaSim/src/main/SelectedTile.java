@@ -27,7 +27,8 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 	@Override
 	public void handle(MouseEvent e) {
-		if (!selectingMove && !selectingAttack) {
+		//Highlights moveable tiles to be blue
+		if (!selectingMove && !selectingAttack) {//what happens when you click while not selecting a move or an attack
 			mapGUI.updateUnitsOnMap();
 			selectedUnit = map.getUnitMap()[y][x];
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
@@ -48,7 +49,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 				}
 			}
-		} else {// What happens when you are selecting a move
+		} else {// What happens when you are selecting a move or attack
 			// Move the unit to somewhere or remove all the colors
 
 			mapGUI.removeAllColours();
