@@ -36,6 +36,17 @@ public class MapGUI {
 		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.5));
 	}
 	
+	public void addRed(int y, int x) {
+		colourOverlay[y][x].setFill(Color.hsb(0, 1, 1, 0.5));
+	}
+	
+	public void addYellow(int y, int x) {
+		colourOverlay[y][x].setFill(Color.hsb(60, 1, 1, 0.4));
+	}
+	
+	public void addGreen(int y, int x) {
+		colourOverlay[y][x].setFill(Color.hsb(30, 1, 1, 0.4));
+	}
 
 	public void removeColour(int y, int x) {
 		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.0));
@@ -67,14 +78,14 @@ public class MapGUI {
 	 * @param x: new x position of unit
 	 * @param okay: boolean value, check if unit can have legal move
 	 */
-	public void moveUnitsOnGUI(int y, int x, boolean okay) {
-		for (Unit unit : map.getUnitList()) {
-			if (unit.isFriendly() && okay) {
-				Unit friendlyUnit = unit;
-				friendlyUnit.setYX(y, x);
+	public void moveUnitsOnGUI(Unit currentUnit,int y, int x, boolean okay) {
+			if (currentUnit.isFriendly() && okay) {
+				Unit friendlyUnit = currentUnit;
+				int currentX = friendlyUnit.getX();
+				int currentY = friendlyUnit.getY();
+				map.moveHero(currentX, currentY, x, y);
 			}
 		}
-	}
 	
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[map.MAXY][map.MAXY];
@@ -140,4 +151,5 @@ public class MapGUI {
 		}
 
 	}
+
 }
