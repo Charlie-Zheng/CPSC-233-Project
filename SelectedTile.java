@@ -33,11 +33,17 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
 				selectingMove = true;
 				boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
+				boolean[][] AttackRange = map.findRange(selectedUnit);
 				for (int y = 0; y < map.MAXY; y++) {
 					for (int x = 0; x < map.MAXX; x++) {
+						//highlights the Player unit's available movement in blue
 						if (availableMoves[y][x])
 							mapGUI.addBlue(y, x);
-
+						
+						//highlights the player unit's attack range in red.
+						if(AttackRange[y][x]) {
+							mapGUI.addRed(y, x);
+						}
 					}
 				}
 
@@ -45,8 +51,20 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				// display the enemy's possible attack range in red. Will need to use
 				// findAvailableMoves along with findRange to determine these tiles
 				boolean[][] canAttack = new boolean[map.MAXY][map.MAXX];
-				for (int y = 0; y < map.MAXY; y++) {
-
+				boolean[][] AttackRangeAI = map.findRange(selectedUnit);
+				boolean[][] AIMove = map.findAvailableMoves(selectedUnit);
+				mapGUI.removeAllColours();
+				for(int y=0; y<map.MAXY;y++) {
+					for(int x=0;x<map.MAXX;x++) {
+						//displays a enemy unit's available move range(in yellow)
+						if(AIMove[y][x]) {
+							mapGUI.addYellow(y, x);
+						}
+						//displays a enemy unit's attack range(in red)
+						if(AttackRangeAI[y][x]) {
+							mapGUI.addRed(y,x);
+						}
+					}
 				}
 			}
 		} else {
