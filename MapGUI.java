@@ -36,6 +36,13 @@ public class MapGUI {
 		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.5));
 	}
 	
+	public void addRed(int y, int x) {
+		colourOverlay[y][x].setFill(Color.hsb(0, 1, 1, 0.5));
+	}
+	
+	public void addYellow(int y, int x) {
+		colourOverlay[y][x].setFill(Color.hsb(60, 1, 1, 0.4));
+	}
 
 	public void removeColour(int y, int x) {
 		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.0));
