@@ -174,7 +174,6 @@ public class MapGUI {
 		consoleText.setLayoutX(map.MAXX*TerrainGUI.getImagewidth());; //Console
 		consoleText.setLayoutY(counter*unitDisplayHeight);
 		consoleText.setPrefSize(250, map.MAXY * TerrainGUI.getImageheight()-counter*unitDisplayHeight);
-
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);

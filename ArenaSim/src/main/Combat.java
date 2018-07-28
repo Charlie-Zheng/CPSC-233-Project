@@ -83,6 +83,8 @@ public final class Combat {
 		if (!applyCombat) {
 			defender = new Unit(defender);
 			initiator = new Unit(initiator);
+		}else {
+			System.out.println("\n\n");
 		}
 		/*
 		 * It then goes to this function with these parameters which determines how much
@@ -110,6 +112,7 @@ public final class Combat {
 		 */
 		else if (canCounterAttack(initiator, defender)) {
 			attack(defender, initiator, applyCombat);
+			
 		}
 		/*
 		 * If the initiator variable's getCurrentHP value is less than or equal to 0 it

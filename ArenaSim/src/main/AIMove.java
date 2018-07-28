@@ -81,6 +81,12 @@ public class AIMove {
  * A String representation of the move and attack
  */
 	public String toString() {
-		return unit.getName() + " moved to: " + x + ", " + y + " and attacked: " + i + ", " + j;
+		if(x == i && y == j) {
+			return unit.getName() + " moved to: " + x + ", " + y;
+		}else {
+			return unit.getName() + " moved to: " + x + ", " + y + " and attacked: " + i + ", " + j;
+		}
+		
+		
 	}
 }
