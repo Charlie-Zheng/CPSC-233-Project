@@ -64,29 +64,34 @@ public class MapGUI {
 	 * Updates the images on the GUI to correspond to those on the map
 	 */
 	public void updateUnitsOnMap() {
-		int counter = 0;
-		for (Unit unit : map.getUnitList()) {
-			unitDisplay[counter].setX(unit.getX() * TerrainGUI.getImagewidth());
-			unitDisplay[counter].setY(unit.getY() * TerrainGUI.getImageheight());
-			counter++;
+		for (int x = 0; x < unitDisplay.length; x++) {
+			unitDisplay[x].setVisible(false);
+			if (x < map.getUnitList().size()) {
+				Unit unit = map.getUnitList().get(x);
+				if (unit.getCurrentHP() > 0) {
+					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
+					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
+					unitDisplay[x].setVisible(true);
+				}
+			}
 		}
 	}
 
-	/**
-	 * move Units on GUI map
-	 * 
-	 * @param y: new y position of unit
-	 * @param x: new x position of unit
-	 * @param okay: boolean value, check if unit can have legal move
-	 */
-	public void moveUnitsOnGUI(Unit currentUnit, int y, int x, boolean okay) {
-		if (currentUnit.isFriendly() && okay) {
-			Unit friendlyUnit = currentUnit;
-			int currentX = friendlyUnit.getX();
-			int currentY = friendlyUnit.getY();
-			map.moveHero(currentX, currentY, x, y);
-		}
-	}
+	// /**
+	// * move Units on GUI map
+	// *
+	// * @param y: new y position of unit
+	// * @param x: new x position of unit
+	// * @param okay: boolean value, check if unit can have legal move
+	// */
+	// public void moveUnitsOnGUI(Unit currentUnit, int y, int x, boolean okay) {
+	// if (currentUnit.isFriendly() && okay) {
+	// Unit friendlyUnit = currentUnit;
+	// int currentX = friendlyUnit.getX();
+	// int currentY = friendlyUnit.getY();
+	// map.moveHero(currentX, currentY, x, y);
+	// }
+	// }
 
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[map.MAXY][map.MAXY];

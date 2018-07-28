@@ -34,18 +34,17 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
 				selectingMove = true;
 				boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
-				boolean[][] AttackRange = map.findAllAttacks(selectedUnit);
+				boolean[][] allAttacks = map.findAllAttacks(selectedUnit);
 				for (int y = 0; y < map.MAXY; y++) {
 					for (int x = 0; x < map.MAXX; x++) {
 						// shows the user the current unit's available attack range in red.
 
-						if (AttackRange[y][x]) {
+						if (allAttacks[y][x]) {
 							mapGUI.addRed(y, x);
 						}
 						// Indicates what grid the user's unit is able to move on in blue
 						if (availableMoves[y][x])
 							mapGUI.addBlue(y, x);
-
 					}
 				}
 
@@ -61,24 +60,52 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 					}
 				}
 			}
-		} else {
-			System.out.println(x + " " + y);
+		} else if (selectingMove) {
 			// System.out.println(map.getUnitList());
-			map.findAvailableMoves(selectedUnit);
-			boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
-			for (int i = 0; i < map.MAXY; i++) {
-				for (int j = 0; j < map.MAXX; j++) {
-					if (availableMoves[i][j]) {
-						mapGUI.moveUnitsOnGUI(selectedUnit, y, x, availableMoves[y][x]);
-					}
-				}
+//			map.findAvailableMoves(selectedUnit);
+//			boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
+//			for (int i = 0; i < map.MAXY; i++) {
+//				for (int j = 0; j < map.MAXX; j++) {
+//					if (availableMoves[i][j]) {
+//						mapGUI.moveUnitsOnGUI(selectedUnit, y, x, availableMoves[y][x]);
+//					}
+//				}
+//			}
+			if(map.checkMoveLegal(selectedUnit, x-selectedUnit.getX(), y-selectedUnit.getY())) {
+				map.moveHero(selectedUnit, x-selectedUnit.getX(),  y-selectedUnit.getY());
 			}
+		
 
 			mapGUI.updateUnitsOnMap();
 			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
 			mapGUI.removeAllColours();
+			boolean[][] AttackRange = map.findRange(selectedUnit);
+			for (int y = 0; y < map.MAXY; y++) {
+				for (int x = 0; x < map.MAXX; x++) {
+					// shows the user the current unit's available attack range in red.
+
+					if (AttackRange[y][x]) {
+						mapGUI.addRed(y, x);
+					}
+	
+				}
+			}
 			selectingMove = false;
+			selectingAttack = true;
+		} else if(selectingAttack) {
+			boolean[][] AttackRange = map.findRange(selectedUnit);
+			if(AttackRange[y][x] && map.getUnitMap()[y][x] != null && !map.getUnitMap()[y][x].isFriendly()) {
+				Combat.doCombat(selectedUnit, map.getUnitMap()[y][x]);
+				map.updateHeroDeaths();
+			}
+			selectingAttack  =false;
+			selectedUnit = null;
+			mapGUI.updateUnitsOnMap();
+			// What happens when you are selecting a move
+			// Move the unit to somewhere or remove all the colors
+			mapGUI.removeAllColours();
+			
 		}
 	}
 
