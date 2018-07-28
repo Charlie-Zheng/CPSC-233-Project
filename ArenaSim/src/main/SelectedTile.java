@@ -71,28 +71,31 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 //					}
 //				}
 //			}
+			mapGUI.removeAllColours();
 			if(map.checkMoveLegal(selectedUnit, x-selectedUnit.getX(), y-selectedUnit.getY())) {
 				map.moveHero(selectedUnit, x-selectedUnit.getX(),  y-selectedUnit.getY());
+				selectingAttack = true;
+				boolean[][] AttackRange = map.findRange(selectedUnit);
+				for (int y = 0; y < map.MAXY; y++) {
+					for (int x = 0; x < map.MAXX; x++) {
+						// shows the user the current unit's available attack range in red.
+
+						if (AttackRange[y][x]) {
+							mapGUI.addRed(y, x);
+						}
+		
+					}
+				}
 			}
 		
 
 			mapGUI.updateUnitsOnMap();
 			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
-			mapGUI.removeAllColours();
-			boolean[][] AttackRange = map.findRange(selectedUnit);
-			for (int y = 0; y < map.MAXY; y++) {
-				for (int x = 0; x < map.MAXX; x++) {
-					// shows the user the current unit's available attack range in red.
-
-					if (AttackRange[y][x]) {
-						mapGUI.addRed(y, x);
-					}
-	
-				}
-			}
+			
+		
 			selectingMove = false;
-			selectingAttack = true;
+
 		} else if(selectingAttack) {
 			boolean[][] AttackRange = map.findRange(selectedUnit);
 			if(AttackRange[y][x] && map.getUnitMap()[y][x] != null && !map.getUnitMap()[y][x].isFriendly()) {
