@@ -34,7 +34,8 @@ public class Map {
 	/**
 	 * constructor of Map class
 	 * 
-	 * @param TerrainFile take 1 string parameter
+	 * @param TerrainFile
+	 *            take 1 string parameter
 	 */
 	public Map(String TerrainFile) {
 		// read map from text file
@@ -66,7 +67,8 @@ public class Map {
 	/**
 	 * method readHeroSpawns
 	 * 
-	 * @param mapName take 1 string parameter
+	 * @param mapName
+	 *            take 1 string parameter
 	 */
 
 	private void readHeroSpawns(String mapName) {
@@ -97,8 +99,10 @@ public class Map {
 	/**
 	 * Spawning Heroes methods
 	 * 
-	 * @param heroFileName: name of the File java is going to import
-	 * @param isFriendly: checking if the unit is friendly or not
+	 * @param heroFileName:
+	 *            name of the File java is going to import
+	 * @param isFriendly:
+	 *            checking if the unit is friendly or not
 	 */
 	private void spawnHeroes(String heroFileName, boolean isFriendly) {
 		File heroFile = new File(heroFileName);
@@ -139,9 +143,12 @@ public class Map {
 	/**
 	 * checkMoveLegal method: checking if unit can move to the designated spot.
 	 * 
-	 * @param unit: unit
-	 * @param xOffset: spot on the X axis
-	 * @param yOffset: spot on the Y axis
+	 * @param unit:
+	 *            unit
+	 * @param xOffset:
+	 *            spot on the X axis
+	 * @param yOffset:
+	 *            spot on the Y axis
 	 * @return boolean value to determine if unit can be moved or not
 	 */
 
@@ -160,7 +167,8 @@ public class Map {
 	 * Displays the map and the available moves of a given unit print "@" around our
 	 * unit as a representation for the available moves
 	 * 
-	 * @param unit The unit to display the moves for
+	 * @param unit
+	 *            The unit to display the moves for
 	 */
 	public void displayAvailableMoves(Unit unit) {
 		boolean[][] availableMoves = findAvailableMoves(unit); // calling findAvailableMoves method
@@ -190,7 +198,8 @@ public class Map {
 	/**
 	 * Finds the available moves of a given unit
 	 * 
-	 * @param unit The units to find the moves for
+	 * @param unit
+	 *            The units to find the moves for
 	 * @return boolean value if the spot on the map is possible to move the unit in
 	 *         or not
 	 */
@@ -269,7 +278,8 @@ public class Map {
 	 * moveHero method: moving the unit, get their position of the 2 dimension map 3
 	 * parameters
 	 * 
-	 * @param         unit: an object of Unit class
+	 * @param unit:
+	 *            an object of Unit class
 	 * @param xOffset
 	 * @param yOffset
 	 */
@@ -291,8 +301,9 @@ public class Map {
 	/**
 	 * setUnitList method
 	 * 
-	 * @param unitList: take an ArrayList as a parameter update the unit List return
-	 *        nothing
+	 * @param unitList:
+	 *            take an ArrayList as a parameter update the unit List return
+	 *            nothing
 	 */
 	public void setUnitList(ArrayList<Unit> unitList) {
 		this.unitList = unitList;
@@ -346,7 +357,8 @@ public class Map {
 	 * Display possible attack options for each unit In this method, we also want
 	 * the attack options is being printed on the right side of the map (on console)
 	 * 
-	 * @param unit: as an Object of Unit class return nothing
+	 * @param unit:
+	 *            as an Object of Unit class return nothing
 	 */
 	public void displayAttackOptions(Unit unit) {
 		boolean[][] availableTargets = findRange(unit); // find available target
@@ -378,7 +390,8 @@ public class Map {
 	/**
 	 * Find the available tiles the unit can attack
 	 * 
-	 * @param unit as an Object of Unit class
+	 * @param unit
+	 *            as an Object of Unit class
 	 * @return a boolean array representing tiles the unit can attack
 	 */
 	public boolean[][] findRange(Unit unit) {
@@ -393,11 +406,24 @@ public class Map {
 		return availableTargets; // return true if thats the case, false otherwise
 
 	}
+	public boolean[][] findRange(Unit unit, int unitX, int unitY) {
+		boolean[][] availableTargets = new boolean[MAXY][MAXX]; // cannot let the target be outside of the map
+		for (int y = 0; y < MAXY; y++) { // loop through the map on the Y axis
+			for (int x = 0; x < MAXX; x++) { // loop through the map on the X axis
+				if (Math.abs(unitX - x) + Math.abs(unitY - y) <= unit.getRange()) // get the Range that unit
+																								// can make actions
+					availableTargets[y][x] = true; // If the range is correct, set the target to be true
+			}
+		}
+		return availableTargets; // return true if thats the case, false otherwise
+
+	}
 
 	/**
 	 * readMap method
 	 * 
-	 * @param mapName as a String
+	 * @param mapName
+	 *            as a String
 	 * @return the map. but return null if error occurs
 	 */
 	private TerrainType[][] readMap(String mapName) {
@@ -434,7 +460,8 @@ public class Map {
 	/**
 	 * get Unit name method
 	 * 
-	 * @param unitName, a String value
+	 * @param unitName,
+	 *            a String value
 	 * @return Unit as an object
 	 */
 	public Unit getUnit(String unitName) {
@@ -443,5 +470,26 @@ public class Map {
 				return unit; // return it
 		}
 		return null; // else return nothing
+	}
+
+	public boolean[][] findAllAttacks(Unit unit) {
+		boolean[][] allAttacks = new boolean[MAXY][MAXX];
+		boolean[][] availableMoves = findAvailableMoves(unit);
+		for (int y = 0; y < MAXY; y++) {
+			for (int x = 0; x < MAXX; x++) {
+				if (availableMoves[y][x]) {
+					boolean[][] availableAttacks = findRange(unit,x,y);
+					for (int j = 0; j < MAXY; j++) {
+						for (int i = 0; i < MAXX; i++) {
+							if(availableAttacks[j][i]) {
+								allAttacks[j][i] = true;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return allAttacks;
 	}
 }

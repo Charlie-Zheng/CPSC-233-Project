@@ -34,34 +34,29 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
 				selectingMove = true;
 				boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
-				boolean[][] AttackRange = map.findRange(selectedUnit);
+				boolean[][] AttackRange = map.findAllAttacks(selectedUnit);
 				for (int y = 0; y < map.MAXY; y++) {
 					for (int x = 0; x < map.MAXX; x++) {
+						// shows the user the current unit's available attack range in red.
+
+						if (AttackRange[y][x]) {
+							mapGUI.addRed(y, x);
+						}
 						// Indicates what grid the user's unit is able to move on in blue
 						if (availableMoves[y][x])
 							mapGUI.addBlue(y, x);
 
-						// shows the user the current unit's available attack range in red.
-						
-						if (AttackRange[y][x]) {
-							mapGUI.addRed(y, x);
-						}
 					}
 				}
 
 			} else if (selectedUnit != null && !selectedUnit.isFriendly()) {
 				// display the enemy's possible attack range in red. Will need to use
 				// findAvailableMoves along with findRange to determine these tiles
-				boolean[][] AIMoves = map.findAvailableMoves(selectedUnit);
-				boolean[][] AttackRangeAI = map.findRange(selectedUnit);
+				boolean[][] AIAttacks = map.findAllAttacks(selectedUnit);
 				mapGUI.removeAllColours();
 				for (int y = 0; y < map.MAXY; y++) {
 					for (int x = 0; x < map.MAXX; x++) {
-
-						if (AIMoves[y][x])
-							mapGUI.addYellow(y, x);
-
-						if (AttackRangeAI[y][x] && AIMoves[y][x])
+						if (AIAttacks[y][x])
 							mapGUI.addRed(y, x);
 					}
 				}
