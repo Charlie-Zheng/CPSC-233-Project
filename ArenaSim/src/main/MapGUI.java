@@ -3,9 +3,11 @@
  */
 package main;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import javafx.scene.Group;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -25,9 +27,9 @@ public class MapGUI {
 	private Group root;
 	private Map map;
 	private Rectangle[][] colourOverlay;
-
+	private TextArea consoleText ;
 	private ArrayList<Rectangle> unitStatDisplays = new ArrayList<Rectangle>();
-
+	private final int unitDisplayHeight = 75;
 	public MapGUI(Map map, Group root) {
 		this.map = map;
 		this.root = root;
@@ -158,7 +160,7 @@ public class MapGUI {
 		}
 		counter = 0;
 		for (Unit unit : map.getUnitList()) {
-			Rectangle unitStatDisplay = new Rectangle(map.MAXX * TerrainGUI.getImagewidth(), counter * 75, 250, 75);
+			Rectangle unitStatDisplay = new Rectangle(map.MAXX * TerrainGUI.getImagewidth(), counter * unitDisplayHeight, 250, 75);
 			counter++;
 			if (unit.isFriendly())
 				unitStatDisplay.setFill(Color.hsb(210, 0.5, 1));
@@ -168,7 +170,14 @@ public class MapGUI {
 			unitStatDisplays.add(unitStatDisplay);
 			root.getChildren().add(unitStatDisplay);
 		}
+		consoleText = new TextArea();
+		consoleText.setLayoutX(map.MAXX*TerrainGUI.getImagewidth());; //Console
+		consoleText.setLayoutY(counter*unitDisplayHeight);
+		consoleText.setPrefSize(250, map.MAXY * TerrainGUI.getImageheight()-counter*unitDisplayHeight);
 
+		PrintStream ps = System.out;
+		System.setOut(new TextStreamGUI(consoleText, ps));
+		root.getChildren().add(consoleText);
 	}
 
 }

@@ -2,6 +2,7 @@ package main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
@@ -32,7 +34,7 @@ public class GameGUI extends Application {
 	private Stage stage;
 	private PlayerGUI player;
 	private MapGUI mapGUI;
-
+	private TextArea consoleText = new TextArea();
 	public static void main(String[] args) {
 
 		launch(args);
@@ -44,13 +46,10 @@ public class GameGUI extends Application {
 		boolean gameOver = false;
 		map = new Map("src/assets/map_1_1.txt");
 		player = new PlayerGUI(map);
-		sceneWidth = (int) (map.MAXX * TerrainGUI.getImagewidth());
-		sceneHeight = (int) (map.MAXY * TerrainGUI.getImageheight());
 		root = new Group();
 		mapGUI = new MapGUI(map, root);
 		mapGUI.loadMapGUI();
-
-		scene = new Scene(root, sceneWidth, sceneHeight, Color.hsb(255 * 0.0, 0, 0.5, 1));
+		scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 		primaryStage.setTitle("Arena Sim");
 		primaryStage.setScene(scene);
 
