@@ -29,8 +29,6 @@ public class GameGUI extends Application {
 	private Scene scene;
 	private Group root;
 	private Map map;
-	private ImageView[][] terrainDisplay;
-	private ImageView[] unitDisplay;
 	private Stage stage;
 	private PlayerGUI player;
 	private MapGUI mapGUI;
@@ -49,7 +47,7 @@ public class GameGUI extends Application {
 		sceneWidth = (int) (map.MAXX * TerrainGUI.getImagewidth());
 		sceneHeight = (int) (map.MAXY * TerrainGUI.getImageheight());
 		root = new Group();
-		mapGUI = new MapGUI(map, terrainDisplay, unitDisplay, root);
+		mapGUI = new MapGUI(map, root);
 		mapGUI.loadMapGUI();
 
 		scene = new Scene(root, sceneWidth, sceneHeight, Color.hsb(255 * 0.0, 0, 0.5, 1));

@@ -3,6 +3,8 @@
  */
 package main;
 
+import java.util.ArrayList;
+
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
@@ -24,12 +26,12 @@ public class MapGUI {
 	private Map map;
 	private Rectangle[][] colourOverlay;
 
-	public MapGUI(Map map, ImageView[][] terrainDisplay, ImageView[] unitDisplay, Group root) {
+	private ArrayList<Rectangle> unitStatDisplays = new ArrayList<Rectangle>();
+
+	public MapGUI(Map map, Group root) {
 		this.map = map;
-		this.terrainDisplay = terrainDisplay;
-		this.unitDisplay = unitDisplay;
 		this.root = root;
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public void addBlue(int y, int x) {
@@ -153,6 +155,18 @@ public class MapGUI {
 			root.getChildren().add(unitDisplay[counter]);
 			counter++;
 
+		}
+		counter = 0;
+		for (Unit unit : map.getUnitList()) {
+			Rectangle unitStatDisplay = new Rectangle(map.MAXX * TerrainGUI.getImagewidth(), counter * 75, 250, 75);
+			counter++;
+			if (unit.isFriendly())
+				unitStatDisplay.setFill(Color.hsb(210, 0.5, 1));
+			else
+				unitStatDisplay.setFill(Color.hsb(0, 0.5, 1));
+			unitStatDisplay.setStroke(Color.BLACK);
+			unitStatDisplays.add(unitStatDisplay);
+			root.getChildren().add(unitStatDisplay);
 		}
 
 	}
