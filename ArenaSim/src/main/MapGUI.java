@@ -68,7 +68,7 @@ public class MapGUI {
 			unitDisplay[x].setVisible(false);
 			if (x < map.getUnitList().size()) {
 				Unit unit = map.getUnitList().get(x);
-				if (unit.getCurrentHP() > 0) {
+				if (unit.isAlive()) {
 					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
 					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
 					unitDisplay[x].setVisible(true);

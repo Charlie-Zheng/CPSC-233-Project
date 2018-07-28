@@ -394,6 +394,7 @@ public class Unit {
 	 *         attributes(such as if the unit is the player's unit, the units name,
 	 *         etc)
 	 */
+	@Override
 	public String toString() {
 		/*
 		 * This function returns a string representation of what the current unit's
@@ -403,6 +404,10 @@ public class Unit {
 		return "  " + (isFriendly ? "FRIENDLY\t" : "ENEMY\t\t") + name + ": " + "\tHP: " + currentHP + "/" + getBaseHP()
 				+ "  Atk: " + getAtk() + "  Spd: " + getSpd() + "  Def: " + getDef() + "  Range: " + range
 				+ "  Move Type: " + moveType;
+	}
+	
+	public boolean isAlive() {
+		return currentHP > 0;
 	}
 
 }
