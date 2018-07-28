@@ -39,7 +39,7 @@ public class PlayerText {
 		map = inputMap;
 		Unit selectedUnit;
 		boolean gameOver = false;
-		resetHasMoved();
+		map.resetHasMoved(true);
 		/*
 		 * Here we have this loop which only gets executed when boolean value that we
 		 * from the method of this class called playerHasUnmovedUnits is true and
@@ -91,7 +91,7 @@ public class PlayerText {
 		 * proven false. Afterwards, this method will return whatever the last boolean
 		 * value was on the loops last iteration.
 		 */
-		while (playerHasUnmovedUnits() && !gameOver) {
+		while (map.factionHasUnmovedUnits(true) && !gameOver) {
 			map.displayMap();
 			System.out.print("Please select a friendly unit by entering its name: ");
 			selectedUnit = GameText.unitNameInput();
@@ -120,63 +120,14 @@ public class PlayerText {
 				Combat.doCombat(selectedUnit, target);
 			}
 			map.updateHeroDeaths();
-			gameOver = gameOver();
+			gameOver = map.gameOver();
 		}
 
 		return gameOver;
 	}
 
-	/**
-	 * Allows all friendly units to move again
-	 */
-	private static void resetHasMoved() {
-		/*
-		 * This method returns nothing, however this method will execute some every
-		 * important things in order for this game to be playable. First of all this
-		 * method initializes an arrayList which will store objects of the class Unit.
-		 * then it will enter a loop where it will go through a conditional statement
-		 * which is set up for whether or not the movement made in this game was made by
-		 * the units that are available to the player, if it was then it will set all of
-		 * those unit movements back to false.
-		 */
-		ArrayList<Unit> unitList = map.getUnitList();
-		for (Unit unit : unitList) {
-			if (unit.isFriendly())
-				unit.setHasMoved(false);
-		}
-	}
 
-	/**
-	 * This method checks if the game is over, where either the player has lost by
-	 * losing all friendly units, or the player has won by defeating all enemy units
-	 * 
-	 * @return A boolean representing if the game is over
-	 */
-	private static boolean gameOver() {
-		/*
-		 * This method will return a boolean value for the player which can be used to
-		 * determine if the user will still be allowed to continue the game or not. In
-		 * this method it will first create an arrayList where it contain all object of
-		 * the type Unit, afterwards it will declare and initialize boolean variables
-		 * called enemiesAllDead and friendiesAllDead. Now it will enter a loop where
-		 * inside this loops it will check and see which units have been dead, if it's
-		 * an unit that belongs to the player then it will assign friendiesAllDead to
-		 * false, but if it's an enemy unit then it will assign enemiesAllDead to false.
-		 * Then this method will return a boolean value of true since this method will
-		 * check and see which two boolean variables is set to true or not.
-		 */
-		ArrayList<Unit> unitList = map.getUnitList();
-		boolean enemiesAllDead = true;
-		boolean friendiesAllDead = true;
-		for (Unit unit : unitList) {
-			if (unit.isFriendly())
-				friendiesAllDead = false;
-			else
-				enemiesAllDead = false;
-		}
-		return friendiesAllDead || enemiesAllDead;
 
-	}
 
 	/**
 	 * Prompts the user for a move and returns if the move is legal for the given
@@ -220,26 +171,7 @@ public class PlayerText {
 		return false;
 	}
 
-	/**
-	 * Checks if the player still has units to move
-	 * 
-	 * @return True if the player still has units to move
-	 */
-	private static boolean playerHasUnmovedUnits() {
-		/*
-		 * This method will also return a boolean method after it gets executed. In this
-		 * method it will check and see what are the available moves for the player
-		 * units. It will check those moves by going to a loop and finding the available
-		 * direction that is open for the player units. and return true or false based
-		 * upon it.
-		 */
-		for (Unit unit : map.getUnitList()) {
-			if (unit.isFriendly() && !unit.hasMoved()) {
-				return true;
-			}
-		}
-		return false;
-	}
+
 
 	/**
 	 * This method is created to check for valid inputs for when the player has to

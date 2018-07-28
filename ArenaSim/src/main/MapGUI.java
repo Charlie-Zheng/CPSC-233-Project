@@ -27,9 +27,10 @@ public class MapGUI {
 	private Group root;
 	private Map map;
 	private Rectangle[][] colourOverlay;
-	private TextArea consoleText ;
+	private TextArea consoleText;
 	private ArrayList<Rectangle> unitStatDisplays = new ArrayList<Rectangle>();
 	private final int unitDisplayHeight = 75;
+
 	public MapGUI(Map map, Group root) {
 		this.map = map;
 		this.root = root;
@@ -37,26 +38,30 @@ public class MapGUI {
 	}
 
 	public void addBlue(int y, int x) {
-		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.5));
+		addColour(y,x,Color.hsb(210, 1, 1, 0.3));
 	}
 
 	public void addRed(int y, int x) {
-		colourOverlay[y][x].setFill(Color.hsb(0, 1, 1, 0.5));
+		addColour(y,x,Color.hsb(0, 1, 1, 0.3));
 	}
 
 	public void addYellow(int y, int x) {
-		colourOverlay[y][x].setFill(Color.hsb(60, 1, 1, 0.4));
+		addColour(y,x,Color.hsb(60, 1, 1, 0.3));
 	}
 
 	public void addGreen(int y, int x) {
-		colourOverlay[y][x].setFill(Color.hsb(30, 1, 1, 0.4));
+		addColour(y,x,Color.hsb(30, 1, 1, 0.3));
 	}
 
 	public void removeColour(int y, int x) {
-		colourOverlay[y][x].setFill(Color.hsb(210, 1, 1, 0.0));
+		addColour(y,x,Color.hsb(30, 1, 1, 0.0));
 	}
 
-	public void removeAllColours() {
+	public void addColour(int y, int x, Color color) {
+			colourOverlay[y][x].setFill(color);
+	}
+
+	public void removeAllColorsAndText() {
 		for (int y = 0; y < map.MAXY; y++) {
 			for (int x = 0; x < map.MAXX; x++) {
 				removeColour(y, x);
@@ -160,7 +165,8 @@ public class MapGUI {
 		}
 		counter = 0;
 		for (Unit unit : map.getUnitList()) {
-			Rectangle unitStatDisplay = new Rectangle(map.MAXX * TerrainGUI.getImagewidth(), counter * unitDisplayHeight, 250, 75);
+			Rectangle unitStatDisplay = new Rectangle(map.MAXX * TerrainGUI.getImagewidth(),
+					counter * unitDisplayHeight, 250, 75);
 			counter++;
 			if (unit.isFriendly())
 				unitStatDisplay.setFill(Color.hsb(210, 0.5, 1));
@@ -171,9 +177,10 @@ public class MapGUI {
 			root.getChildren().add(unitStatDisplay);
 		}
 		consoleText = new TextArea();
-		consoleText.setLayoutX(map.MAXX*TerrainGUI.getImagewidth());; //Console
-		consoleText.setLayoutY(counter*unitDisplayHeight);
-		consoleText.setPrefSize(250, map.MAXY * TerrainGUI.getImageheight()-counter*unitDisplayHeight);
+		consoleText.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
+		; // Console
+		consoleText.setLayoutY(counter * unitDisplayHeight);
+		consoleText.setPrefSize(250, map.MAXY * TerrainGUI.getImageheight() - counter * unitDisplayHeight);
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);

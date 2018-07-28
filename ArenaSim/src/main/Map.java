@@ -510,4 +510,70 @@ public class Map {
 
 		return allAttacks;
 	}
+
+	/**
+	 * Allows all friendly units to move again
+	 */
+	public void resetHasMoved(boolean isFriendly) {
+		/*
+		 * This method returns nothing, however this method will execute some every
+		 * important things in order for this game to be playable. First of all this
+		 * method initializes an arrayList which will store objects of the class Unit.
+		 * then it will enter a loop where it will go through a conditional statement
+		 * which is set up for whether or not the movement made in this game was made by
+		 * the units that are available to the player, if it was then it will set all of
+		 * those unit movements back to false.
+		 */
+
+		for (Unit unit : unitList) {
+			if (unit.isFriendly() == isFriendly)
+				unit.setHasMoved(false);
+		}
+	}
+
+	/**
+	 * Checks if the player still has units to move
+	 * 
+	 * @return True if the player still has units to move
+	 */
+	public boolean factionHasUnmovedUnits(boolean isFriendly) {
+		/*
+		 * This method will also return a boolean method after it gets executed. In this
+		 * method it will check and see what are the available moves for the player
+		 * units. It will check those moves by going to a loop and finding the available
+		 * direction that is open for the player units. and return true or false based
+		 * upon it.
+		 */
+		for (Unit unit : unitList) {
+			if (unit.isFriendly() == isFriendly && !unit.hasMoved() && unit.isAlive()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This method checks if the game is over, where either the player has lost by
+	 * losing all friendly units, or the player has won by defeating all enemy units
+	 * 
+	 * @return A boolean representing if the game is over
+	 */
+	public boolean gameOver() {
+		boolean enemiesAllDead = true;
+		boolean friendiesAllDead = true;
+		// Iterates through the unit list, if a friendly unit is alive, then friendly
+		// units are not all dead. If an enemy unit is alive, then enemy units are not
+		// all dead
+		for (Unit unit : unitList) {
+			if (unit.isAlive()) {
+				if (unit.isFriendly())
+					friendiesAllDead = false;
+				else
+					enemiesAllDead = false;
+			}
+		}
+		// If either of the factions' units are all dead, the game is over
+		return friendiesAllDead || enemiesAllDead;
+
+	}
 }

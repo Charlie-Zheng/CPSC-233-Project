@@ -56,12 +56,6 @@ public class GameGUI extends Application {
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		// while (!gameOver) {
-		// gameOver = player.turn();
-		// if (!gameOver) {
-		// gameOver = AI.computerTurn(map);
-		// }
-		// }
 
 	}
 

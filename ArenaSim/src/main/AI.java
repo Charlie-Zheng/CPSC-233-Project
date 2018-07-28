@@ -22,10 +22,10 @@ public class AI {
 		// initialize game over to be false
 		boolean gameOver = false;
 		// initialize all the units to not moved
-		resetHasMoved();
+		map.resetHasMoved(false);
 		// repeatedly chooses a random move from the movelist until all AI units have
 		// moved or the game ends
-		while (AIHasUnmovedUnits() && !gameOver) {
+		while (map.factionHasUnmovedUnits(false) && !gameOver) {
 			// Find the available moves
 			ArrayList<AIMove> availableMoves = findAvailableMoves();
 			// Choose and random move
@@ -35,7 +35,7 @@ public class AI {
 			// update the map
 			map.updateHeroDeaths();
 			// check if the game is over
-			gameOver = gameOver();
+			gameOver = map.gameOver();
 
 		}
 
@@ -58,7 +58,7 @@ public class AI {
 		ArrayList<Unit> unitList = map.getUnitList();
 		// Iterate through each unit the AI can control
 		for (Unit unit : unitList) {
-			if (!unit.isFriendly() && !unit.hasMoved()) {
+			if (!unit.isFriendly() && !unit.hasMoved() && unit.isAlive()) {
 				int unitX = unit.getX();
 				int unitY = unit.getY();
 
@@ -110,7 +110,7 @@ public class AI {
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
 		unit.setHasMoved(true);
 		// Print the movement to the user
-		System.out.println(move);
+		System.out.print(move.toString() +"\n");
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];
 		if (target != unit) {
 			// Apply the combat if the unit chose to attack
@@ -119,54 +119,7 @@ public class AI {
 
 	}
 
-	/**
-	 * Checks if the player still has units to move
-	 * 
-	 * @return True if the player still has units to move
-	 */
-	private static boolean AIHasUnmovedUnits() {
-		for (Unit unit : map.getUnitList()) {
-			if (!unit.isFriendly() && !unit.hasMoved()) {
-				return true;
-			}
-		}
-		return false;
-	}
 
-	/**
-	 * Allows all AI units to move again
-	 */
-	private static void resetHasMoved() {
-		ArrayList<Unit> unitList = map.getUnitList();
-		for (Unit unit : unitList) {
-			if (!unit.isFriendly())
-				unit.setHasMoved(false);
-		}
-	}
-
-	/**
-	 * This method checks if the game is over, where either the player has lost by
-	 * losing all friendly units, or the player has won by defeating all enemy units
-	 * 
-	 * @return A boolean representing if the game is over
-	 */
-	private static boolean gameOver() {
-		ArrayList<Unit> unitList = map.getUnitList();
-		boolean enemiesAllDead = true;
-		boolean friendiesAllDead = true;
-		// Iterates through the unit list, if a friendly unit is alive, then friendly
-		// units are not all dead. If an enemy unit is alive, then enemy units are not
-		// all dead
-		for (Unit unit : unitList) {
-			if (unit.isFriendly())
-				friendiesAllDead = false;
-			else
-				enemiesAllDead = false;
-		}
-		// If either of the factions' units are all dead, the game is over
-		return friendiesAllDead || enemiesAllDead;
-
-	}
 
 	/**
 	 * Generates a random integer between the given max and min values
