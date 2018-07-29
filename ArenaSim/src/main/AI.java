@@ -29,9 +29,10 @@ public class AI {
 			// Find the available moves
 			ArrayList<AIMove> availableMoves = findAvailableMoves();
 			// Choose and random move
-			int moveNum = randInt(0, availableMoves.size() - 1);
-			// Apply the randomly selected mvoe
-			applyAIMove(availableMoves.get(moveNum));
+			// int moveNum = randInt(0, availableMoves.size() - 1);
+			sortMoves(availableMoves);
+			// Apply the randomly selected move
+			applyAIMove(availableMoves.get(availableMoves.size()-1));
 			// update the map
 			map.updateHeroDeaths();
 			// check if the game is over
@@ -110,7 +111,7 @@ public class AI {
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
 		unit.setHasMoved(true);
 		// Print the movement to the user
-		System.out.print(move.toString() +"\n");
+		System.out.print(move.toString() + "\n");
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];
 		if (target != unit) {
 			// Apply the combat if the unit chose to attack
@@ -119,7 +120,49 @@ public class AI {
 
 	}
 
+	private static void sortMoves(ArrayList<AIMove> availableMoves) {
+		availableMoves.sort((m1, m2) ->
 
+		{
+			Unit[][] unitMap = map.getUnitMap();
+			int[] healthMove1 = Combat.calculateCombat(m1.getUnit(), unitMap[m1.getJ()][m1.getI()]);
+			int[] healthMove2 = Combat.calculateCombat(m2.getUnit(), unitMap[m2.getJ()][m2.getI()]);
+			if (healthMove1 != null && healthMove2 != null) {
+				int damageDealtM1 = unitMap[m1.getJ()][m1.getI()].getCurrentHP() - healthMove1[1];
+				int damageDealtM2 = unitMap[m2.getJ()][m2.getI()].getCurrentHP() - healthMove2[1];
+				int damageTakenM1 = m1.getUnit().getCurrentHP() - healthMove1[0];
+				int damageTakenM2 = m2.getUnit().getCurrentHP() - healthMove2[0];
+				if (healthMove1[1] <= 0 && healthMove2[1] > 0) {
+					return 1;
+				}
+				if (healthMove1[1] > 0 && healthMove2[1] <= 0) {
+					return -1;
+				}
+				if (damageDealtM1 > damageDealtM2) {
+					return 1;
+				}
+				if (damageDealtM1 < damageDealtM2) {
+					return -1;
+				}
+				if (damageTakenM1 > damageTakenM2) {
+					return -1;
+				}
+				if (damageTakenM1 < damageDealtM2) {
+					return 1;
+				}
+				return 0;
+			}
+			if (healthMove1 == null && healthMove2 != null) {
+				return -1;
+			}
+			if (healthMove1 != null && healthMove2 == null) {
+				return 1;
+			}
+			return 0;
+		}
+
+		);
+	}
 
 	/**
 	 * Generates a random integer between the given max and min values

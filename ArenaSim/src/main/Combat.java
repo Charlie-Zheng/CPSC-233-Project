@@ -15,8 +15,9 @@ public final class Combat {
 	 * @param defender
 	 *            is another Unit class object parameter who is defending against
 	 *            the unit attacking it.
+	 * @return
 	 */
-	public static void calculateCombat(Unit initiator, Unit defender) {
+	public static int[] calculateCombat(Unit initiator, Unit defender) {
 		/*
 		 * This function is used to calculate the battle between 2 units that haven't
 		 * battled before. -The parameter initiator is the Unit object initiating the
@@ -27,7 +28,10 @@ public final class Combat {
 		 * that determines if the Units have battled before, since the battle hasn't
 		 * started it is set to false.
 		 */
-		combat(initiator, defender, false);
+		if (initiator != null && defender != null)
+			return combat(initiator, defender, false);
+		else
+			return null;
 	}
 
 	/**
@@ -51,7 +55,8 @@ public final class Combat {
 		 * determines if the Units have battled before/just started, since the battle
 		 * was initiated its set to true.
 		 */
-		combat(initiator, defender, true);
+		if (initiator != null && defender != null)
+			combat(initiator, defender, true);
 	}
 
 	/**

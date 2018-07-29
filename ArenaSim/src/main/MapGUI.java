@@ -6,15 +6,21 @@ package main;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 /**
  * Class used to display the map
@@ -28,7 +34,7 @@ public class MapGUI {
 	private Map map;
 	private Rectangle[][] colourOverlay;
 	private TextArea consoleText;
-	private ArrayList<Rectangle> unitStatDisplays = new ArrayList<Rectangle>();
+	private ArrayList<StackPane> unitStatDisplays = new ArrayList<StackPane>();
 	private final int unitDisplayHeight = 75;
 
 	public MapGUI(Map map, Group root) {
@@ -38,27 +44,27 @@ public class MapGUI {
 	}
 
 	public void addBlue(int y, int x) {
-		addColour(y,x,Color.hsb(210, 1, 1, 0.3));
+		addColour(y, x, Color.hsb(210, 1, 1, 0.3));
 	}
 
 	public void addRed(int y, int x) {
-		addColour(y,x,Color.hsb(0, 1, 1, 0.3));
+		addColour(y, x, Color.hsb(0, 1, 1, 0.3));
 	}
 
 	public void addYellow(int y, int x) {
-		addColour(y,x,Color.hsb(60, 1, 1, 0.3));
+		addColour(y, x, Color.hsb(60, 1, 1, 0.3));
 	}
 
 	public void addGreen(int y, int x) {
-		addColour(y,x,Color.hsb(30, 1, 1, 0.3));
+		addColour(y, x, Color.hsb(30, 1, 1, 0.3));
 	}
 
 	public void removeColour(int y, int x) {
-		addColour(y,x,Color.hsb(30, 1, 1, 0.0));
+		addColour(y, x, Color.hsb(30, 1, 1, 0.0));
 	}
 
 	public void addColour(int y, int x, Color color) {
-			colourOverlay[y][x].setFill(color);
+		colourOverlay[y][x].setFill(color);
 	}
 
 	public void removeAllColorsAndText() {
@@ -75,17 +81,35 @@ public class MapGUI {
 	public void updateUnitsOnMap() {
 		for (int x = 0; x < unitDisplay.length; x++) {
 			unitDisplay[x].setVisible(false);
+			StackPane display = unitStatDisplays.get(x);
 			if (x < map.getUnitList().size()) {
 				Unit unit = map.getUnitList().get(x);
 				if (unit.isAlive()) {
 					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
 					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
 					unitDisplay[x].setVisible(true);
+					
+					
+	
+				}else {
+					if (unit.isFriendly()) {
+						display.setBackground(
+								new Background(new BackgroundFill(Color.hsb(210, 0.5, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
+					} else {
+						display.setBackground(
+								new Background(new BackgroundFill(Color.hsb(0, 0.5, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
+					}
 				}
+				
+				Text stats = (Text) display.getChildren().get(0);
+				stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" + unit.getBaseHP() + "\t\tAtk: "
+						+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
+						+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
 			}
+			
 		}
+		
 	}
-
 	// /**
 	// * move Units on GUI map
 	// *
@@ -165,16 +189,30 @@ public class MapGUI {
 		}
 		counter = 0;
 		for (Unit unit : map.getUnitList()) {
-			Rectangle unitStatDisplay = new Rectangle(map.MAXX * TerrainGUI.getImagewidth(),
-					counter * unitDisplayHeight, 250, 75);
-			counter++;
-			if (unit.isFriendly())
-				unitStatDisplay.setFill(Color.hsb(210, 0.5, 1));
-			else
-				unitStatDisplay.setFill(Color.hsb(0, 0.5, 1));
-			unitStatDisplay.setStroke(Color.BLACK);
+			StackPane unitStatDisplay = new StackPane();
+
+			unitStatDisplay.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
+			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
+			unitStatDisplay.setPrefSize(250, 75);
+
+			if (unit.isFriendly()) {
+				unitStatDisplay.setBackground(
+						new Background(new BackgroundFill(Color.hsb(210, 0.5, 1), CornerRadii.EMPTY, Insets.EMPTY)));
+			} else {
+				unitStatDisplay.setBackground(
+						new Background(new BackgroundFill(Color.hsb(0, 0.5, 1), CornerRadii.EMPTY, Insets.EMPTY)));
+			}
+			Text stats = new Text();
+			stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" + unit.getBaseHP() + "\t\tAtk: "
+					+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
+					+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
+			unitStatDisplay.getChildren().add(stats);
+			unitStatDisplay.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
+			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
 			unitStatDisplays.add(unitStatDisplay);
+
 			root.getChildren().add(unitStatDisplay);
+			counter++;
 		}
 		consoleText = new TextArea();
 		consoleText.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
