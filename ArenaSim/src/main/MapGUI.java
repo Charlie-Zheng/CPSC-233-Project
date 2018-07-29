@@ -88,9 +88,6 @@ public class MapGUI {
 					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
 					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
 					unitDisplay[x].setVisible(true);
-					
-					
-	
 				}else {
 					if (unit.isFriendly()) {
 						display.setBackground(
@@ -158,8 +155,8 @@ public class MapGUI {
 				colourOverlay[y][x].setFill(Color.TRANSPARENT);
 				colourOverlay[y][x].setMouseTransparent(false);
 				colourOverlay[y][x].setOnMouseClicked(new SelectedTile(x, y, map, this));
-				colourOverlay[y][x].setOnMouseEntered(new HighlightTile(terrainDisplay[y][x], true));
-				colourOverlay[y][x].setOnMouseExited(new HighlightTile(terrainDisplay[y][x], false));
+				colourOverlay[y][x].setOnMouseEntered(new HighlightTile(terrainDisplay[y][x], true,x,y,map,unitStatDisplays));
+				colourOverlay[y][x].setOnMouseExited(new HighlightTile(terrainDisplay[y][x], false,x,y,map,unitStatDisplays));
 				root.getChildren().add(colourOverlay[y][x]);
 
 			}
