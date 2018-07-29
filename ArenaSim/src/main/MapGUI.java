@@ -213,7 +213,7 @@ public class MapGUI {
 		}
 		consoleText = new TextArea();
 		consoleText.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
-		; // Console
+		consoleText.setEditable(false);
 		consoleText.setLayoutY(counter * unitDisplayHeight);
 		consoleText.setPrefSize(250, map.MAXY * TerrainGUI.getImageheight() - counter * unitDisplayHeight);
 		PrintStream ps = System.out;

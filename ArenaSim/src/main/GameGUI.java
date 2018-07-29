@@ -34,7 +34,6 @@ public class GameGUI extends Application {
 	private Stage stage;
 	private PlayerGUI player;
 	private MapGUI mapGUI;
-	private TextArea consoleText = new TextArea();
 	public static void main(String[] args) {
 
 		launch(args);
