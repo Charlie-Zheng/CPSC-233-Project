@@ -33,7 +33,7 @@ public class TextStreamGUI extends PrintStream {
 	}
 
 	/**
-	 * takes in text and appends it to the textarea called console
+	 * takes in text and appends it to the text area called console
 	 * does not add new line after printing text
 	 * @param text a string of text from print statement
 	 */
