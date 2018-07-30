@@ -88,7 +88,9 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 						if (AttackRange[y][x]) {
 							mapGUI.addRed(y, x);
 						}
-
+						if(AttackRange[y][x] && x==selectedUnit.getX() &&y==selectedUnit.getY()) {
+							mapGUI.removeColour(y, x);
+						}
 					}
 				}
 			}
