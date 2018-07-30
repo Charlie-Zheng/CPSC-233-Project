@@ -64,16 +64,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				}
 			}
 		} else if (selectingMove) {
-			// System.out.println(map.getUnitList());
-			// map.findAvailableMoves(selectedUnit);
-			// boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
-			// for (int i = 0; i < map.MAXY; i++) {
-			// for (int j = 0; j < map.MAXX; j++) {
-			// if (availableMoves[i][j]) {
-			// mapGUI.moveUnitsOnGUI(selectedUnit, y, x, availableMoves[y][x]);
-			// }
-			// }
-			// }
+			
 			mapGUI.removeAllColorsAndText();
 			if (map.checkMoveLegal(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY())
 					&& !selectedUnit.hasMoved()) {
@@ -87,7 +78,9 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 						if (AttackRange[y][x]) {
 							mapGUI.addRed(y, x);
 						}
-
+						if(AttackRange[y][x] && x==selectedUnit.getX() &&y==selectedUnit.getY()) {
+							mapGUI.removeColour(y, x);
+						}
 					}
 				}
 			}
