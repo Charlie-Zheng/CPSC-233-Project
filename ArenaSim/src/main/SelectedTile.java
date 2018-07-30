@@ -5,7 +5,6 @@ import javafx.scene.input.MouseEvent;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
 	private int x, y;
-	private PlayerGUI gui;
 	private Map map;
 	private MapGUI mapGUI;
 	private static boolean selectingMove = false;

@@ -32,7 +32,6 @@ public class GameGUI extends Application {
 	private Group root;
 	private Map map;
 	private Stage stage;
-	private PlayerGUI player;
 	private MapGUI mapGUI;
 	public static void main(String[] args) {
 
@@ -44,7 +43,6 @@ public class GameGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		boolean gameOver = false;
 		map = new Map("src/assets/map_1_1.txt");
-		player = new PlayerGUI(map);
 		root = new Group();
 		mapGUI = new MapGUI(map, root);
 		mapGUI.loadMapGUI();
