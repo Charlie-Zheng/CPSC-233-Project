@@ -12,7 +12,7 @@
   </class>  
   <enumeration id="2" language="java" name="main.MoveType" project="ArenaSim" file="/ArenaSim/src/main/MoveType.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="178" x="733" y="1754"/>    
+    <position height="-1" width="-1" x="811" y="1504"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="main.Combat" project="ArenaSim" file="/ArenaSim/src/main/Combat.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="201" x="374" y="486"/>    
+    <position height="-1" width="-1" x="562" y="593"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="main.UnitGUI" project="ArenaSim" file="/ArenaSim/src/main/UnitGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="237" x="1077" y="486"/>    
+    <position height="-1" width="-1" x="1240" y="652"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <enumeration id="8" language="java" name="main.TerrainType" project="ArenaSim" 
     file="/ArenaSim/src/main/TerrainType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="140" x="995" y="1754"/>    
+    <position height="-1" width="-1" x="1112" y="1493"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </enumeration>  
   <class id="9" language="java" name="main.HighlightTile" project="ArenaSim" 
     file="/ArenaSim/src/main/HighlightTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="184" x="1354" y="486"/>    
+    <position height="-1" width="-1" x="1445" y="210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="main.Unit" project="ArenaSim" file="/ArenaSim/src/main/Unit.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="675" width="207" x="465" y="1039"/>    
+    <position height="-1" width="-1" x="537" y="1189"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="main.AIMove" project="ArenaSim" file="/ArenaSim/src/main/AIMove.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="144" x="169" y="486"/>    
+    <position height="-1" width="-1" x="357" y="609"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="main.AI" project="ArenaSim" file="/ArenaSim/src/main/AI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="207" width="224" x="169" y="131"/>    
+    <position height="-1" width="-1" x="484" y="184"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -131,10 +131,10 @@
     <bendpoint x="1004" y="1039"/>    
     <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="16" name="terrainMap">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="47" y="-346"/>      
       </attribute>      
       <multiplicity id="17" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="47" y="-346"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
@@ -159,10 +159,10 @@
   <association id="22">    
     <end type="SOURCE" refId="10" navigable="false">      
       <attribute id="23" name="moveType">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-11" y="-344"/>      
       </attribute>      
       <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-11" y="-344"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
@@ -175,10 +175,10 @@
   <association id="26">    
     <end type="SOURCE" refId="11" navigable="false">      
       <attribute id="27" name="unit">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </attribute>      
       <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
@@ -187,10 +187,10 @@
   <association id="29">    
     <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="30" name="unitList">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </attribute>      
       <multiplicity id="31" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
@@ -281,10 +281,10 @@
   <association id="51">    
     <end type="SOURCE" refId="6" navigable="false">      
       <attribute id="52" name="unitMap">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </attribute>      
       <multiplicity id="53" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
@@ -313,10 +313,10 @@
     <bendpoint x="719" y="486"/>    
     <end type="SOURCE" refId="13" navigable="false">      
       <attribute id="59" name="selectedUnit">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </attribute>      
       <multiplicity id="60" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+        <position height="0" width="0" x="-31" y="-187"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    

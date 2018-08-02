@@ -42,16 +42,20 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 		else
 			image.setEffect(null);
 		int counter = 0;
-		if(map.getUnitMap()[y][x]!= null) {
-			for(Unit unit : map.getUnitList()) {
-				if(unit.getName().equals(map.getUnitMap()[y][x].getName())) {
+		if (map.getUnitMap()[y][x] != null) {
+			for (Unit unit : map.getUnitList()) {
+				if (unit.getName().equals(map.getUnitMap()[y][x].getName())) {
 					if (add)
 						unitStatDisplays.get(counter).setEffect(shadow);
 					else
 						unitStatDisplays.get(counter).setEffect(null);
 				}
 				counter++;
-			}		
+			}
+		} else {
+			for (StackPane display : unitStatDisplays) {
+				display.setEffect(null);
+			}
 		}
 	}
 
