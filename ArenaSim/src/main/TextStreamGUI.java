@@ -23,6 +23,14 @@ public class TextStreamGUI extends PrintStream {
 		super(out); //calls super constructor 
 		console = area;
 	}
+	
+	/**
+	 * to print a blank line
+	 */
+	public void println() {
+		console.appendText("\n");
+	}
+	
 	/**
 	 * takes in text and appends it to the textarea called console
 	 * adds new line after printing text

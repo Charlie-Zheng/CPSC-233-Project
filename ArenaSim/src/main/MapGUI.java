@@ -212,10 +212,9 @@ public class MapGUI {
 			counter++;
 		}
 		consoleText = new TextArea();
-		consoleText.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
+		consoleText.setLayoutY(map.MAXY * TerrainGUI.getImagewidth());
 		consoleText.setEditable(false);
-		consoleText.setLayoutY(counter * unitDisplayHeight);
-		consoleText.setPrefSize(250, map.MAXY * TerrainGUI.getImageheight() - counter * unitDisplayHeight);
+		consoleText.setPrefSize(map.MAXX * TerrainGUI.getImageheight(), 150);
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);
