@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -17,10 +20,12 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * Class used to display the map
@@ -36,6 +41,8 @@ public class MapGUI {
 	private TextArea consoleText;
 	private ArrayList<StackPane> unitStatDisplays = new ArrayList<StackPane>();
 	private final int unitDisplayHeight = 75;
+
+	
 
 	public MapGUI(Map map, Group root) {
 		this.map = map;
@@ -218,6 +225,7 @@ public class MapGUI {
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);
+		
 	}
 
 }
