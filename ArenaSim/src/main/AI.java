@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * A static class which has all of the methods required to go through the
@@ -32,7 +34,11 @@ public class AI {
 			// int moveNum = randInt(0, availableMoves.size() - 1);
 			sortMoves(availableMoves);
 			// Apply the randomly selected move
-			applyAIMove(availableMoves.get(availableMoves.size()-1));
+			System.out.println("List of possible moves: ");
+			for (int x = availableMoves.size() - 1; 0 <= x; x--) {
+				System.out.println("\t" + availableMoves.get(x));
+			}
+			applyAIMove(availableMoves.get(availableMoves.size() - 1));
 			// update the map
 			map.updateHeroDeaths();
 			// check if the game is over
@@ -120,7 +126,67 @@ public class AI {
 
 	}
 
+	private static int distanceToTarget(Unit unit, int y, int x) {
+		// target is the unit that will take the most damage
+		Unit target = null;
+		int maxDamageDealt = 0;
+		for (Unit temp : map.getUnitList()) {
+			if (temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1] > maxDamageDealt) {
+				target = temp;
+			}
+		}
+		// Breadth-first search to find shortest distance to target
+		Queue<int[]> queue = new LinkedList<int[]>();
+		boolean[][] availableMoves = new boolean[map.MAXY][map.MAXY];
+		availableMoves[y][x] = true; // set value of the position to True to prepare for the loop
+		int[] temp = { x, y, 0 }; // creating temp as an integer array that
+									// contain x and y positions, also get
+									// the unit moves type
+		queue.add(temp); // add temp as the first value in the queue
+		TerrainType[][] terrainMap = map.getTerrainMap();
+		Unit[][] unitMap = map.getUnitMap();
+		while (!queue.isEmpty()) { // checking if the queue is empty or not
+			int[] values = queue.remove(); // start again with the new loop, delete the first temp element
+			for (int i = 0; i < 4; i++) { // 4 directions to move, so loop from 0 to 3
+				int newX = values[0] + (int) Math.round(Math.cos(i / 2d * Math.PI)); // math to calculate where is
+																						// the suitable moving
+																						// position
+				int newY = values[1] + (int) Math.round(Math.sin(i / 2d * Math.PI));
+				int movesUsed = values[2];
+
+				if (0 <= newX && newX < map.MAXX && 0 <= newY && newY < map.MAXY && !availableMoves[newY][newX]) {
+					int moveCost = MoveRules.moveCost(terrainMap[newY][newX], unit.getMoveType()); // get the
+																									// movement cost
+																									// by find out
+																									// what is the
+																									// unit's type
+
+					if (!unitMap[newY][newX].equals(target)) {
+						if (unitMap[newY][newX] != unit && unitMap[newY][newX] != null) { // checking if the newX
+																							// and newY position has
+																							// // an unit in in yet
+							availableMoves[newY][newX] = false;
+						} else
+							availableMoves[newY][newX] = true;
+						if (movesUsed < 20  && (unitMap[newY][newX] == null
+								|| unitMap[newY][newX].isFriendly() == unit.isFriendly())) {
+							int[] temp2 = { newX, newY, movesUsed + moveCost };
+							queue.add(temp2); // add another temp element to the queue
+						}
+					}
+				}
+			}
+		}
+
+		return 0;
+	}
+
+	private static int distanceToTarget(Unit unit) {
+		return distanceToTarget(unit, unit.getY(), unit.getX());
+	}
+
 	private static void sortMoves(ArrayList<AIMove> availableMoves) {
+		// Returns 1 if m1 is better than m2
 		availableMoves.sort((m1, m2) ->
 
 		{
@@ -150,7 +216,6 @@ public class AI {
 				if (damageTakenM1 < damageDealtM2) {
 					return 1;
 				}
-				return 0;
 			}
 			if (healthMove1 == null && healthMove2 != null) {
 				return -1;
@@ -158,6 +223,18 @@ public class AI {
 			if (healthMove1 != null && healthMove2 == null) {
 				return 1;
 			}
+			// Both compared moves don't attack, or both attacks are equal in damage taken
+			// and damage recieved
+
+			// Melee move first, then ranged
+			if (m1.getUnit().getRange() < m2.getUnit().getRange()) {
+				return 1;
+			}
+			if (m1.getUnit().getRange() > m2.getUnit().getRange()) {
+				return -1;
+			}
+			// prioritize moving closer to a unit
+
 			return 0;
 		}
 

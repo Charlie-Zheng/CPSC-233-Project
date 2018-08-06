@@ -32,11 +32,10 @@ import javafx.stage.Stage;
  * 
  * @author charl
  */
-public class MapGUI {
+public class MapGUI extends Map{
 	private ImageView[][] terrainDisplay;
 	private ImageView[] unitDisplay;
 	private Group root;
-	private Map map;
 	private Rectangle[][] colourOverlay;
 	private TextArea consoleText;
 	private ArrayList<StackPane> unitStatDisplays = new ArrayList<StackPane>();
@@ -44,8 +43,8 @@ public class MapGUI {
 
 	
 
-	public MapGUI(Map map, Group root) {
-		this.map = map;
+	public MapGUI(String filename, Group root) {
+		super(filename);
 		this.root = root;
 
 	}
@@ -75,8 +74,8 @@ public class MapGUI {
 	}
 
 	public void removeAllColorsAndText() {
-		for (int y = 0; y < map.MAXY; y++) {
-			for (int x = 0; x < map.MAXX; x++) {
+		for (int y = 0; y < MAXY; y++) {
+			for (int x = 0; x < MAXX; x++) {
 				removeColour(y, x);
 			}
 		}
@@ -89,8 +88,8 @@ public class MapGUI {
 		for (int x = 0; x < unitDisplay.length; x++) {
 			unitDisplay[x].setVisible(false);
 			StackPane display = unitStatDisplays.get(x);
-			if (x < map.getUnitList().size()) {
-				Unit unit = map.getUnitList().get(x);
+			if (x < getUnitList().size()) {
+				Unit unit = getUnitList().get(x);
 				if (unit.isAlive()) {
 					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
 					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
@@ -126,19 +125,19 @@ public class MapGUI {
 	// Unit friendlyUnit = currentUnit;
 	// int currentX = friendlyUnit.getX();
 	// int currentY = friendlyUnit.getY();
-	// map.moveHero(currentX, currentY, x, y);
+	// moveHero(currentX, currentY, x, y);
 	// }
 	// }
 
 	public void loadMapGUI() {
-		terrainDisplay = new ImageView[map.MAXY][map.MAXY];
-		unitDisplay = new ImageView[map.getUnitList().size()];
-		colourOverlay = new Rectangle[map.MAXY][map.MAXY];
+		terrainDisplay = new ImageView[MAXY][MAXY];
+		unitDisplay = new ImageView[getUnitList().size()];
+		colourOverlay = new Rectangle[MAXY][MAXY];
 		GridPane terrain = new GridPane();
 		TerrainGUI.initializeImages();
-		for (int y = 0; y < map.MAXY; y++) {
-			for (int x = 0; x < map.MAXX; x++) {
-				switch (map.getTerrainMap()[y][x]) {
+		for (int y = 0; y < MAXY; y++) {
+			for (int x = 0; x < MAXX; x++) {
+				switch (getTerrainMap()[y][x]) {
 				case TREE:
 					terrainDisplay[y][x] = new ImageView(TerrainGUI.getTreeImage());
 					break;
@@ -155,22 +154,22 @@ public class MapGUI {
 
 		}
 		root.getChildren().add(terrain);
-		for (int y = 0; y < map.MAXY; y++) {
-			for (int x = 0; x < map.MAXX; x++) {
+		for (int y = 0; y < MAXY; y++) {
+			for (int x = 0; x < MAXX; x++) {
 				colourOverlay[y][x] = new Rectangle(x * TerrainGUI.getImagewidth(), y * TerrainGUI.getImageheight(),
 						TerrainGUI.getImagewidth(), TerrainGUI.getImageheight());
 				colourOverlay[y][x].setFill(Color.TRANSPARENT);
 				colourOverlay[y][x].setMouseTransparent(false);
-				colourOverlay[y][x].setOnMouseClicked(new SelectedTile(x, y, map, this));
-				colourOverlay[y][x].setOnMouseEntered(new HighlightTile(terrainDisplay[y][x], true,x,y,map,unitStatDisplays));
-				colourOverlay[y][x].setOnMouseExited(new HighlightTile(terrainDisplay[y][x], false,x,y,map,unitStatDisplays));
+				colourOverlay[y][x].setOnMouseClicked(new SelectedTile(x, y, this));
+				colourOverlay[y][x].setOnMouseEntered(new HighlightTile(terrainDisplay[y][x], true,x,y,this,unitStatDisplays));
+				colourOverlay[y][x].setOnMouseExited(new HighlightTile(terrainDisplay[y][x], false,x,y,this,unitStatDisplays));
 				root.getChildren().add(colourOverlay[y][x]);
 
 			}
 		}
 		UnitGUI.initializeImages();
 		int counter = 0;
-		for (Unit unit : map.getUnitList()) {
+		for (Unit unit : getUnitList()) {
 			unitDisplay[counter] = new ImageView();
 
 			switch (unit.getMoveType()) {
@@ -192,10 +191,10 @@ public class MapGUI {
 
 		}
 		counter = 0;
-		for (Unit unit : map.getUnitList()) {
+		for (Unit unit : getUnitList()) {
 			StackPane unitStatDisplay = new StackPane();
 
-			unitStatDisplay.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
+			unitStatDisplay.setLayoutX(MAXX * TerrainGUI.getImagewidth());
 			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
 			unitStatDisplay.setPrefSize(250, 75);
 
@@ -211,7 +210,7 @@ public class MapGUI {
 					+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
 					+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
 			unitStatDisplay.getChildren().add(stats);
-			unitStatDisplay.setLayoutX(map.MAXX * TerrainGUI.getImagewidth());
+			unitStatDisplay.setLayoutX(MAXX * TerrainGUI.getImagewidth());
 			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
 			unitStatDisplays.add(unitStatDisplay);
 
@@ -219,9 +218,9 @@ public class MapGUI {
 			counter++;
 		}
 		consoleText = new TextArea();
-		consoleText.setLayoutY(map.MAXY * TerrainGUI.getImagewidth());
+		consoleText.setLayoutY(MAXY * TerrainGUI.getImagewidth());
 		consoleText.setEditable(false);
-		consoleText.setPrefSize(map.MAXX * TerrainGUI.getImageheight(), 150);
+		consoleText.setPrefSize(MAXX * TerrainGUI.getImageheight(), 150);
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);

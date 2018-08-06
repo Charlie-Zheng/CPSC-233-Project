@@ -11,8 +11,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	private static Unit selectedUnit;
 	private static boolean selectingAttack;
 
-	public SelectedTile(int x, int y, Map map, MapGUI mapGUI) {
-		this.map = map;
+	public SelectedTile(int x, int y, MapGUI mapGUI) {
 		this.x = x;
 		this.y = y;
 		this.mapGUI = mapGUI;
@@ -29,14 +28,14 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		// Highlights moveable tiles to be blue
 		if (!selectingMove && !selectingAttack) {// what happens when you click while not selecting a move or an attack
 			mapGUI.updateUnitsOnMap();
-			selectedUnit = map.getUnitMap()[y][x];
+			selectedUnit = mapGUI.getUnitMap()[y][x];
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
 				if (!selectedUnit.hasMoved()) {
 					selectingMove = true;
-					boolean[][] availableMoves = map.findAvailableMoves(selectedUnit);
-					boolean[][] allAttacks = map.findAllAttacks(selectedUnit);
-					for (int y = 0; y < map.MAXY; y++) {
-						for (int x = 0; x < map.MAXX; x++) {
+					boolean[][] availableMoves = mapGUI.findAvailableMoves(selectedUnit);
+					boolean[][] allAttacks = mapGUI.findAllAttacks(selectedUnit);
+					for (int y = 0; y < mapGUI.MAXY; y++) {
+						for (int x = 0; x < mapGUI.MAXX; x++) {
 							// shows the user the current unit's available attack range in red.
 
 							if (allAttacks[y][x]) {
@@ -54,10 +53,10 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			} else if (selectedUnit != null && !selectedUnit.isFriendly()) {
 				// display the enemy's possible attack range in red. Will need to use
 				// findAvailableMoves along with findRange to determine these tiles
-				boolean[][] AIAttacks = map.findAllAttacks(selectedUnit);
+				boolean[][] AIAttacks = mapGUI.findAllAttacks(selectedUnit);
 				mapGUI.removeAllColorsAndText();
-				for (int y = 0; y < map.MAXY; y++) {
-					for (int x = 0; x < map.MAXX; x++) {
+				for (int y = 0; y < mapGUI.MAXY; y++) {
+					for (int x = 0; x < mapGUI.MAXX; x++) {
 						if (AIAttacks[y][x])
 							mapGUI.addRed(y, x);
 					}
@@ -66,14 +65,14 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		} else if (selectingMove) {
 			
 			mapGUI.removeAllColorsAndText();
-			if (map.checkMoveLegal(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY())
+			if (mapGUI.checkMoveLegal(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY())
 					&& !selectedUnit.hasMoved()) {
-				map.moveHero(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY());
+				mapGUI.moveHero(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY());
 				selectedUnit.setHasMoved(true);
 				selectingAttack = true;
-				boolean[][] AttackRange = map.findRange(selectedUnit);
-				for (int y = 0; y < map.MAXY; y++) {
-					for (int x = 0; x < map.MAXX; x++) {
+				boolean[][] AttackRange = mapGUI.findRange(selectedUnit);
+				for (int y = 0; y < mapGUI.MAXY; y++) {
+					for (int x = 0; x < mapGUI.MAXX; x++) {
 						// shows the user the current unit's available attack range in red.
 						if (AttackRange[y][x]) {
 							mapGUI.addRed(y, x);
@@ -91,10 +90,10 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			selectingMove = false;
 
 		} else if (selectingAttack) {
-			boolean[][] AttackRange = map.findRange(selectedUnit);
-			if (AttackRange[y][x] && map.getUnitMap()[y][x] != null && !map.getUnitMap()[y][x].isFriendly()) {
-				Combat.doCombat(selectedUnit, map.getUnitMap()[y][x]);
-				map.updateHeroDeaths();
+			boolean[][] AttackRange = mapGUI.findRange(selectedUnit);
+			if (AttackRange[y][x] && mapGUI.getUnitMap()[y][x] != null && !mapGUI.getUnitMap()[y][x].isFriendly()) {
+				Combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
+				mapGUI.updateHeroDeaths();
 			}
 			selectingAttack = false;
 			selectedUnit = null;
@@ -102,10 +101,10 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
 			mapGUI.removeAllColorsAndText();
-			if (!map.gameOver() && !map.factionHasUnmovedUnits(true)) {
+			if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
 				AI.computerTurn(map);
 				mapGUI.updateUnitsOnMap();
-				map.resetHasMoved(true);
+				mapGUI.resetHasMoved(true);
 			}
 		}
 	}

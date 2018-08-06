@@ -73,10 +73,8 @@ public class GameGUI extends Application {
 		//Layout1 
 		scene1 = new Scene(grid, 800, 600);
 		
-		
-		map = new Map("src/assets/map_1_1.txt");
 		root = new Group();
-		mapGUI = new MapGUI(map, root);
+		mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
 		mapGUI.loadMapGUI();
 		scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 		primaryStage.setTitle("Arena Sim");

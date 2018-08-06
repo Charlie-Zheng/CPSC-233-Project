@@ -16,7 +16,7 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 	private InnerShadow shadow = new InnerShadow();
 	private int x;
 	private int y;
-	private Map map;
+	private MapGUI mapGUI;
 	private ArrayList<StackPane> unitStatDisplays;
 
 	public HighlightTile(ImageView image, boolean add) {
@@ -25,13 +25,13 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 		shadow.setColor(Color.WHITE);
 	}
 
-	public HighlightTile(ImageView image, boolean add, int x, int y, Map map, ArrayList<StackPane> unitStatDisplays) {
+	public HighlightTile(ImageView image, boolean add, int x, int y, MapGUI mapGUI, ArrayList<StackPane> unitStatDisplays) {
 		this.image = image;
 		this.add = add;
 		shadow.setColor(Color.WHITE);
 		this.x = x;
 		this.y = y;
-		this.map = map;
+		this.mapGUI = mapGUI;
 		this.unitStatDisplays = unitStatDisplays;
 	}
 
@@ -42,9 +42,9 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 		else
 			image.setEffect(null);
 		int counter = 0;
-		if (map.getUnitMap()[y][x] != null) {
-			for (Unit unit : map.getUnitList()) {
-				if (unit.getName().equals(map.getUnitMap()[y][x].getName())) {
+		if (mapGUI.getUnitMap()[y][x] != null) {
+			for (Unit unit : mapGUI.getUnitList()) {
+				if (unit.getName().equals(mapGUI.getUnitMap()[y][x].getName())) {
 					if (add)
 						unitStatDisplays.get(counter).setEffect(shadow);
 					else
