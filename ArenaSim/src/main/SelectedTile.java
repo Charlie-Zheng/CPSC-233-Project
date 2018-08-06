@@ -6,9 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
@@ -116,20 +116,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				mapGUI.updateUnitsOnMap();
 				mapGUI.resetHasMoved(true);
 			}
-		} else {
-			final Stage description = new Stage();
-			for(StackPane display : unitStatDisplays)
-			{
-				Stage dialog = new Stage();
-				dialog.initModality(Modality.APPLICATION_MODAL);
-				dialog.initOwner(description);
-				VBox dialogVbox = new VBox(20);
-				dialogVbox.getChildren().add(new Text("Description:"));
-				Scene dialogScene = new Scene(dialogVbox, 200, 200);
-				dialog.setScene(dialogScene);
-                dialog.show();
-			}
-		}
+		} 
 	}
 
 }
