@@ -1,8 +1,11 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import sun.security.provider.DSAPublicKeyImpl;
 
 /**
  * A static class which has all of the methods required to go through the
@@ -34,10 +37,6 @@ public class AI {
 			// int moveNum = randInt(0, availableMoves.size() - 1);
 			sortMoves(availableMoves);
 			// Apply the randomly selected move
-			System.out.println("List of possible moves: ");
-			for (int x = availableMoves.size() - 1; 0 <= x; x--) {
-				System.out.println("\t" + availableMoves.get(x));
-			}
 			applyAIMove(availableMoves.get(availableMoves.size() - 1));
 			// update the map
 			map.updateHeroDeaths();
@@ -113,6 +112,8 @@ public class AI {
 		Unit unit = move.getUnit();
 		int unitX = unit.getX();
 		int unitY = unit.getY();
+		
+		
 		// Move the hero
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
 		unit.setHasMoved(true);
@@ -128,13 +129,7 @@ public class AI {
 
 	private static int distanceToTarget(Unit unit, int y, int x) {
 		// target is the unit that will take the most damage
-		Unit target = null;
-		int maxDamageDealt = 0;
-		for (Unit temp : map.getUnitList()) {
-			if (temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1] > maxDamageDealt) {
-				target = temp;
-			}
-		}
+		Unit target = findTarget(unit);
 		// Breadth-first search to find shortest distance to target
 		Queue<int[]> queue = new LinkedList<int[]>();
 		boolean[][] availableMoves = new boolean[map.MAXY][map.MAXY];
@@ -161,7 +156,7 @@ public class AI {
 																									// what is the
 																									// unit's type
 
-					if (!unitMap[newY][newX].equals(target)) {
+					if (unitMap[newY][newX] == null || !unitMap[newY][newX].equals(target)) {
 						if (unitMap[newY][newX] != unit && unitMap[newY][newX] != null) { // checking if the newX
 																							// and newY position has
 																							// // an unit in in yet
@@ -173,20 +168,35 @@ public class AI {
 							int[] temp2 = { newX, newY, movesUsed + moveCost };
 							queue.add(temp2); // add another temp element to the queue
 						}
+					}else {
+						return movesUsed + moveCost;
 					}
 				}
 			}
 		}
 
-		return 0;
+		return Integer.MAX_VALUE;
 	}
 
-	private static int distanceToTarget(Unit unit) {
-		return distanceToTarget(unit, unit.getY(), unit.getX());
+	private static int distanceToTarget(AIMove move) {
+		return distanceToTarget(move.getUnit(), move.getY(), move.getX());
+	}
+	
+	private static Unit findTarget(Unit unit) {
+		Unit target = null;
+		int maxDamageDealt = 0;
+		for (Unit temp : map.getUnitList()) {
+			if (temp.isAlive() && temp.isFriendly() != unit.isFriendly() && temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1] > maxDamageDealt) {
+				target = temp;
+				maxDamageDealt = temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1];
+			}
+		}
+		return target;
 	}
 
 	private static void sortMoves(ArrayList<AIMove> availableMoves) {
 		// Returns 1 if m1 is better than m2
+//		Collections.shuffle(availableMoves);		
 		availableMoves.sort((m1, m2) ->
 
 		{
@@ -217,15 +227,27 @@ public class AI {
 					return 1;
 				}
 			}
-			if (healthMove1 == null && healthMove2 != null) {
-				return -1;
-			}
-			if (healthMove1 != null && healthMove2 == null) {
+			if (m1.isAttacking() && !m2.isAttacking()) {
 				return 1;
 			}
+			if (!m1.isAttacking() && m2.isAttacking()) {
+				return -1;
+			}
+			// prioritize moving closer to the target unit
+			if(m1.getUnit().equals(m2.getUnit())) {
+				if(distanceToTarget(m1) > distanceToTarget(m2)){
+					return -1;
+				}
+				if(distanceToTarget(m1) < distanceToTarget(m2)) {
+					return 1;
+				}
+			}
+	
 			// Both compared moves don't attack, or both attacks are equal in damage taken
 			// and damage recieved
 
+		
+		
 			// Melee move first, then ranged
 			if (m1.getUnit().getRange() < m2.getUnit().getRange()) {
 				return 1;
@@ -233,14 +255,12 @@ public class AI {
 			if (m1.getUnit().getRange() > m2.getUnit().getRange()) {
 				return -1;
 			}
-			// prioritize moving closer to a unit
-
 			return 0;
 		}
 
 		);
 	}
-
+	
 	/**
 	 * Generates a random integer between the given max and min values
 	 * 

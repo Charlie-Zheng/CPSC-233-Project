@@ -89,4 +89,7 @@ public class AIMove {
 		
 		
 	}
+	public boolean isAttacking() {
+		return !(getI()==getX() && getJ() == getY());
+	}
 }

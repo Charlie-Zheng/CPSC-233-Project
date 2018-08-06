@@ -5,7 +5,6 @@ import javafx.scene.input.MouseEvent;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
 	private int x, y;
-	private Map map;
 	private MapGUI mapGUI;
 	private static boolean selectingMove = false;
 	private static Unit selectedUnit;
@@ -102,7 +101,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			// Move the unit to somewhere or remove all the colors
 			mapGUI.removeAllColorsAndText();
 			if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
-				AI.computerTurn(map);
+				AI.computerTurn(mapGUI);
 				mapGUI.updateUnitsOnMap();
 				mapGUI.resetHasMoved(true);
 			}
