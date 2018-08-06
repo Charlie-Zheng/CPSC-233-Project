@@ -1,7 +1,15 @@
 package main;
 
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
 	private int x, y;
@@ -9,6 +17,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	private static boolean selectingMove = false;
 	private static Unit selectedUnit;
 	private static boolean selectingAttack;
+	private ArrayList<StackPane> unitStatDisplays;
 
 	public SelectedTile(int x, int y, MapGUI mapGUI) {
 		this.x = x;
@@ -21,7 +30,9 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	// this.x = x;
 	// this.y = y;
 	// }
-
+	
+	
+	@SuppressWarnings("unused")
 	@Override
 	public void handle(MouseEvent e) {
 		// Highlights moveable tiles to be blue
@@ -104,6 +115,19 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				AI.computerTurn(mapGUI);
 				mapGUI.updateUnitsOnMap();
 				mapGUI.resetHasMoved(true);
+			}
+		} else {
+			final Stage description = new Stage();
+			for(StackPane display : unitStatDisplays)
+			{
+				Stage dialog = new Stage();
+				dialog.initModality(Modality.APPLICATION_MODAL);
+				dialog.initOwner(description);
+				VBox dialogVbox = new VBox(20);
+				dialogVbox.getChildren().add(new Text("Description:"));
+				Scene dialogScene = new Scene(dialogVbox, 200, 200);
+				dialog.setScene(dialogScene);
+                dialog.show();
 			}
 		}
 	}
