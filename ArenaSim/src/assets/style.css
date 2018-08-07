@@ -3,5 +3,5 @@
     -fx-background-repeat: stretch;   
     -fx-background-size: 850 950;
     -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); 
 }
+/*sourced from https://stackoverflow.com/questions/9738146/javafx-how-to-set-scene-background-image*/
