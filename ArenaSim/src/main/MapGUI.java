@@ -5,8 +5,9 @@ package main;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
-
+import javafx.scene.input.MouseEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +26,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.event.EventHandler;
 
 /**
  * Class used to display the map
@@ -40,6 +43,8 @@ public class MapGUI extends Map{
 	private TextArea consoleText;
 	private ArrayList<StackPane> unitStatDisplays = new ArrayList<StackPane>();
 	private final int unitDisplayHeight = 75;
+	MouseEvent e;
+	Stage description = new Stage();
 
 	
 
@@ -104,10 +109,30 @@ public class MapGUI extends Map{
 					}
 				}
 				
-				Text stats = (Text) display.getChildren().get(0);
+				Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
+				Label attack = new Label("Atk: " + unit.getAtk());
+				Label speed = new Label("Spd: " + unit.getSpd());
+				Label defense = new Label("Def: " + unit.getDef());
+				Label range = new Label("Range: " + unit.getRange());
+				Label moveType = new Label("Move Type: " + unit.getMoveType());
+				
+				
+				StackPane.setAlignment(hp, Pos.TOP_LEFT);
+				StackPane.setAlignment(attack, Pos.TOP_RIGHT);
+				StackPane.setAlignment(speed, Pos.CENTER_LEFT);
+				StackPane.setAlignment(defense, Pos.CENTER_RIGHT);
+				StackPane.setAlignment(moveType, Pos.BOTTOM_RIGHT);
+				StackPane.setAlignment(range, Pos.BOTTOM_LEFT);
+				
+				display.getChildren().addAll(moveType,range,defense,speed,attack,hp);
+				
+				/*Label stats = (Label) display.getChildren().get(0);
+				stats.setLabelFor(hp);*/
+				
+				/*Text stats = (Text) display.getChildren().get(0);
 				stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" + unit.getBaseHP() + "\t\tAtk: "
 						+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
-						+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
+						+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());*/
 			}
 			
 		}
@@ -199,11 +224,41 @@ public class MapGUI extends Map{
 				unitStatDisplay.setBackground(
 						new Background(new BackgroundFill(Color.hsb(0, 0.5, 1), CornerRadii.EMPTY, Insets.EMPTY)));
 			}
-			Text stats = new Text();
+			/*Text stats = new Text();
 			stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" + unit.getBaseHP() + "\t\tAtk: "
 					+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
 					+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
-			unitStatDisplay.getChildren().add(stats);
+			unitStatDisplay.getChildren().add(stats);*/
+			
+			Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
+			Label attack = new Label("Atk: " + unit.getAtk());
+			Label speed = new Label("Spd: " + unit.getSpd());
+			Label defense = new Label("Def: " + unit.getDef());
+			Label range = new Label("Range: " + unit.getRange());
+			Label moveType = new Label("Move Type: " + unit.getMoveType());
+			
+			
+			StackPane.setAlignment(hp, Pos.TOP_LEFT);
+			StackPane.setAlignment(attack, Pos.TOP_RIGHT);
+			StackPane.setAlignment(speed, Pos.CENTER_LEFT);
+			StackPane.setAlignment(defense, Pos.CENTER_RIGHT);
+			StackPane.setAlignment(moveType, Pos.BOTTOM_RIGHT);
+			StackPane.setAlignment(range, Pos.BOTTOM_LEFT);
+			
+			Popup popup = new Popup();
+			popup.setX(200);
+			popup.setY(200);
+			
+			popup.getContent().addAll(new Rectangle(200,200));
+			
+			//popup.setOnShowing(EventHandler <>);
+			if(hp != null)
+			{
+				description.setTitle("HP");
+				popup.show(description);
+			}
+			
+			unitStatDisplay.getChildren().addAll(moveType,range,defense,speed,attack,hp);
 			unitStatDisplay.setLayoutX(MAXX * TerrainGUI.getImagewidth());
 			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
 			unitStatDisplays.add(unitStatDisplay);
