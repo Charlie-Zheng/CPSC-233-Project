@@ -172,16 +172,10 @@ public class MapGUI extends Map{
 		for (Unit unit : getUnitList()) {
 			unitDisplay[counter] = new ImageView();
 
-			switch (unit.getMoveType()) {
-			case CAVALRY:
-				unitDisplay[counter].setImage(UnitGUI.getHorse());
 
-				break;
-			case INFANTRY:
-				unitDisplay[counter].setImage(UnitGUI.getSword());
-			default:
-				break;
-			}
+				unitDisplay[counter].setImage(UnitGUI.getUnitImage(unit));
+
+			
 			UnitGUI.applyFactionColor(unitDisplay[counter], unit.isFriendly());
 			unitDisplay[counter].setX(unit.getX() * TerrainGUI.getImagewidth());
 			unitDisplay[counter].setY(unit.getY() * TerrainGUI.getImageheight());
