@@ -22,10 +22,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class GameGUI extends Application {
@@ -57,7 +60,8 @@ public class GameGUI extends Application {
 
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(10, 10, 10, 10));
-		grid.setStyle("-fx-background-color: #A16946");
+		 grid.setId("pane");
+	      
 		grid.setVgap(8);
 		grid.setHgap(10);
 		
@@ -76,7 +80,7 @@ public class GameGUI extends Application {
 
 		// Layout1
 		scene1 = new Scene(grid, 850, 950);
-
+		  scene1.getStylesheets().addAll("/assets/style.css");
 		root = new Group();
 		mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
 		mapGUI.loadMapGUI();
