@@ -38,10 +38,10 @@ public class GameGUI extends Application {
 	private Map map;
 	private Stage stage;
 	private MapGUI mapGUI;
-	
+
 	Stage window;
 	Scene scene1;
-	
+
 	public static void main(String[] args) {
 
 		launch(args);
@@ -50,32 +50,37 @@ public class GameGUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 		window = primaryStage;
-		
+
 		boolean gameOver = false;
-		
-		
-		GridPane grid = new GridPane();							
-		grid.setPadding(new Insets(10, 10, 10, 10));			
+
+		GridPane grid = new GridPane();
+		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.setStyle("-fx-background-color: #A16946");
 		grid.setVgap(8);
 		grid.setHgap(10);
 		
+		
+		// scene.getStylesheets().add("Style.css");
 		Label label1 = new Label("ARENA SIMULATOR V.1.01 ALPHA");
 		GridPane.setConstraints(label1, 25, 0);
-		
-		
+
 		Button button1 = new Button("NEW GAME");
-		GridPane.setConstraints(button1,25,25);
+		button1.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		
+		
+		GridPane.setConstraints(button1, 25, 25);
 		button1.setOnAction(e -> window.setScene(scene));
 		grid.getChildren().addAll(label1, button1);
-		
-		//Layout1 
-		scene1 = new Scene(grid, 800, 600);
-		
+
+		// Layout1
+		scene1 = new Scene(grid, 600, 800);
+
 		root = new Group();
 		mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
 		mapGUI.loadMapGUI();
+
 		scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 		primaryStage.setTitle("Arena Sim");
 		primaryStage.setScene(scene1);
@@ -83,15 +88,10 @@ public class GameGUI extends Application {
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		
-		
-		
-		
-	
-		
+
 //		
 //		window.setScene(scene1);
-		
+
 		window.show();
 
 	}

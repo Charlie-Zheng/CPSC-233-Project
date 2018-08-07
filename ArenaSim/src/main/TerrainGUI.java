@@ -1,8 +1,5 @@
 package main;
 
-
-
-
 import javafx.scene.image.Image;
 
 public final class TerrainGUI {
