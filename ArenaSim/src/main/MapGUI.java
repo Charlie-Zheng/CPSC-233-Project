@@ -109,7 +109,7 @@ public class MapGUI extends Map{
 					}
 				}
 				
-				Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
+				/*Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
 				Label attack = new Label("Atk: " + unit.getAtk());
 				Label speed = new Label("Spd: " + unit.getSpd());
 				Label defense = new Label("Def: " + unit.getDef());
@@ -124,15 +124,15 @@ public class MapGUI extends Map{
 				StackPane.setAlignment(moveType, Pos.BOTTOM_RIGHT);
 				StackPane.setAlignment(range, Pos.BOTTOM_LEFT);
 				
-				display.getChildren().addAll(moveType,range,defense,speed,attack,hp);
+				display.getChildren().addAll(moveType,range,defense,speed,attack,hp);*/
 				
 				/*Label stats = (Label) display.getChildren().get(0);
 				stats.setLabelFor(hp);*/
 				
-				/*Text stats = (Text) display.getChildren().get(0);
+				Text stats = (Text) display.getChildren().get(0);
 				stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" + unit.getBaseHP() + "\t\tAtk: "
 						+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
-						+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());*/
+						+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
 			}
 			
 		}
@@ -224,13 +224,13 @@ public class MapGUI extends Map{
 				unitStatDisplay.setBackground(
 						new Background(new BackgroundFill(Color.hsb(0, 0.5, 1), CornerRadii.EMPTY, Insets.EMPTY)));
 			}
-			/*Text stats = new Text();
+			Text stats = new Text();
 			stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" + unit.getBaseHP() + "\t\tAtk: "
 					+ unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() + "\nRange: "
 					+ unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
-			unitStatDisplay.getChildren().add(stats);*/
+			unitStatDisplay.getChildren().add(stats);
 			
-			Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
+			/*Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
 			Label attack = new Label("Atk: " + unit.getAtk());
 			Label speed = new Label("Spd: " + unit.getSpd());
 			Label defense = new Label("Def: " + unit.getDef());
@@ -256,9 +256,9 @@ public class MapGUI extends Map{
 			{
 				description.setTitle("HP");
 				popup.show(description);
-			}
+			}*/
 			
-			unitStatDisplay.getChildren().addAll(moveType,range,defense,speed,attack,hp);
+			//unitStatDisplay.getChildren().addAll(moveType,range,defense,speed,attack,hp);
 			unitStatDisplay.setLayoutX(MAXX * TerrainGUI.getImagewidth());
 			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
 			unitStatDisplays.add(unitStatDisplay);
