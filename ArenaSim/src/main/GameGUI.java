@@ -75,7 +75,7 @@ public class GameGUI extends Application {
 		grid.getChildren().addAll(label1, button1);
 
 		// Layout1
-		scene1 = new Scene(grid, 600, 800);
+		scene1 = new Scene(grid, 850, 950);
 
 		root = new Group();
 		mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
