@@ -75,18 +75,26 @@ public class GameGUI extends Application {
 		
 		GridPane.setConstraints(label1, 25, 0);
 
-		Button button1 = new Button("NEW GAME");
+		Button button1 = new Button();
+		button1.setText("NEW GAME");
+		button1.setFont(Font.font ("Berlin Sans FB", 20));
+		System.out.println(javafx.scene.text.Font.getFamilies());
+		
 		button1.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
 		
 		
 		GridPane.setConstraints(button1, 25, 25);
 		button1.setOnAction(e -> window.setScene(scene));
 		
-		Button button2 = new Button("CHOOSE A STAGE");
+		Button button2 = new Button();
+		button2.setText("CHOOSE A STAGE");
+		button2.setFont(Font.font ("Berlin Sans FB", 20));
 		button2.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
 		GridPane.setConstraints(button2, 25, 27);
 		
-		Button button3 = new Button("QUIT GAME");
+		Button button3 = new Button();
+		button3.setText("QUIT GAME");
+		button3.setFont(Font.font ("Berlin Sans FB", 20));
 		button3.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
 		button3.setOnAction(e -> window.hide());
 		GridPane.setConstraints(button3, 25, 29);
