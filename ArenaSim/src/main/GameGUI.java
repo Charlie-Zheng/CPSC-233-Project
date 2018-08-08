@@ -130,12 +130,12 @@ public class GameGUI extends Application {
 		GridPane.setConstraints(button2, 25, 27);
 		
 		
-		//stuff for button 3 and anything else related
+		//stuff for button 3 and anything else related (button2 is no longer apply here)
 		Button button3 = new Button();
 		button3.setText("QUIT GAME");
 		button3.setFont(Font.font ("Comic Sans MS", 20));
 		button3.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
-		button3.setOnAction(e -> window.hide());
+		button3.setOnAction(e -> window.hide()); 
 		GridPane.setConstraints(button3, 25, 29);
 		
 		Button button4 = new Button("Reset");
@@ -147,6 +147,8 @@ public class GameGUI extends Application {
 		// Layout1
 		scene1 = new Scene(grid, 850, 950);
 		scene1.getStylesheets().addAll("/assets/style.css");
+		
+		//this is for the back button of the choosing Stages, dont get confuse
 		back.setOnAction(e -> window.setScene(scene1));
 		
 		root = new Group();
