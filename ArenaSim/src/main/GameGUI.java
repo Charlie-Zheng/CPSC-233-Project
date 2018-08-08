@@ -1,6 +1,6 @@
 package main;
 
-import java.awt.Font;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -29,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class GameGUI extends Application {
@@ -66,9 +67,11 @@ public class GameGUI extends Application {
 		grid.setHgap(10);
 		
 		
-		// scene.getStylesheets().add("Style.css");
-		Label label1 = new Label("ARENA SIMULATOR V.1.01 ALPHA");
+		
+		Label label1 = new Label();
+		label1.setText("ARENA SIMULATOR V.1.01 ALPHA");
 		label1.setTextFill(Color.web("#0076a3"));
+		label1.setFont(Font.font ("Verdana", 20));
 		
 		GridPane.setConstraints(label1, 25, 0);
 
