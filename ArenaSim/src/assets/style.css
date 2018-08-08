@@ -1,0 +1,7 @@
+#pane{
+    -fx-background-image: url("/assets/menu_Background.png");
+    -fx-background-repeat: stretch;   
+    -fx-background-size: 850 950;
+    -fx-background-position: center center;
+}
+/*sourced from https://stackoverflow.com/questions/9738146/javafx-how-to-set-scene-background-image*/

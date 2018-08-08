@@ -1,7 +1,7 @@
 package main;
 
 public class AIMove {
-	// Instance variables that the AIMove encasulates
+	// Instance variables that the AIMove encapsulates
 	// The unit is the unit to move
 	private Unit unit;
 	// x,y represent the location to move to
@@ -81,6 +81,15 @@ public class AIMove {
  * A String representation of the move and attack
  */
 	public String toString() {
-		return unit.getName() + " moved to: " + x + ", " + y + " and attacked: " + i + ", " + j;
+		if(x == i && y == j) {
+			return unit.getName() + " moved to: " + x + ", " + y;
+		}else {
+			return unit.getName() + " moved to: " + x + ", " + y + " and attacked: " + i + ", " + j;
+		}
+		
+		
+	}
+	public boolean isAttacking() {
+		return !(getI()==getX() && getJ() == getY());
 	}
 }

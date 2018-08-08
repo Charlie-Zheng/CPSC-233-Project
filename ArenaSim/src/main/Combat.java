@@ -15,8 +15,9 @@ public final class Combat {
 	 * @param defender
 	 *            is another Unit class object parameter who is defending against
 	 *            the unit attacking it.
+	 * @return
 	 */
-	public static void calculateCombat(Unit initiator, Unit defender) {
+	public static int[] calculateCombat(Unit initiator, Unit defender) {
 		/*
 		 * This function is used to calculate the battle between 2 units that haven't
 		 * battled before. -The parameter initiator is the Unit object initiating the
@@ -27,7 +28,10 @@ public final class Combat {
 		 * that determines if the Units have battled before, since the battle hasn't
 		 * started it is set to false.
 		 */
-		combat(initiator, defender, false);
+		if (initiator != null && defender != null)
+			return combat(initiator, defender, false);
+		else
+			return null;
 	}
 
 	/**
@@ -51,12 +55,13 @@ public final class Combat {
 		 * determines if the Units have battled before/just started, since the battle
 		 * was initiated its set to true.
 		 */
-		combat(initiator, defender, true);
+		if (initiator != null && defender != null)
+			combat(initiator, defender, true);
 	}
 
 	/**
-	 * This function does the combat between 2 units, with the option to
-	 * actually apply the results of the combat or not
+	 * This function does the combat between 2 units, with the option to actually
+	 * apply the results of the combat or not
 	 * 
 	 * @param initiator
 	 *            is the unit object parameter who is attacking the unit object
@@ -110,6 +115,7 @@ public final class Combat {
 		 */
 		else if (canCounterAttack(initiator, defender)) {
 			attack(defender, initiator, applyCombat);
+
 		}
 		/*
 		 * If the initiator variable's getCurrentHP value is less than or equal to 0 it
@@ -146,7 +152,8 @@ public final class Combat {
 		}
 		/*
 		 * Else if it goes to the function canCounterAttack and canDouble and they both
-		 * return true with those parameters, the defender attacks the initiator unit back.
+		 * return true with those parameters, the defender attacks the initiator unit
+		 * back.
 		 */
 		else if (canCounterAttack(initiator, defender) && canDouble(defender, initiator)) {
 			attack(defender, initiator, applyCombat);
@@ -156,6 +163,10 @@ public final class Combat {
 		 * currentHP instance variable value into the first index, and registers the defender unit's
 		 * currentHP instance variable into the second index.
 		 * -It then returns the integer array temp*/
+		if (applyCombat) {
+			System.out.println("\n\n");
+
+		}
 		int[] temp = { initiator.getCurrentHP(), defender.getCurrentHP() };
 		return temp;
 
@@ -213,7 +224,8 @@ public final class Combat {
 	}
 
 	/**
-	 * This function determines if the defender unit is able to attack the initiator unit back or not.
+	 * This function determines if the defender unit is able to attack the initiator
+	 * unit back or not.
 	 * 
 	 * @param initiator
 	 *            is the unit object that the defender can attack back, if the
@@ -222,9 +234,9 @@ public final class Combat {
 	 * @param defender
 	 *            is the unit object that will attack the initiator back, if it is
 	 *            within the defender's attack range.
-	 * @return true if the defender can counter attack, else it returns
-	 *         false indicating that the defending unit cannot attack the initiator
-	 *         unit back.
+	 * @return true if the defender can counter attack, else it returns false
+	 *         indicating that the defending unit cannot attack the initiator unit
+	 *         back.
 	 */
 	private static boolean canCounterAttack(Unit initiator, Unit defender) {
 		/*
@@ -238,7 +250,8 @@ public final class Combat {
 	}
 
 	/**
-	 * This function determines how much damage a attacker does against another unit.
+	 * This function determines how much damage a attacker does against another
+	 * unit.
 	 * 
 	 * @param initiator
 	 *            is a unit object parameter who is damaging the defender unit
@@ -260,7 +273,8 @@ public final class Combat {
 	}
 
 	/**
-	 * This function determines if the initiator unit object is able to attack twice in a single turn.
+	 * This function determines if the initiator unit object is able to attack twice
+	 * in a single turn.
 	 * 
 	 * @param initiator
 	 *            is the unit object that is attacking against the defender unit

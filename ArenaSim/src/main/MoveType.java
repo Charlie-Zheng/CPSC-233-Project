@@ -1,10 +1,11 @@
 package main;
+
 /**
- * A enumeration represetning the movement types in the game, Cavalry, Armor, Infantry, and Flier
- *
+ * A enumeration represetning the movement types in the game, Cavalry, Armor,
+ * Infantry, and Flier
  */
 public enum MoveType {
-	INFANTRY, ARMOR, CAVALRY, FLIER; // enum constants
+	INFANTRY, CAVALRY, FLIER, ARMOR; // enum constants
 
 	/**
 	 * method called to get the shortened length of the enum constants basically

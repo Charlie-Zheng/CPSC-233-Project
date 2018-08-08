@@ -1,6 +1,11 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+
+//import sun.security.provider.DSAPublicKeyImpl;
 
 /**
  * A static class which has all of the methods required to go through the
@@ -22,20 +27,21 @@ public class AI {
 		// initialize game over to be false
 		boolean gameOver = false;
 		// initialize all the units to not moved
-		resetHasMoved();
+		map.resetHasMoved(false);
 		// repeatedly chooses a random move from the movelist until all AI units have
 		// moved or the game ends
-		while (AIHasUnmovedUnits() && !gameOver) {
+		while (map.factionHasUnmovedUnits(false) && !gameOver) {
 			// Find the available moves
 			ArrayList<AIMove> availableMoves = findAvailableMoves();
 			// Choose and random move
-			int moveNum = randInt(0, availableMoves.size() - 1);
-			// Apply the randomly selected mvoe
-			applyAIMove(availableMoves.get(moveNum));
+			// int moveNum = randInt(0, availableMoves.size() - 1);
+			sortMoves(availableMoves);
+			// Apply the randomly selected move
+			applyAIMove(availableMoves.get(availableMoves.size() - 1));
 			// update the map
 			map.updateHeroDeaths();
 			// check if the game is over
-			gameOver = gameOver();
+			gameOver = map.gameOver();
 
 		}
 
@@ -56,9 +62,9 @@ public class AI {
 
 		// Store the list of units from the map
 		ArrayList<Unit> unitList = map.getUnitList();
-		// interate through each unit the AI can control
+		// Iterate through each unit the AI can control
 		for (Unit unit : unitList) {
-			if (!unit.isFriendly() && !unit.hasMoved()) {
+			if (!unit.isFriendly() && !unit.hasMoved() && unit.isAlive()) {
 				int unitX = unit.getX();
 				int unitY = unit.getY();
 
@@ -72,7 +78,7 @@ public class AI {
 							// found
 							map.moveHero(unitX, unitY, x, y);
 							// find the available targets if the unit had moved to the given location
-							boolean[][] availableTargetsOfUnit = map.findAvailableTargets(unit);
+							boolean[][] availableTargetsOfUnit = map.findRange(unit);
 
 							for (int j = 0, maxJ = availableTargetsOfUnit.length; j < maxJ; j++) {
 								for (int i = 0, maxI = availableTargetsOfUnit[j].length; i < maxI; i++) {
@@ -106,11 +112,13 @@ public class AI {
 		Unit unit = move.getUnit();
 		int unitX = unit.getX();
 		int unitY = unit.getY();
+		
+		
 		// Move the hero
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
 		unit.setHasMoved(true);
 		// Print the movement to the user
-		System.out.println(move);
+		System.out.print(move.toString() + "\n");
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];
 		if (target != unit) {
 			// Apply the combat if the unit chose to attack
@@ -119,57 +127,143 @@ public class AI {
 
 	}
 
-	/**
-	 * Checks if the player still has units to move
-	 * 
-	 * @return True if the player still has units to move
-	 */
-	private static boolean AIHasUnmovedUnits() {
-		for (Unit unit : map.getUnitList()) {
-			if (!unit.isFriendly() && !unit.hasMoved()) {
-				return true;
+	private static int distanceToTarget(Unit unit, int y, int x) {
+		// target is the unit that will take the most damage
+		Unit target = findTarget(unit);
+		// Breadth-first search to find shortest distance to target
+		Queue<int[]> queue = new LinkedList<int[]>();
+		boolean[][] availableMoves = new boolean[map.MAXY][map.MAXY];
+		availableMoves[y][x] = true; // set value of the position to True to prepare for the loop
+		int[] temp = { x, y, 0 }; // creating temp as an integer array that
+									// contain x and y positions, also get
+									// the unit moves type
+		queue.add(temp); // add temp as the first value in the queue
+		TerrainType[][] terrainMap = map.getTerrainMap();
+		Unit[][] unitMap = map.getUnitMap();
+		while (!queue.isEmpty()) { // checking if the queue is empty or not
+			int[] values = queue.remove(); // start again with the new loop, delete the first temp element
+			for (int i = 0; i < 4; i++) { // 4 directions to move, so loop from 0 to 3
+				int newX = values[0] + (int) Math.round(Math.cos(i / 2d * Math.PI)); // math to calculate where is
+																						// the suitable moving
+																						// position
+				int newY = values[1] + (int) Math.round(Math.sin(i / 2d * Math.PI));
+				int movesUsed = values[2];
+
+				if (0 <= newX && newX < map.MAXX && 0 <= newY && newY < map.MAXY && !availableMoves[newY][newX]) {
+					int moveCost = MoveRules.moveCost(terrainMap[newY][newX], unit.getMoveType()); // get the
+																									// movement cost
+																									// by find out
+																									// what is the
+																									// unit's type
+
+					if (unitMap[newY][newX] == null || !unitMap[newY][newX].equals(target)) {
+						if (unitMap[newY][newX] != unit && unitMap[newY][newX] != null) { // checking if the newX
+																							// and newY position has
+																							// // an unit in in yet
+							availableMoves[newY][newX] = false;
+						} else
+							availableMoves[newY][newX] = true;
+						if (movesUsed < 20  && (unitMap[newY][newX] == null
+								|| unitMap[newY][newX].isFriendly() == unit.isFriendly())) {
+							int[] temp2 = { newX, newY, movesUsed + moveCost };
+							queue.add(temp2); // add another temp element to the queue
+						}
+					}else {
+						return movesUsed + moveCost;
+					}
+				}
 			}
 		}
-		return false;
+
+		return Integer.MAX_VALUE;
 	}
 
-	/**
-	 * Allows all AI units to move again
-	 */
-	private static void resetHasMoved() {
-		ArrayList<Unit> unitList = map.getUnitList();
-		for (Unit unit : unitList) {
-			if (!unit.isFriendly())
-				unit.setHasMoved(false);
+	private static int distanceToTarget(AIMove move) {
+		return distanceToTarget(move.getUnit(), move.getY(), move.getX());
+	}
+	
+	private static Unit findTarget(Unit unit) {
+		Unit target = null;
+		int maxDamageDealt = 0;
+		for (Unit temp : map.getUnitList()) {
+			if (temp.isAlive() && temp.isFriendly() != unit.isFriendly() && temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1] > maxDamageDealt) {
+				target = temp;
+				maxDamageDealt = temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1];
+			}
 		}
+		return target;
 	}
 
-	/**
-	 * This method checks if the game is over, where either the player has lost by
-	 * losing all friendly units, or the player has won by defeating all enemy units
-	 * 
-	 * @return A boolean representing if the game is over
-	 */
-	private static boolean gameOver() {
-		ArrayList<Unit> unitList = map.getUnitList();
-		boolean enemiesAllDead = true;
-		boolean friendiesAllDead = true;
-		// Iterates through the unit list, if a friendly unit is alive, then friendly
-		// units are not all dead. If an enemy unit is alive, then enemy units are not
-		// all dead
-		for (Unit unit : unitList) {
-			if (unit.isFriendly())
-				friendiesAllDead = false;
-			else
-				enemiesAllDead = false;
+	private static void sortMoves(ArrayList<AIMove> availableMoves) {
+		// Returns 1 if m1 is better than m2
+//		Collections.shuffle(availableMoves);		
+		availableMoves.sort((m1, m2) ->
+
+		{
+			Unit[][] unitMap = map.getUnitMap();
+			int[] healthMove1 = Combat.calculateCombat(m1.getUnit(), unitMap[m1.getJ()][m1.getI()]);
+			int[] healthMove2 = Combat.calculateCombat(m2.getUnit(), unitMap[m2.getJ()][m2.getI()]);
+			if (healthMove1 != null && healthMove2 != null) {
+				int damageDealtM1 = unitMap[m1.getJ()][m1.getI()].getCurrentHP() - healthMove1[1];
+				int damageDealtM2 = unitMap[m2.getJ()][m2.getI()].getCurrentHP() - healthMove2[1];
+				int damageTakenM1 = m1.getUnit().getCurrentHP() - healthMove1[0];
+				int damageTakenM2 = m2.getUnit().getCurrentHP() - healthMove2[0];
+				if (healthMove1[1] <= 0 && healthMove2[1] > 0) {
+					return 1;
+				}
+				if (healthMove1[1] > 0 && healthMove2[1] <= 0) {
+					return -1;
+				}
+				if (damageDealtM1 > damageDealtM2) {
+					return 1;
+				}
+				if (damageDealtM1 < damageDealtM2) {
+					return -1;
+				}
+				if (damageTakenM1 > damageTakenM2) {
+					return -1;
+				}
+				if (damageTakenM1 < damageDealtM2) {
+					return 1;
+				}
+			}
+			if (m1.isAttacking() && !m2.isAttacking()) {
+				return 1;
+			}
+			if (!m1.isAttacking() && m2.isAttacking()) {
+				return -1;
+			}
+			// prioritize moving closer to the target unit
+			if(m1.getUnit().equals(m2.getUnit())) {
+				if(distanceToTarget(m1) > distanceToTarget(m2)){
+					return -1;
+				}
+				if(distanceToTarget(m1) < distanceToTarget(m2)) {
+					return 1;
+				}
+			}
+	
+			// Both compared moves don't attack, or both attacks are equal in damage taken
+			// and damage recieved
+
+		
+		
+			// Melee move first, then ranged
+			if (m1.getUnit().getRange() < m2.getUnit().getRange()) {
+				return 1;
+			}
+			if (m1.getUnit().getRange() > m2.getUnit().getRange()) {
+				return -1;
+			}
+			return 0;
 		}
-		//If either of the factions' units are all dead, the game is over
-		return friendiesAllDead || enemiesAllDead;
 
+		);
 	}
-
+	
 	/**
 	 * Generates a random integer between the given max and min values
+	 * 
 	 * @param min
 	 *            The minimum integer that can be generated.
 	 * @param max
