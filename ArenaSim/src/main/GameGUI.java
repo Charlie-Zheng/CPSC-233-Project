@@ -76,11 +76,23 @@ public class GameGUI extends Application {
 		
 		GridPane.setConstraints(button1, 25, 25);
 		button1.setOnAction(e -> window.setScene(scene));
-		grid.getChildren().addAll(label1, button1);
+		
+		Button button2 = new Button("CHOOSE A STAGE");
+		button2.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		GridPane.setConstraints(button2, 25, 27);
+		
+		Button button3 = new Button("QUIT GAME");
+		button3.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		button3.setOnAction(e -> window.hide());
+		GridPane.setConstraints(button3, 25, 29);
+		
+		grid.getChildren().addAll(label1, button1, button2, button3);
+		
+		
 
 		// Layout1
 		scene1 = new Scene(grid, 850, 950);
-		  scene1.getStylesheets().addAll("/assets/style.css");
+		scene1.getStylesheets().addAll("/assets/style.css");
 		root = new Group();
 		mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
 		mapGUI.loadMapGUI();
