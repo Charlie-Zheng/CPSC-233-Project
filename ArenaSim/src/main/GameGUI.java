@@ -107,7 +107,8 @@ public class GameGUI extends Application {
 		map1.setStyle("-fx-background-color: #383838");
 		map1.setOnAction(e -> window.setScene(scene));
 		GridPane.setConstraints(map1, 25, 25);
-
+		
+		//picking map 2
 		Button map2 = new Button();
 		map2.setText("Map_1_2");
 		map2.setFont(Font.font("Comic Sans MS", 25));
@@ -122,6 +123,7 @@ public class GameGUI extends Application {
 
 		});
 		
+		//picking map 3
 		Button map3 = new Button();
 		map3.setText("Map_1_3");
 		map3.setFont(Font.font("Comic Sans MS", 25));
