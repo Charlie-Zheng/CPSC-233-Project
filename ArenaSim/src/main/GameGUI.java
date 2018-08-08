@@ -44,8 +44,8 @@ public class GameGUI extends Application {
 	private MapGUI mapGUI;
 
 	Stage window;
-	Scene scene1;
-
+	Scene scene1, stages;
+	
 	public static void main(String[] args) {
 
 		launch(args);
@@ -71,13 +71,13 @@ public class GameGUI extends Application {
 		Label label1 = new Label();
 		label1.setText("ARENA SIMULATOR V.1.01 ALPHA");
 		label1.setTextFill(Color.web("#0076a3"));
-		label1.setFont(Font.font ("Verdana", 20));
+		label1.setFont(Font.font ("Berlin Sans FB", 18));
 		
 		GridPane.setConstraints(label1, 25, 0);
 
 		Button button1 = new Button();
 		button1.setText("NEW GAME");
-		button1.setFont(Font.font ("Berlin Sans FB", 20));
+		button1.setFont(Font.font ("Comic Sans MS", 20));
 		System.out.println(javafx.scene.text.Font.getFamilies());
 		
 		button1.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
@@ -88,13 +88,13 @@ public class GameGUI extends Application {
 		
 		Button button2 = new Button();
 		button2.setText("CHOOSE A STAGE");
-		button2.setFont(Font.font ("Berlin Sans FB", 20));
+		button2.setFont(Font.font ("Comic Sans MS", 20));
 		button2.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
 		GridPane.setConstraints(button2, 25, 27);
 		
 		Button button3 = new Button();
 		button3.setText("QUIT GAME");
-		button3.setFont(Font.font ("Berlin Sans FB", 20));
+		button3.setFont(Font.font ("Comic Sans MS", 20));
 		button3.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
 		button3.setOnAction(e -> window.hide());
 		GridPane.setConstraints(button3, 25, 29);
