@@ -39,6 +39,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		if (!selectingMove && !selectingAttack) {// what happens when you click while not selecting a move or an attack
 			mapGUI.updateUnitsOnMap();
 			selectedUnit = mapGUI.getUnitMap()[y][x];
+			System.out.println(selectedUnit + "\n");
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
 				if (!selectedUnit.hasMoved()) {
 					selectingMove = true;
@@ -100,7 +101,16 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 					Combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
 					mapGUI.updateHeroDeaths();
 					selectedUnit.setHasMoved(true);
-					
+					selectedUnit = null;
+					mapGUI.updateUnitsOnMap();
+					// What happens when you are selecting a move
+					// Move the unit to somewhere or remove all the colors
+					mapGUI.removeAllColorsAndText();
+					if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
+						AI.computerTurn(mapGUI);
+						mapGUI.updateUnitsOnMap();
+						mapGUI.resetHasMoved(true);
+					}
 				}
 			}
 					

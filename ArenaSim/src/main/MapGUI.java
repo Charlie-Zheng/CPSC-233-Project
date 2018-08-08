@@ -117,26 +117,9 @@ public class MapGUI extends Map {
 					}
 				}
 
-				display.getChildren().clear();
-				Label name = new Label("Name: " + unit.getName());
-				Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
-				Label attack = new Label("Atk: " + unit.getAtk());
-				Label speed = new Label("Spd: " + unit.getSpd());
-				Label defense = new Label("Def: " + unit.getDef());
-				Label range = new Label("Range: " + unit.getRange());
-				Label moveType = new Label("Move Type: " + unit.getMoveType());
-				moveType.setPrefWidth(125);
-
-				display.add(name, 0, 0);
-				display.add(hp, 1, 0);
-				display.add(attack, 0, 1);
-				display.add(speed, 1, 1);
-				display.add(defense, 0, 2);
-				display.add(range, 1, 2);
-				display.add(moveType, 0, 3);
-
-				Label stats = (Label) display.getChildren().get(0);
-				stats.setLabelFor(hp);
+				//display.getChildren().clear();
+				Label hp = (Label)display.getChildren().get(1);
+				hp.setText("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
 
 				// Text stats = (Text) display.getChildren().get(0);
 				// stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" +
@@ -256,9 +239,9 @@ public class MapGUI extends Map {
 				labelList.get(x).setOnMouseClicked(new StatInfoDisplay(infoList[x], this));
 
 				if (unit.isFriendly()) {
-					labelList.get(x).setStyle("-fx-background-color: #80bfff");
+					labelList.get(x).setStyle("-fx-background-color: transparent;");
 				} else {
-					labelList.get(x).setStyle("-fx-background-color: #ff8080");
+					labelList.get(x).setStyle("-fx-background-color: transparent;");
 
 				}
 
