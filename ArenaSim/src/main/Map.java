@@ -507,8 +507,67 @@ public class Map {
 				}
 			}
 		}
-
 		return allAttacks;
+	}
+
+	public int[] findClosestAttackLocation(Unit initiator, Unit defender) {
+		int y = initiator.getY(); // get unit position of the Y-axis on the 2 dimension list
+		int x = initiator.getX(); // get unit position of the X-axis on the 2 dimension list
+		if (unitMap[y][x] != null) { // if the position in the map is not empty
+			Queue<int[]> queue = new LinkedList<int[]>(); // creating a new queue, as a preparation for the
+															// breadth-first search algorithm
+
+			boolean[][] availableMoves = new boolean[MAXY][MAXX];
+			availableMoves[y][x] = true; // set value of the position to True to prepare for the loop
+			int[] temp = { x, y, MoveRules.initialMoves(initiator.getMoveType()) }; // creating temp as an integer array
+																					// that
+			// contain x and y positions, also get
+			// the unit moves type
+			queue.add(temp); // add temp as the first value in the queue
+			while (!queue.isEmpty()) { // checking if the queue is empty or not
+				int[] values = queue.remove(); // start again with the new loop, delete the first temp element
+				for (int i = 0; i < 4; i++) { // 4 directions to move, so loop from 0 to 3
+					int newX = values[0] + (int) Math.round(Math.cos(i / 2d * Math.PI)); // math to calculate where is
+																							// the suitable moving
+																							// position
+					int newY = values[1] + (int) Math.round(Math.sin(i / 2d * Math.PI));
+					int movesLeft = values[2];
+
+					if (0 <= newX && newX < MAXX && 0 <= newY && newY < MAXY && !availableMoves[newY][newX]) {
+						int moveCost = MoveRules.moveCost(terrainMap[newY][newX], initiator.getMoveType()); // get the
+						// movement cost
+						// by find out
+						// what is the
+						// unit's type
+
+						if (moveCost <= movesLeft) {
+
+							if (unitMap[newY][newX] != initiator && unitMap[newY][newX] != null) { // checking if the
+																									// newX
+																									// and newY position
+																									// has
+																									// // an unit in in
+																									// yet
+								availableMoves[newY][newX] = false;
+							} else {
+								if (Math.abs(defender.getX() - newX) + Math.abs(defender.getY() - newY) == initiator
+										.getRange()) {
+									int[] temp2 = { newX, newY };
+									return temp2;
+								}
+								availableMoves[newY][newX] = true;
+							}
+							if (movesLeft - moveCost > 0 && (unitMap[newY][newX] == null
+									|| unitMap[newY][newX].isFriendly() == initiator.isFriendly())) {
+								int[] temp2 = { newX, newY, movesLeft - moveCost };
+								queue.add(temp2); // add another temp element to the queue
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	/**

@@ -75,6 +75,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		} else if (selectingMove) {
 			
 			mapGUI.removeAllColorsAndText();
+			//User clicked a place to move first
 			if (mapGUI.checkMoveLegal(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY())
 					&& !selectedUnit.hasMoved()) {
 				mapGUI.moveHero(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY());
@@ -92,8 +93,20 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 						}*/
 					}
 				}
+			}else if(mapGUI.findAllAttacks(selectedUnit)[y][x] && mapGUI.getUnitMap()[y][x]!=null){
+				int[] movementTile = mapGUI.findClosestAttackLocation(selectedUnit, mapGUI.getUnitMap()[y][x]);
+				if(movementTile!=null) {
+					mapGUI.moveHero(selectedUnit, movementTile[0] - selectedUnit.getX(), movementTile[1] - selectedUnit.getY());
+					Combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
+					mapGUI.updateHeroDeaths();
+					selectedUnit.setHasMoved(true);
+					
+				}
 			}
-
+					
+			//User clicked a location to attack
+			//use a breadth first search to find the first location at which the selected unit can attack the selected unit
+			
 			mapGUI.updateUnitsOnMap();
 			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
