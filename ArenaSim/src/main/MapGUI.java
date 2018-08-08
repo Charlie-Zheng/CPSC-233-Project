@@ -158,15 +158,9 @@ public class MapGUI extends Map {
 		TerrainGUI.initializeImages();
 		for (int y = 0; y < MAXY; y++) {
 			for (int x = 0; x < MAXX; x++) {
-				switch (getTerrainMap()[y][x]) {
-				case TREE:
-					terrainDisplay[y][x] = new ImageView(TerrainGUI.getTreeImage());
-					break;
-				case FLAT:
-					terrainDisplay[y][x] = new ImageView(TerrainGUI.getFlatImage());
-				default:
-					break;
-				}
+
+				terrainDisplay[y][x] = new ImageView(TerrainGUI.getImage(getTerrainMap()[y][x]));
+
 				// terrainDisplay[y][x].setX(x * TerrainGUI.getImagewidth());
 				// terrainDisplay[y][x].setY(y * TerrainGUI.getImageheight());
 
@@ -217,7 +211,7 @@ public class MapGUI extends Map {
 				unitStatDisplay.setStyle("-fx-background-color: #80bfff");
 			} else {
 				unitStatDisplay.setStyle("-fx-background-color: #ff8080");
-				
+
 			}
 			// Text stats = new Text();
 			// stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" +
@@ -242,11 +236,15 @@ public class MapGUI extends Map {
 			labelList.add(defense);
 			labelList.add(range);
 			labelList.add(moveType);
-			String[] info = { "The name of the unit", "The unit dies if current hp drops below 1", "The more attack a unit has, the more damage it deals in it's attacks", "If this unit has 5 or more speed than it's oppent, this unit can attack twice", "The more def a unit has, the less damage it takes when it's attacked", "A unit can attack when it is this far away from its target",
+			String[] info = { "The name of the unit", "The unit dies if current hp drops below 1",
+					"The more attack a unit has, the more damage it deals in it's attacks",
+					"If this unit has 5 or more speed than it's oppent, this unit can attack twice",
+					"The more def a unit has, the less damage it takes when it's attacked",
+					"A unit can attack when it is this far away from its target",
 					"Different movement types can enter different terrain, and may experience penalties for entering" };
 			int[] yOffsets = { 15, 15, 32, 32, 49, 49, 66, };
 			int[] xOffsets = { 0, 125, 0, 125, 0, 125, 0 };
-			
+
 			Label[] infoList = new Label[7];
 			for (int x = 0; x < 7; x++) {
 				infoList[x] = new Label(info[x]);
@@ -255,13 +253,13 @@ public class MapGUI extends Map {
 				infoList[x].setStyle("-fx-background-color: #ccffb2");
 				infoList[x].setLayoutX(xOffsets[x] + MAXX * TerrainGUI.getImagewidth());
 				infoList[x].setLayoutY(yOffsets[x] + counter * unitDisplayHeight);
-				labelList.get(x).setOnMouseClicked(new StatInfoDisplay(infoList[x],this));
-				
+				labelList.get(x).setOnMouseClicked(new StatInfoDisplay(infoList[x], this));
+
 				if (unit.isFriendly()) {
 					labelList.get(x).setStyle("-fx-background-color: #80bfff");
 				} else {
 					labelList.get(x).setStyle("-fx-background-color: #ff8080");
-					
+
 				}
 
 			}
