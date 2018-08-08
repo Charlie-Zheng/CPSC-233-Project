@@ -1,12 +1,12 @@
 package main;
 
+import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -60,7 +60,7 @@ public class GameGUI extends Application {
 
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(10, 10, 10, 10));
-		 grid.setId("pane");
+		grid.setId("pane");
 	      
 		grid.setVgap(8);
 		grid.setHgap(10);
@@ -68,6 +68,8 @@ public class GameGUI extends Application {
 		
 		// scene.getStylesheets().add("Style.css");
 		Label label1 = new Label("ARENA SIMULATOR V.1.01 ALPHA");
+		label1.setTextFill(Color.web("#0076a3"));
+		
 		GridPane.setConstraints(label1, 25, 0);
 
 		Button button1 = new Button("NEW GAME");
@@ -86,6 +88,12 @@ public class GameGUI extends Application {
 		button3.setOnAction(e -> window.hide());
 		GridPane.setConstraints(button3, 25, 29);
 		
+		Button button4 = new Button("Reset");
+		button4.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		button4.setOnAction(e -> primaryStage.setScene(scene));
+		
+		
+		
 		grid.getChildren().addAll(label1, button1, button2, button3);
 		
 		
@@ -93,11 +101,14 @@ public class GameGUI extends Application {
 		// Layout1
 		scene1 = new Scene(grid, 850, 950);
 		scene1.getStylesheets().addAll("/assets/style.css");
+		
 		root = new Group();
 		mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
 		mapGUI.loadMapGUI();
-
+		
+		
 		scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
+		
 		primaryStage.setTitle("Arena Sim");
 		primaryStage.setScene(scene1);
 
