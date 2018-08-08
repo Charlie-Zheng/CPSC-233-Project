@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 public class HighlightTile implements EventHandler<MouseEvent> {
@@ -17,7 +18,7 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 	private int x;
 	private int y;
 	private MapGUI mapGUI;
-	private ArrayList<StackPane> unitStatDisplays;
+	private ArrayList<GridPane> unitStatDisplays;
 
 	public HighlightTile(ImageView image, boolean add) {
 		this.image = image;
@@ -25,7 +26,7 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 		shadow.setColor(Color.WHITE);
 	}
 
-	public HighlightTile(ImageView image, boolean add, int x, int y, MapGUI mapGUI, ArrayList<StackPane> unitStatDisplays) {
+	public HighlightTile(ImageView image, boolean add, int x, int y, MapGUI mapGUI, ArrayList<GridPane> unitStatDisplays) {
 		this.image = image;
 		this.add = add;
 		shadow.setColor(Color.WHITE);
@@ -53,7 +54,7 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 				counter++;
 			}
 		} else {
-			for (StackPane display : unitStatDisplays) {
+			for (GridPane display : unitStatDisplays) {
 				display.setEffect(null);
 			}
 		}
