@@ -81,6 +81,12 @@ public class GameGUI extends Application {
 		label1.setFont(Font.font("Berlin Sans FB", 18));
 
 		GridPane.setConstraints(label1, 25, 0);
+		
+		Button backButton = new Button();
+		backButton.setText("Back");
+		backButton.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
+		mapGUI.display(backButton);
+		backButton.setOnAction(e -> primaryStage.setScene(scene1));
 
 		Button button1 = new Button();
 		button1.setText("NEW GAME");
@@ -123,6 +129,7 @@ public class GameGUI extends Application {
 			mapGUI = new MapGUI("src/assets/map_1_2.txt", root);
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
+			mapGUI.display(backButton);
 			window.setScene(scene);
 
 		});
@@ -138,6 +145,7 @@ public class GameGUI extends Application {
 			mapGUI = new MapGUI("src/assets/map_1_3.txt", root);
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
+			mapGUI.display(backButton);
 			window.setScene(scene);
 
 		});
@@ -168,10 +176,7 @@ public class GameGUI extends Application {
 		button3.setOnAction(e -> window.hide());
 		GridPane.setConstraints(button3, 25, 29);
 
-		Button button4 = new Button();
-		button4.setText("Reset");
-		button4.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
-		button4.setOnAction(e -> primaryStage.setScene(scene));
+		
 
 		grid.getChildren().addAll(label1, button1, button2, button3);
 
@@ -179,7 +184,7 @@ public class GameGUI extends Application {
 		scene1 = new Scene(grid, 850, 950);
 		scene1.getStylesheets().addAll("/assets/style.css");
 		
-
+		
 		// this is for the back button of the choosing Stages, dont get confuse
 		back.setOnAction(e -> window.setScene(scene1));
 
