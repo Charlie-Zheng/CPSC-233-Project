@@ -259,7 +259,6 @@ public class MapGUI extends Map {
 			unitStatDisplay.setLayoutX(MAXX * TerrainGUI.getImagewidth());
 			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
 			unitStatDisplays.add(unitStatDisplay);
-
 			root.getChildren().add(unitStatDisplay);
 			counter++;
 		}
