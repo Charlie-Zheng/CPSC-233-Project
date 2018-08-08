@@ -60,7 +60,7 @@ public class GameGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		window = primaryStage;
-
+		System.out.println(javafx.scene.text.Font.getFamilies());
 		boolean gameOver = false;
 
 		root = new Group();
@@ -84,27 +84,31 @@ public class GameGUI extends Application {
 
 		Button button1 = new Button();
 		button1.setText("NEW GAME");
-		button1.setFont(Font.font("Comic Sans MS", 20));
-		button1.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
-		// System.out.println(javafx.scene.text.Font.getFamilies());
+		button1.setFont(Font.font("Kristen ITC", 25));
+		button1.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
 		GridPane.setConstraints(button1, 25, 25);
 		button1.setOnAction(e -> window.setScene(scene));
 
 		// Button 2 stuffs
 		Button button2 = new Button();
 		button2.setText("CHOOSE A STAGE");
-		button2.setFont(Font.font("Comic Sans MS", 20));
-		button2.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		button2.setFont(Font.font("Kristen ITC", 25));
+		button2.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
 		GridPane stagesGrid = new GridPane();
+		stagesGrid.setId("stages");
 		stagesGrid.setPadding(new Insets(10, 10, 10, 10));
 		stagesGrid.setVgap(8);
 		stagesGrid.setHgap(10);
 
-		// buttons for maps picking
+		//picking button2 will result in a new screen with 3 other buttons
+		
+		//3 other buttons are called map1, map2 and map3 respectively. They will choose different maps for you.
+		
+		// buttons for maps picking 
 		Button map1 = new Button();
 		map1.setText("Map_1_1");
 		map1.setFont(Font.font("Comic Sans MS", 25));
-		map1.setStyle("-fx-background-color: #383838");
+		map1.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		map1.setOnAction(e -> window.setScene(scene));
 		GridPane.setConstraints(map1, 25, 25);
 		
@@ -112,7 +116,7 @@ public class GameGUI extends Application {
 		Button map2 = new Button();
 		map2.setText("Map_1_2");
 		map2.setFont(Font.font("Comic Sans MS", 25));
-		map2.setStyle("-fx-background-color: #383838");
+		map2.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		GridPane.setConstraints(map2, 25, 27);
 		map2.setOnAction((event) -> {
 			root = new Group();
@@ -127,7 +131,7 @@ public class GameGUI extends Application {
 		Button map3 = new Button();
 		map3.setText("Map_1_3");
 		map3.setFont(Font.font("Comic Sans MS", 25));
-		map3.setStyle("-fx-background-color: #383838");
+		map3.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		GridPane.setConstraints(map3, 25, 29);
 		map3.setOnAction((event) -> {
 			root = new Group();
@@ -135,8 +139,6 @@ public class GameGUI extends Application {
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			window.setScene(scene);
-			
-	
 
 		});
 		
@@ -144,12 +146,16 @@ public class GameGUI extends Application {
 		Button back = new Button();
 		back.setText("Back");
 		back.setFont(Font.font("Comic Sans MS", 25));
-		back.setStyle("-fx-background-color: #383838");
+		back.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		GridPane.setConstraints(back, 25, 31);
 
 		// grid for the map picking
 		stagesGrid.getChildren().addAll(map1, map2, map3, back);
+		
+		//new scene = stages picking
 		maps = new Scene(stagesGrid, 850, 950);
+		maps.getStylesheets().addAll("/assets/style.css");
+		
 		button2.setOnAction(e -> window.setScene(maps));
 		GridPane.setConstraints(button2, 25, 27);
 
@@ -157,14 +163,14 @@ public class GameGUI extends Application {
 		// here)
 		Button button3 = new Button();
 		button3.setText("QUIT GAME");
-		button3.setFont(Font.font("Comic Sans MS", 20));
-		button3.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		button3.setFont(Font.font("Kristen ITC", 25));
+		button3.setStyle("-fx-background-color: linear-gradient(#9999ff, #99ff99)");
 		button3.setOnAction(e -> window.hide());
 		GridPane.setConstraints(button3, 25, 29);
 
 		Button button4 = new Button();
 		button4.setText("Reset");
-		button4.setStyle("-fx-background-color: linear-gradient(#dc9656, #ab4642)");
+		button4.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
 		button4.setOnAction(e -> primaryStage.setScene(scene));
 
 		grid.getChildren().addAll(label1, button1, button2, button3);
@@ -172,6 +178,7 @@ public class GameGUI extends Application {
 		// Layout1
 		scene1 = new Scene(grid, 850, 950);
 		scene1.getStylesheets().addAll("/assets/style.css");
+		
 
 		// this is for the back button of the choosing Stages, dont get confuse
 		back.setOnAction(e -> window.setScene(scene1));
