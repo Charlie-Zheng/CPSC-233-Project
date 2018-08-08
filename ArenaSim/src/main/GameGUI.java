@@ -112,7 +112,7 @@ public class GameGUI extends Application {
 		map2.setText("Map_1_2");
 		map2.setFont(Font.font("Comic Sans MS", 25));
 		map2.setStyle("-fx-background-color: #383838");
-
+		GridPane.setConstraints(map2, 25, 27);
 		map2.setOnAction((event) -> {
 			root = new Group();
 			mapGUI = new MapGUI("src/assets/map_1_2.txt", root);
@@ -121,23 +121,23 @@ public class GameGUI extends Application {
 			window.setScene(scene);
 
 		});
-
-		GridPane.setConstraints(map2, 25, 27);
+		
 		Button map3 = new Button();
 		map3.setText("Map_1_3");
 		map3.setFont(Font.font("Comic Sans MS", 25));
 		map3.setStyle("-fx-background-color: #383838");
+		GridPane.setConstraints(map3, 25, 29);
 		map3.setOnAction((event) -> {
 			root = new Group();
 			mapGUI = new MapGUI("src/assets/map_1_3.txt", root);
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			window.setScene(scene);
+			
+	
 
 		});
-		GridPane.setConstraints(map3, 25, 29);
-
-
+		
 		// button to get back to main screen
 		Button back = new Button();
 		back.setText("Back");
