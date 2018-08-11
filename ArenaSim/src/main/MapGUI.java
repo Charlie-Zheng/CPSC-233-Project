@@ -47,7 +47,7 @@ public class MapGUI extends Map {
 	private final int unitDisplayHeight = 75;
 	MouseEvent e;
 	Stage description = new Stage();
-	Rectangle hpBar = new Rectangle();
+	
 	
 	public MapGUI(String filename, Group root) {
 		super(filename);

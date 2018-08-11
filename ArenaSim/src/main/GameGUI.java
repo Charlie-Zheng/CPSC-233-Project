@@ -118,7 +118,17 @@ public class GameGUI extends Application {
 		map1.setText("Map_1_1");
 		map1.setFont(Font.font("Comic Sans MS", 25));
 		map1.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
-		map1.setOnAction(e -> window.setScene(scene));
+		//map1.setOnAction(e -> window.setScene(scene));
+		map1.setOnAction((event) -> {
+			root = new Group();
+			mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
+			mapGUI.loadMapGUI();
+			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
+			mapGUI.display(backButton);
+			this.displayHPBar();
+			window.setScene(scene);
+
+		});
 		GridPane.setConstraints(map1, 25, 25);
 
 		// picking map 2

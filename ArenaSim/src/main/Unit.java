@@ -51,8 +51,7 @@ public class Unit {
 		 */
 
 		/*
-		 * It does the following things with the instance variables when this
-		 * constructor is called: -It copies the integer array of the parameter unit's
+		 * Copies the integer array of the parameter unit's
 		 * baseStats, and assigns it to the instance variable baseStats for this object.
 		 * -It then replaces the values of the instance variable currentHP with the unit
 		 * parameter's currentHP value. -It then copies the parameter unit's range value
