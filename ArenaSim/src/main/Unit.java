@@ -1,6 +1,9 @@
 package main;
 
+//import javafx.scene.shape.Rectangle;
 import java.util.Arrays;//imports the java library of Arrays
+
+import javafx.scene.shape.Rectangle;
 
 public class Unit {
 	/*
@@ -21,12 +24,11 @@ public class Unit {
 	private int[] baseStats = { 1, 0, 0, 0 };// default unit has 1 HP, 0 in every other stat
 	// {HP, Atk, Spd, Def}
 	private int currentHP;
-
+	private Rectangle hpBar;
 	private int range;
 	private MoveType moveType;
 	private boolean isFriendly;
 	private boolean hasMoved;
-
 	private int x = 0;
 	private int y = 0;
 	private String name = "";// Initializes the String variable name to be empty, used to register the Unit's
@@ -71,7 +73,14 @@ public class Unit {
 		this.y = unit.y;
 		this.name = unit.name;
 	}
-
+	
+	public void setHpBar(Rectangle hpBar) {
+		this.hpBar=hpBar;
+	}
+	public void updateHpBar() {
+		hpBar.setX(this.getX() * TerrainGUI.getImagewidth());
+		hpBar.setY(this.getY() * TerrainGUI.getImagewidth());
+	}
 	/**
 	 * @param damage
 	 *            is a integer value of how much health points are taken away from

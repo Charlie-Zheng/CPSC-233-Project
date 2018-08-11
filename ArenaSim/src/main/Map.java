@@ -288,6 +288,7 @@ public class Map {
 			unitMap[newY][newX] = unitMap[y][x]; // copy heroes into new position
 			unitMap[y][x] = null; // previous heroes' position set to null
 			unitMap[newY][newX].setYX(newY, newX); // setting new position for heroes
+			unitMap[newY][newX].updateHpBar();
 		}
 	}
 

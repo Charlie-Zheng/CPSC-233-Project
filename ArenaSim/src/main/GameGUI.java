@@ -194,6 +194,17 @@ public class GameGUI extends Application {
 
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
+		for (Unit unit : mapGUI.getUnitList()) {
+			Rectangle hpBar = new Rectangle();
+			hpBar.setWidth(70);
+			hpBar.setHeight(10);
+			hpBar.setFill(Color.LIGHTGREEN);
+			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
+			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
+			unit.setHpBar(hpBar);
+			System.out.println(unit.getX() + "and" + unit.getY());
+			mapGUI.display(hpBar);
+		}
 		primaryStage.show();
 
 	}
@@ -207,15 +218,14 @@ public class GameGUI extends Application {
 
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(70);
+			hpBar.setWidth(unit.getBaseHP());
 			hpBar.setHeight(10);
 			hpBar.setFill(Color.LIGHTGREEN);
 			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
+			//unit.setHpBar(hpBar);
 			System.out.println(unit.getX() + "and" + unit.getY());
 			mapGUI.display(hpBar);
-			
-			
 		}
 		
 	}
