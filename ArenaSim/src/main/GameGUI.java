@@ -53,7 +53,6 @@ public class GameGUI extends Application {
 	Button map1, map2, map3;
 
 	public static void main(String[] args) {
-
 		launch(args);
 
 	}
@@ -134,6 +133,7 @@ public class GameGUI extends Application {
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
+			this.displayHPBar();
 			window.setScene(scene);
 
 		});
@@ -150,6 +150,7 @@ public class GameGUI extends Application {
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
+			this.displayHPBar();
 			window.setScene(scene);
 
 		});
@@ -194,7 +195,7 @@ public class GameGUI extends Application {
 
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
-		for (Unit unit : mapGUI.getUnitList()) {
+		/*for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
 			hpBar.setWidth(unit.getBaseHP()+(70-unit.getBaseHP()));
 			hpBar.setHeight(10);
@@ -204,7 +205,8 @@ public class GameGUI extends Application {
 			unit.setHpBar(hpBar);
 			System.out.println(unit.getX() + "and" + unit.getY());
 			mapGUI.display(hpBar);
-		}
+		}*/
+		this.displayHPBar();
 		primaryStage.show();
 
 	}
@@ -214,7 +216,7 @@ public class GameGUI extends Application {
 		// this is just the initial stage for showing it. 
 		//The hp bar won't follow the unit
 		
-		mapGUI.updateUnitsOnMap();
+		//mapGUI.updateUnitsOnMap();
 
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
