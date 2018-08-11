@@ -231,8 +231,9 @@ public class GameGUI extends Application {
 		
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(70);
+			hpBar.setWidth(unit.getCurrentHP());
 			hpBar.setHeight(10);
+			
 			if (unit.isFriendly() == true) {
 				hpBar.setFill(Color.LIGHTGREEN);
 			}else if (unit.isFriendly() == false) {
@@ -242,6 +243,7 @@ public class GameGUI extends Application {
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
 			unit.setHpBar(hpBar);
 			
+			System.out.println(unit.getMoveType());
 			//System.out.println(unit.getX() + "and" + unit.getY());
 			
 			mapGUI.display(hpBar);
