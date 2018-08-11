@@ -129,6 +129,7 @@ public class GameGUI extends Application {
 			window.setScene(scene);
 
 		});
+		
 		GridPane.setConstraints(map1, 25, 25);
 
 		// picking map 2
@@ -227,16 +228,22 @@ public class GameGUI extends Application {
 		//The hp bar won't follow the unit
 		
 		//mapGUI.updateUnitsOnMap();
-
+		
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
 			hpBar.setWidth(70);
 			hpBar.setHeight(10);
-			hpBar.setFill(Color.LIGHTGREEN);
+			if (unit.isFriendly() == true) {
+				hpBar.setFill(Color.LIGHTGREEN);
+			}else if (unit.isFriendly() == false) {
+				hpBar.setFill(Color.RED);
+			}
 			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
 			unit.setHpBar(hpBar);
-			System.out.println(unit.getX() + "and" + unit.getY());
+			
+			//System.out.println(unit.getX() + "and" + unit.getY());
+			
 			mapGUI.display(hpBar);
 		}
 		
