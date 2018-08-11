@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -50,22 +51,18 @@ public class GameGUI extends Application {
 	Stage windowX;
 	Scene maps;
 	Button map1, map2, map3;
-	
-	
+
 	public static void main(String[] args) {
 
 		launch(args);
 
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		
-		
-		
+
 		window = primaryStage;
-		//System.out.println(javafx.scene.text.Font.getFamilies());
+		// System.out.println(javafx.scene.text.Font.getFamilies());
 		boolean gameOver = false;
 
 		root = new Group();
@@ -86,29 +83,12 @@ public class GameGUI extends Application {
 		label1.setFont(Font.font("Berlin Sans FB", 18));
 
 		GridPane.setConstraints(label1, 25, 0);
-		
+
 		Button backButton = new Button();
 		backButton.setText("Back");
 		backButton.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
-		
-		//Health Point bar for units
-		//this is just the initial stage for showing it. The hp bar won't follow the unit
-		
-		for (Unit unit: mapGUI.getUnitList()){
-			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(70);
-			hpBar.setHeight(10);
-			hpBar.setFill(Color.LIGHTGREEN);
-			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
-			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
-			System.out.println(unit.getX() + "and" + unit.getY());
-			
-			mapGUI.display(hpBar);
-			
-		}
-		
 		mapGUI.display(backButton);
-		
+
 		backButton.setOnAction(e -> primaryStage.setScene(scene1));
 
 		Button button1 = new Button();
@@ -129,19 +109,20 @@ public class GameGUI extends Application {
 		stagesGrid.setVgap(8);
 		stagesGrid.setHgap(10);
 
-		//picking button2 will result in a new screen with 3 other buttons
-		
-		//3 other buttons are called map1, map2 and map3 respectively. They will choose different maps for you.
-		
-		// buttons for maps picking 
+		// picking button2 will result in a new screen with 3 other buttons
+
+		// 3 other buttons are called map1, map2 and map3 respectively. They will choose
+		// different maps for you.
+
+		// buttons for maps picking
 		Button map1 = new Button();
 		map1.setText("Map_1_1");
 		map1.setFont(Font.font("Comic Sans MS", 25));
 		map1.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		map1.setOnAction(e -> window.setScene(scene));
 		GridPane.setConstraints(map1, 25, 25);
-		
-		//picking map 2
+
+		// picking map 2
 		Button map2 = new Button();
 		map2.setText("Map_1_2");
 		map2.setFont(Font.font("Comic Sans MS", 25));
@@ -156,8 +137,8 @@ public class GameGUI extends Application {
 			window.setScene(scene);
 
 		});
-		
-		//picking map 3
+
+		// picking map 3
 		Button map3 = new Button();
 		map3.setText("Map_1_3");
 		map3.setFont(Font.font("Comic Sans MS", 25));
@@ -172,7 +153,7 @@ public class GameGUI extends Application {
 			window.setScene(scene);
 
 		});
-		
+
 		// button to get back to main screen
 		Button back = new Button();
 		back.setText("Back");
@@ -182,11 +163,11 @@ public class GameGUI extends Application {
 
 		// grid for the map picking
 		stagesGrid.getChildren().addAll(map1, map2, map3, back);
-		
-		//new scene = stages picking
+
+		// new scene = stages picking
 		maps = new Scene(stagesGrid, 850, 950);
 		maps.getStylesheets().addAll("/assets/style.css");
-		
+
 		button2.setOnAction(e -> window.setScene(maps));
 		GridPane.setConstraints(button2, 25, 27);
 
@@ -199,15 +180,12 @@ public class GameGUI extends Application {
 		button3.setOnAction(e -> window.hide());
 		GridPane.setConstraints(button3, 25, 29);
 
-		
-
 		grid.getChildren().addAll(label1, button1, button2, button3);
 
 		// Layout1
 		scene1 = new Scene(grid, 850, 950);
 		scene1.getStylesheets().addAll("/assets/style.css");
-		
-		
+
 		// this is for the back button of the choosing Stages, dont get confuse
 		back.setOnAction(e -> window.setScene(scene1));
 
@@ -220,4 +198,25 @@ public class GameGUI extends Application {
 
 	}
 
+	public void displayHPBar() {
+		// Health Point bar for units
+		// this is just the initial stage for showing it. 
+		//The hp bar won't follow the unit
+		
+		mapGUI.updateUnitsOnMap();
+
+		for (Unit unit : mapGUI.getUnitList()) {
+			Rectangle hpBar = new Rectangle();
+			hpBar.setWidth(70);
+			hpBar.setHeight(10);
+			hpBar.setFill(Color.LIGHTGREEN);
+			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
+			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
+			System.out.println(unit.getX() + "and" + unit.getY());
+			mapGUI.display(hpBar);
+			
+			
+		}
+		
+	}
 }

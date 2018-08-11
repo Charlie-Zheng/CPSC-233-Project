@@ -102,7 +102,6 @@ public class MapGUI extends Map {
 	 */
 	public void updateUnitsOnMap() {
 		
-		
 		for (int x = 0; x < unitDisplay.length; x++) {
 			unitDisplay[x].setVisible(false);
 			GridPane display = unitStatDisplays.get(x);
@@ -110,10 +109,9 @@ public class MapGUI extends Map {
 				Unit unit = getUnitList().get(x);
 				if (unit.isAlive()) {
 					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
-					
-					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
-					
+					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());		
 					unitDisplay[x].setVisible(true);
+					
 				} else {
 					if (unit.isFriendly()) {
 						display.setBackground(new Background(
