@@ -4,7 +4,7 @@ package main;
  * Creates a Class called Combat that determines a battle between 2 units on
  * different sides.
  */
-public final class Combat {
+public class Combat {
 
 	/**
 	 * Uses this function to check the combat results between 2 units.
@@ -17,7 +17,7 @@ public final class Combat {
 	 *            the unit attacking it.
 	 * @return
 	 */
-	public static int[] calculateCombat(Unit initiator, Unit defender) {
+	public int[] calculateCombat(Unit initiator, Unit defender) {
 		/*
 		 * This function is used to calculate the battle between 2 units that haven't
 		 * battled before. -The parameter initiator is the Unit object initiating the
@@ -44,7 +44,7 @@ public final class Combat {
 	 *            is another Unit class object parameter who is defending against
 	 *            the unit attacking it.
 	 */
-	public static void doCombat(Unit initiator, Unit defender) {
+	public void doCombat(Unit initiator, Unit defender) {
 		/*
 		 * This function is used to calculate the battle between 2 units that have
 		 * battled before. -The parameter initiator is the Unit object initiating the
@@ -75,7 +75,7 @@ public final class Combat {
 	 *         currentHP's value (The initiator's currentHP value is the first index
 	 *         of the array, while the defender's is the second index).
 	 */
-	private static int[] combat(Unit initiator, Unit defender, boolean applyCombat) {
+	protected int[] combat(Unit initiator, Unit defender, boolean applyCombat) {
 		/*
 		 * This function determines the combat between 2 units. -The parameter initiator
 		 * is the Unit object that is attacking on that turn. -The parameter defender is
@@ -189,7 +189,7 @@ public final class Combat {
 	 *            and if the defending unit defender has been defeated.
 	 */
 
-	private static void attack(Unit initiator, Unit defender, boolean applyCombat) {
+	protected void attack(Unit initiator, Unit defender, boolean applyCombat) {
 		/*
 		 * This function is used when the attack stage of a unit begins. -The unit
 		 * object parameter initiator is the unit that is attacking on that turn. -The
@@ -238,7 +238,7 @@ public final class Combat {
 	 *         indicating that the defending unit cannot attack the initiator unit
 	 *         back.
 	 */
-	private static boolean canCounterAttack(Unit initiator, Unit defender) {
+	protected static boolean canCounterAttack(Unit initiator, Unit defender) {
 		/*
 		 * This function determines if the defender unit is able to attack the initiator
 		 * unit back. -It determines this by seeing if the attack range value of both
@@ -262,7 +262,7 @@ public final class Combat {
 	 * @return a integer value that determines how much damage the defender unit
 	 *         object takes against the initiator unit.
 	 */
-	private static int calculateDamage(Unit initiator, Unit defender) {
+	protected static int calculateDamage(Unit initiator, Unit defender) {
 		/*
 		 * This function determines how much damage the defending unit takes from the
 		 * attacking unit. -It does this by subtracting the initiator's attack points by
@@ -290,7 +290,7 @@ public final class Combat {
 	 *         initiator unit has been subtracted by the speed of the defending
 	 *         unit.
 	 */
-	private static boolean canDouble(Unit initiator, Unit defender) {
+	protected static boolean canDouble(Unit initiator, Unit defender) {
 		/*
 		 * This function determines if the current attacking unit(initiator unit
 		 * parameter) can attack twice in a single round, against the defending

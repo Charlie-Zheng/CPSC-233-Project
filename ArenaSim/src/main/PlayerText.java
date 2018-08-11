@@ -117,7 +117,7 @@ public class PlayerText {
 				target = GameText.unitNameInput();
 			}
 			if (target != selectedUnit) {
-				Combat.doCombat(selectedUnit, target);
+				new Combat().doCombat(selectedUnit, target);
 			}
 			map.updateHeroDeaths();
 			gameOver = map.gameOver();

@@ -47,15 +47,12 @@ public class MapGUI extends Map {
 	private final int unitDisplayHeight = 75;
 	MouseEvent e;
 	Stage description = new Stage();
-	
-	
+
 	public MapGUI(String filename, Group root) {
 		super(filename);
 		this.root = root;
 
 	}
-	
-
 
 	public void addBlue(int y, int x) {
 		addColour(y, x, Color.hsb(210, 1, 1, 0.3));
@@ -101,31 +98,31 @@ public class MapGUI extends Map {
 	 * Updates the images on the GUI to correspond to those on the map
 	 */
 	public void updateUnitsOnMap() {
-		
+
 		for (int x = 0; x < unitDisplay.length; x++) {
 			unitDisplay[x].setVisible(false);
 			GridPane display = unitStatDisplays.get(x);
 			if (x < getUnitList().size()) {
 				Unit unit = getUnitList().get(x);
 				if (unit.isAlive()) {
-					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
-					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());		
+					unitDisplay[x].setLayoutX(unit.getX() * TerrainGUI.getImagewidth());
+					unitDisplay[x].setLayoutY(unit.getY() * TerrainGUI.getImageheight());
 					unitDisplay[x].setVisible(true);
-					
+
 				} else {
 					if (unit.isFriendly()) {
 						display.setBackground(new Background(
 								new BackgroundFill(Color.hsb(210, 0.5, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
-						
+
 					} else {
 						display.setBackground(new Background(
 								new BackgroundFill(Color.hsb(0, 0.5, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
-						
+
 					}
 				}
 
-				//display.getChildren().clear();
-				Label hp = (Label)display.getChildren().get(1);
+				// display.getChildren().clear();
+				Label hp = (Label) display.getChildren().get(1);
 				hp.setText("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
 
 				// Text stats = (Text) display.getChildren().get(0);
@@ -139,7 +136,6 @@ public class MapGUI extends Map {
 		}
 
 	}
-	
 
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[MAXY][MAXY];
@@ -183,8 +179,8 @@ public class MapGUI extends Map {
 			unitDisplay[counter].setImage(UnitGUI.getUnitImage(unit));
 
 			UnitGUI.applyFactionColor(unitDisplay[counter], unit.isFriendly());
-			unitDisplay[counter].setX(unit.getX() * TerrainGUI.getImagewidth());
-			unitDisplay[counter].setY(unit.getY() * TerrainGUI.getImageheight());
+			unitDisplay[counter].setLayoutX(unit.getX() * TerrainGUI.getImagewidth());
+			unitDisplay[counter].setLayoutY(unit.getY() * TerrainGUI.getImageheight());
 			unitDisplay[counter].setMouseTransparent(true);
 			root.getChildren().add(unitDisplay[counter]);
 			counter++;
@@ -278,6 +274,17 @@ public class MapGUI extends Map {
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);
 
+	}
+
+	public ImageView getUnitImage(Unit unit) {
+		for (int x = 0; x < unitDisplay.length; x++) {
+			if (x < getUnitList().size()) {
+				if (getUnitList().get(x).equals(unit)) {
+					return unitDisplay[x];
+				}
+			}
+		}
+		return null;
 	}
 
 }

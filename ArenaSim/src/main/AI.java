@@ -12,7 +12,16 @@ import java.util.Queue;
  * computer's turn
  */
 public class AI {
-	private static Map map;
+	protected Map map;
+	private Combat combat = new Combat();
+
+	/**
+	 * @param map2
+	 */
+	public AI(Map inputMap) {
+		// TODO Auto-generated constructor stub
+		map = inputMap;
+	}
 
 	/**
 	 * Starts the computer's turn
@@ -21,9 +30,9 @@ public class AI {
 	 *            The current state of the map
 	 * @return whether the game has ended after the computer's turn
 	 */
-	public static boolean computerTurn(Map inputMap) {
+	public boolean computerTurn(Map inputMap) {
 		// set the instance variable to the input map
-		map = inputMap;
+
 		// initialize game over to be false
 		boolean gameOver = false;
 		// initialize all the units to not moved
@@ -55,7 +64,7 @@ public class AI {
 	 * @return An ArrayList of AIMoves, a class representing moves and attacks the
 	 *         AI can make
 	 */
-	private static ArrayList<AIMove> findAvailableMoves() {
+	private ArrayList<AIMove> findAvailableMoves() {
 
 		// initialize the list of moves and attacks
 		ArrayList<AIMove> availableMoves = new ArrayList<AIMove>();
@@ -108,12 +117,11 @@ public class AI {
 	 * @param move
 	 *            THe AIMove to apply
 	 */
-	private static void applyAIMove(AIMove move) {
+	protected void applyAIMove(AIMove move) {
 		Unit unit = move.getUnit();
 		int unitX = unit.getX();
 		int unitY = unit.getY();
-		
-		
+
 		// Move the hero
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
 		unit.setHasMoved(true);
@@ -122,12 +130,12 @@ public class AI {
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];
 		if (target != unit) {
 			// Apply the combat if the unit chose to attack
-			Combat.doCombat(unit, target);
+			new Combat().doCombat(unit, target);
 		}
 
 	}
 
-	private static int distanceToTarget(Unit unit, int y, int x) {
+	private int distanceToTarget(Unit unit, int y, int x) {
 		// target is the unit that will take the most damage
 		Unit target = findTarget(unit);
 		// Breadth-first search to find shortest distance to target
@@ -163,12 +171,12 @@ public class AI {
 							availableMoves[newY][newX] = false;
 						} else
 							availableMoves[newY][newX] = true;
-						if (movesUsed < 20  && (unitMap[newY][newX] == null
+						if (movesUsed < 20 && (unitMap[newY][newX] == null
 								|| unitMap[newY][newX].isFriendly() == unit.isFriendly())) {
 							int[] temp2 = { newX, newY, movesUsed + moveCost };
 							queue.add(temp2); // add another temp element to the queue
 						}
-					}else {
+					} else {
 						return movesUsed + moveCost;
 					}
 				}
@@ -178,31 +186,32 @@ public class AI {
 		return Integer.MAX_VALUE;
 	}
 
-	private static int distanceToTarget(AIMove move) {
+	private int distanceToTarget(AIMove move) {
 		return distanceToTarget(move.getUnit(), move.getY(), move.getX());
 	}
-	
-	private static Unit findTarget(Unit unit) {
+
+	private Unit findTarget(Unit unit) {
 		Unit target = null;
 		int maxDamageDealt = 0;
 		for (Unit temp : map.getUnitList()) {
-			if (temp.isAlive() && temp.isFriendly() != unit.isFriendly() && temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1] > maxDamageDealt) {
+			if (temp.isAlive() && temp.isFriendly() != unit.isFriendly()
+					&& temp.getCurrentHP() - combat.calculateCombat(unit, temp)[1] > maxDamageDealt) {
 				target = temp;
-				maxDamageDealt = temp.getCurrentHP() - Combat.calculateCombat(unit, temp)[1];
+				maxDamageDealt = temp.getCurrentHP() - combat.calculateCombat(unit, temp)[1];
 			}
 		}
 		return target;
 	}
 
-	private static void sortMoves(ArrayList<AIMove> availableMoves) {
+	private void sortMoves(ArrayList<AIMove> availableMoves) {
 		// Returns 1 if m1 is better than m2
-//		Collections.shuffle(availableMoves);		
+		// Collections.shuffle(availableMoves);
 		availableMoves.sort((m1, m2) ->
 
 		{
 			Unit[][] unitMap = map.getUnitMap();
-			int[] healthMove1 = Combat.calculateCombat(m1.getUnit(), unitMap[m1.getJ()][m1.getI()]);
-			int[] healthMove2 = Combat.calculateCombat(m2.getUnit(), unitMap[m2.getJ()][m2.getI()]);
+			int[] healthMove1 = combat.calculateCombat(m1.getUnit(), unitMap[m1.getJ()][m1.getI()]);
+			int[] healthMove2 = combat.calculateCombat(m2.getUnit(), unitMap[m2.getJ()][m2.getI()]);
 			if (healthMove1 != null && healthMove2 != null) {
 				int damageDealtM1 = unitMap[m1.getJ()][m1.getI()].getCurrentHP() - healthMove1[1];
 				int damageDealtM2 = unitMap[m2.getJ()][m2.getI()].getCurrentHP() - healthMove2[1];
@@ -234,20 +243,18 @@ public class AI {
 				return -1;
 			}
 			// prioritize moving closer to the target unit
-			if(m1.getUnit().equals(m2.getUnit())) {
-				if(distanceToTarget(m1) > distanceToTarget(m2)){
+			if (m1.getUnit().equals(m2.getUnit())) {
+				if (distanceToTarget(m1) > distanceToTarget(m2)) {
 					return -1;
 				}
-				if(distanceToTarget(m1) < distanceToTarget(m2)) {
+				if (distanceToTarget(m1) < distanceToTarget(m2)) {
 					return 1;
 				}
 			}
-	
+
 			// Both compared moves don't attack, or both attacks are equal in damage taken
 			// and damage recieved
 
-		
-		
 			// Melee move first, then ranged
 			if (m1.getUnit().getRange() < m2.getUnit().getRange()) {
 				return 1;
@@ -260,7 +267,7 @@ public class AI {
 
 		);
 	}
-	
+
 	/**
 	 * Generates a random integer between the given max and min values
 	 * 
@@ -270,7 +277,7 @@ public class AI {
 	 *            The maximum integer that can be generated.
 	 * @return A random integer between min and min, inclusive.
 	 */
-	public static int randInt(int min, int max) {
+	public int randInt(int min, int max) {
 		if (max < min) { // if max is smaller than min, swap them.
 			int temp = max;
 			max = min;

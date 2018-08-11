@@ -12,16 +12,18 @@ public class GameText { // new class Game Text
 	 * 
 	 * @param args
 	 */
+	private static AI ai;
 	public static void main(String[] args) { // main method
 		boolean gameOver = false; // while the game is not yet finished
 		map = new Map("src/assets/map_1_1.txt"); // new Map as read from the file, creating new map object
+		 ai = new AI(map);
 		Scanner wait = new Scanner(System.in);
 		while (!gameOver) { // checking the turn
 			gameOver = PlayerText.playerTurn(map);
 			if (!gameOver) { // if the turn is over
 				System.out.println("Your turn is over, now it's the AI's turn, press enter to continue"); // messages
 				wait.nextLine(); // wait for AI move
-				gameOver = AI.computerTurn(map);
+				gameOver = ai.computerTurn(map);
 			}
 		}
 		map.displayMap(); // display the map after both friendly and enemies units have moved

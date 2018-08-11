@@ -18,11 +18,15 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	private static Unit selectedUnit;
 	private static boolean selectingAttack;
 	private ArrayList<StackPane> unitStatDisplays;
+	private CombatGUI combat;
+	private AI ai;
 
 	public SelectedTile(int x, int y, MapGUI mapGUI) {
 		this.x = x;
 		this.y = y;
 		this.mapGUI = mapGUI;
+		combat = new CombatGUI(mapGUI);
+		ai = new AI(mapGUI);
 	}
 
 	// public SelectedTile(int x, int y) {
@@ -30,8 +34,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	// this.x = x;
 	// this.y = y;
 	// }
-	
-	
+
 	@SuppressWarnings("unused")
 	@Override
 	public void handle(MouseEvent e) {
@@ -39,7 +42,6 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		if (!selectingMove && !selectingAttack) {// what happens when you click while not selecting a move or an attack
 			mapGUI.updateUnitsOnMap();
 			selectedUnit = mapGUI.getUnitMap()[y][x];
-			System.out.println(selectedUnit + "\n");
 			if (selectedUnit != null && selectedUnit.isFriendly()) {
 				if (!selectedUnit.hasMoved()) {
 					selectingMove = true;
@@ -57,8 +59,8 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 								mapGUI.addBlue(y, x);
 						}
 					}
-				}else {
-		
+				} else {
+
 				}
 
 			} else if (selectedUnit != null && !selectedUnit.isFriendly()) {
@@ -74,9 +76,9 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				}
 			}
 		} else if (selectingMove) {
-			
+
 			mapGUI.removeAllColorsAndText();
-			//User clicked a place to move first
+			// User clicked a place to move first
 			if (mapGUI.checkMoveLegal(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY())
 					&& !selectedUnit.hasMoved()) {
 				mapGUI.moveHero(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY());
@@ -89,16 +91,18 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 						if (AttackRange[y][x]) {
 							mapGUI.addRed(y, x);
 						}
-						/*if(AttackRange[y][x] && x==selectedUnit.getX() &&y==selectedUnit.getY()) {
-							mapGUI.removeColour(y, x);
-						}*/
+						/*
+						 * if(AttackRange[y][x] && x==selectedUnit.getX() &&y==selectedUnit.getY()) {
+						 * mapGUI.removeColour(y, x); }
+						 */
 					}
 				}
-			}else if(mapGUI.findAllAttacks(selectedUnit)[y][x] && mapGUI.getUnitMap()[y][x]!=null){
+			} else if (mapGUI.findAllAttacks(selectedUnit)[y][x] && mapGUI.getUnitMap()[y][x] != null) {
 				int[] movementTile = mapGUI.findClosestAttackLocation(selectedUnit, mapGUI.getUnitMap()[y][x]);
-				if(movementTile!=null) {
-					mapGUI.moveHero(selectedUnit, movementTile[0] - selectedUnit.getX(), movementTile[1] - selectedUnit.getY());
-					Combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
+				if (movementTile != null) {
+					mapGUI.moveHero(selectedUnit, movementTile[0] - selectedUnit.getX(),
+							movementTile[1] - selectedUnit.getY());
+					combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
 					mapGUI.updateHeroDeaths();
 					selectedUnit.setHasMoved(true);
 					selectedUnit = null;
@@ -107,16 +111,17 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 					// Move the unit to somewhere or remove all the colors
 					mapGUI.removeAllColorsAndText();
 					if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
-						AI.computerTurn(mapGUI);
+						ai.computerTurn(mapGUI);
 						mapGUI.updateUnitsOnMap();
 						mapGUI.resetHasMoved(true);
 					}
 				}
 			}
-					
-			//User clicked a location to attack
-			//use a breadth first search to find the first location at which the selected unit can attack the selected unit
-			
+
+			// User clicked a location to attack
+			// use a breadth first search to find the first location at which the selected
+			// unit can attack the selected unit
+
 			mapGUI.updateUnitsOnMap();
 			// What happens when you are selecting a move
 			// Move the unit to somewhere or remove all the colors
@@ -125,7 +130,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		} else if (selectingAttack) {
 			boolean[][] AttackRange = mapGUI.findRange(selectedUnit);
 			if (AttackRange[y][x] && mapGUI.getUnitMap()[y][x] != null && !mapGUI.getUnitMap()[y][x].isFriendly()) {
-				Combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
+				combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
 				mapGUI.updateHeroDeaths();
 			}
 			selectingAttack = false;
@@ -135,11 +140,11 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			// Move the unit to somewhere or remove all the colors
 			mapGUI.removeAllColorsAndText();
 			if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
-				AI.computerTurn(mapGUI);
+				ai.computerTurn(mapGUI);
 				mapGUI.updateUnitsOnMap();
 				mapGUI.resetHasMoved(true);
 			}
-		} 
+		}
 	}
 
 }
