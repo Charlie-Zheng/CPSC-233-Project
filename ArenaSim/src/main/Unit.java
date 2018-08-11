@@ -104,12 +104,12 @@ public class Unit {
 		 * else it returns false.
 		 */
 		currentHP -= damage;
-		if(this.currentHP!=this.getBaseHP()) {
+		/*if(this.currentHP!=this.getBaseHP()) {
 			this.hpBar.setWidth(this.hpBar.getWidth()-(this.getBaseHP()-this.getCurrentHP()));
 			if(this.currentHP<=0) {
 				this.hpBar.setOpacity(100);
 			}
-	}
+	}*/
 		return currentHP <= 0;
 	}
 
