@@ -196,10 +196,10 @@ public class GameGUI extends Application {
 		primaryStage.setResizable(false);
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(70);
+			hpBar.setWidth(unit.getBaseHP()+(70-unit.getBaseHP()));
 			hpBar.setHeight(10);
 			hpBar.setFill(Color.LIGHTGREEN);
-			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
+			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth()+TerrainGUI.getImagewidth()/8);
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
 			unit.setHpBar(hpBar);
 			System.out.println(unit.getX() + "and" + unit.getY());
@@ -218,7 +218,7 @@ public class GameGUI extends Application {
 
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(unit.getBaseHP());
+			hpBar.setWidth(70);
 			hpBar.setHeight(10);
 			hpBar.setFill(Color.LIGHTGREEN);
 			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());

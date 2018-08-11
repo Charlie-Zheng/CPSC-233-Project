@@ -3,6 +3,7 @@ package main;
 //import javafx.scene.shape.Rectangle;
 import java.util.Arrays;//imports the java library of Arrays
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Unit {
@@ -72,15 +73,16 @@ public class Unit {
 		this.x = unit.x;
 		this.y = unit.y;
 		this.name = unit.name;
+		this.hpBar=unit.hpBar;
 	}
 	
 	public void setHpBar(Rectangle hpBar) {
 		this.hpBar=hpBar;
 	}
 	public void updateHpBar() {
-		hpBar.setX(this.getX() * TerrainGUI.getImagewidth());
+		hpBar.setX(this.getX() * TerrainGUI.getImagewidth()+TerrainGUI.getImagewidth()/8);
 		hpBar.setY(this.getY() * TerrainGUI.getImagewidth());
-	}
+		}
 	/**
 	 * @param damage
 	 *            is a integer value of how much health points are taken away from
@@ -102,6 +104,12 @@ public class Unit {
 		 * else it returns false.
 		 */
 		currentHP -= damage;
+		if(this.currentHP!=this.getBaseHP()) {
+			this.hpBar.setWidth(this.hpBar.getWidth()-(this.getBaseHP()-this.getCurrentHP()));
+			if(this.currentHP<=0) {
+				this.hpBar.setOpacity(100);
+			}
+	}
 		return currentHP <= 0;
 	}
 
