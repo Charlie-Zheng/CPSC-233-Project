@@ -28,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -49,18 +50,22 @@ public class GameGUI extends Application {
 	Stage windowX;
 	Scene maps;
 	Button map1, map2, map3;
-
+	
+	
 	public static void main(String[] args) {
 
 		launch(args);
 
 	}
-
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		
+		
+		
+		
 		window = primaryStage;
-		System.out.println(javafx.scene.text.Font.getFamilies());
+		//System.out.println(javafx.scene.text.Font.getFamilies());
 		boolean gameOver = false;
 
 		root = new Group();
@@ -85,7 +90,25 @@ public class GameGUI extends Application {
 		Button backButton = new Button();
 		backButton.setText("Back");
 		backButton.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
+		
+		//Health Point bar for units
+		//this is just the initial stage for showing it. The hp bar won't follow the unit
+		
+		for (Unit unit: mapGUI.getUnitList()){
+			Rectangle hpBar = new Rectangle();
+			hpBar.setWidth(70);
+			hpBar.setHeight(10);
+			hpBar.setFill(Color.LIGHTGREEN);
+			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
+			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
+			System.out.println(unit.getX() + "and" + unit.getY());
+			
+			mapGUI.display(hpBar);
+			
+		}
+		
 		mapGUI.display(backButton);
+		
 		backButton.setOnAction(e -> primaryStage.setScene(scene1));
 
 		Button button1 = new Button();

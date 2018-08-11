@@ -1,9 +1,12 @@
 package main;
 
+import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
 
 public final class UnitGUI {
 	private static final double IMAGEWIDTH = 100;
@@ -11,7 +14,8 @@ public final class UnitGUI {
 	private static Image[][] unitImages = new Image[2][4];
 	private static DropShadow enemyEffect;
 	private static DropShadow friendlyEffect;
-
+	
+	
 	public static double getImagewidth() {
 		return IMAGEWIDTH;
 	}
@@ -23,6 +27,8 @@ public final class UnitGUI {
 	private UnitGUI() {
 
 	}
+	
+	
 	
 	public static void initializeImages() {
 		unitImages[0][0] = new Image("file:src/assets/melee_infantry.png", IMAGEWIDTH, IMAGEHEIGHT, false, true);
@@ -54,4 +60,10 @@ public final class UnitGUI {
 		}
 		return unitImages[unit.getRange()-1][unit.getMoveType().ordinal()];
 	}
+	
+	
+	
+	
+	
+	
 }

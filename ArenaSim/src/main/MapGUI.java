@@ -47,12 +47,15 @@ public class MapGUI extends Map {
 	private final int unitDisplayHeight = 75;
 	MouseEvent e;
 	Stage description = new Stage();
-
+	Rectangle hpBar = new Rectangle();
+	
 	public MapGUI(String filename, Group root) {
 		super(filename);
 		this.root = root;
 
 	}
+	
+
 
 	public void addBlue(int y, int x) {
 		addColour(y, x, Color.hsb(210, 1, 1, 0.3));
@@ -98,6 +101,8 @@ public class MapGUI extends Map {
 	 * Updates the images on the GUI to correspond to those on the map
 	 */
 	public void updateUnitsOnMap() {
+		
+		
 		for (int x = 0; x < unitDisplay.length; x++) {
 			unitDisplay[x].setVisible(false);
 			GridPane display = unitStatDisplays.get(x);
@@ -105,15 +110,19 @@ public class MapGUI extends Map {
 				Unit unit = getUnitList().get(x);
 				if (unit.isAlive()) {
 					unitDisplay[x].setX(unit.getX() * TerrainGUI.getImagewidth());
+					
 					unitDisplay[x].setY(unit.getY() * TerrainGUI.getImageheight());
+					
 					unitDisplay[x].setVisible(true);
 				} else {
 					if (unit.isFriendly()) {
 						display.setBackground(new Background(
 								new BackgroundFill(Color.hsb(210, 0.5, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
+						
 					} else {
 						display.setBackground(new Background(
 								new BackgroundFill(Color.hsb(0, 0.5, 0.3), CornerRadii.EMPTY, Insets.EMPTY)));
+						
 					}
 				}
 
@@ -132,6 +141,7 @@ public class MapGUI extends Map {
 		}
 
 	}
+	
 
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[MAXY][MAXY];
