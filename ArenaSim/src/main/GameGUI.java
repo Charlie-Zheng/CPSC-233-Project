@@ -223,7 +223,7 @@ public class GameGUI extends Application {
 			hpBar.setFill(Color.LIGHTGREEN);
 			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth());
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
-			//unit.setHpBar(hpBar);
+			unit.setHpBar(hpBar);
 			System.out.println(unit.getX() + "and" + unit.getY());
 			mapGUI.display(hpBar);
 		}
