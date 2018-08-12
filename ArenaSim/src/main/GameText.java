@@ -23,7 +23,7 @@ public class GameText { // new class Game Text
 			if (!gameOver) { // if the turn is over
 				System.out.println("Your turn is over, now it's the AI's turn, press enter to continue"); // messages
 				wait.nextLine(); // wait for AI move
-				gameOver = ai.computerTurn(map);
+				gameOver = ai.computerTurn();
 			}
 		}
 		map.displayMap(); // display the map after both friendly and enemies units have moved

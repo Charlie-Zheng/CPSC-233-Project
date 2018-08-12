@@ -13,10 +13,19 @@ public class AIGUI extends AI{
 	 * 
 	 */
 	protected CombatGUI combatGUI;
-	public AIGUI(MapGUI mapGUI) {
+	protected MapGUI mapGUI;
+	public AIGUI(MapGUI mapGUI,CombatGUI combatGUI) {
 		// TODO Auto-generated constructor stub
 		super(mapGUI);
-		combatGUI = new CombatGUI(mapGUI);
+		this.mapGUI = mapGUI;
+		this.combatGUI = combatGUI;
+	}
+	@Override
+	public boolean computerTurn() {
+
+		boolean gameOver = super.computerTurn();
+		mapGUI.resetHasMoved(true);
+		return gameOver;
 	}
 	
 	@Override
@@ -27,6 +36,7 @@ public class AIGUI extends AI{
 
 		// Move the hero
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
+		mapGUI.updateUnitsOnMap();
 		unit.setHasMoved(true);
 		// Print the movement to the user
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];

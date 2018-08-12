@@ -30,9 +30,8 @@ public class AI {
 	 *            The current state of the map
 	 * @return whether the game has ended after the computer's turn
 	 */
-	public boolean computerTurn(Map inputMap) {
+	public boolean computerTurn() {
 		// set the instance variable to the input map
-
 		// initialize game over to be false
 		boolean gameOver = false;
 		// initialize all the units to not moved

@@ -55,8 +55,9 @@ public class Combat {
 		 * determines if the Units have battled before/just started, since the battle
 		 * was initiated its set to true.
 		 */
-		if (initiator != null && defender != null)
+		if (initiator != null && defender != null) {
 			combat(initiator, defender, true);
+		}
 	}
 
 	/**

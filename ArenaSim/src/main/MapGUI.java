@@ -45,6 +45,21 @@ public class MapGUI extends Map {
 	private TextArea consoleText;
 	private ArrayList<GridPane> unitStatDisplays = new ArrayList<GridPane>();
 	private final int unitDisplayHeight = 75;
+	private boolean isAnimating = false;
+	/**
+	 * @return the isAnimating
+	 */
+	protected boolean isAnimating() {
+		return isAnimating;
+	}
+
+	/**
+	 * @param isAnimating the isAnimating to set
+	 */
+	protected void setAnimating(boolean isAnimating) {
+		this.isAnimating = isAnimating;
+	}
+
 	MouseEvent e;
 	Stage description = new Stage();
 
