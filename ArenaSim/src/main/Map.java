@@ -520,6 +520,11 @@ public class Map {
 
 			boolean[][] availableMoves = new boolean[MAXY][MAXX];
 			availableMoves[y][x] = true; // set value of the position to True to prepare for the loop
+			if (Math.abs(defender.getX() - x) + Math.abs(defender.getY() - y) == initiator
+					.getRange()) {
+				int[] temp2 = { x, y };
+				return temp2;
+			}
 			int[] temp = { x, y, MoveRules.initialMoves(initiator.getMoveType()) }; // creating temp as an integer array
 																					// that
 			// contain x and y positions, also get

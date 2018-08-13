@@ -5,21 +5,22 @@ package main;
 
 /**
  * @author charl
- *
  */
-public class AIGUI extends AI{
+public class AIGUI extends AI {
 
 	/**
 	 * 
 	 */
 	protected CombatGUI combatGUI;
 	protected MapGUI mapGUI;
-	public AIGUI(MapGUI mapGUI,CombatGUI combatGUI) {
+
+	public AIGUI(MapGUI mapGUI, CombatGUI combatGUI) {
 		// TODO Auto-generated constructor stub
 		super(mapGUI);
 		this.mapGUI = mapGUI;
 		this.combatGUI = combatGUI;
 	}
+
 	@Override
 	public boolean computerTurn() {
 
@@ -27,7 +28,7 @@ public class AIGUI extends AI{
 		mapGUI.resetHasMoved(true);
 		return gameOver;
 	}
-	
+
 	@Override
 	protected void applyAIMove(AIMove move) {
 		Unit unit = move.getUnit();

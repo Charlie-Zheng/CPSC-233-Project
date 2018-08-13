@@ -96,7 +96,7 @@ public class CombatGUI extends Combat {
 		pathTransition.setCycleCount(2);
 		pathTransition.setAutoReverse(true);
 		seq.setOnFinished((event) -> {
-			
+			seq.getChildren().clear();
 			mapGUI.setAnimating(false);
 			mapGUI.updateUnitsOnMap();
 			System.out.println("\n1"+(!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)));
@@ -105,6 +105,7 @@ public class CombatGUI extends Combat {
 				ai.computerTurn();
 				
 			}
+			
 		});
 		seq.getChildren().add(pathTransition);
 
