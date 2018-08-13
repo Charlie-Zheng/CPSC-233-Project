@@ -30,6 +30,7 @@ public class Unit {
 	private MoveType moveType;
 	private boolean isFriendly;
 	private boolean hasMoved;
+	private double RectSize=0;
 	private int x = 0;
 	private int y = 0;
 	private String name = "";// Initializes the String variable name to be empty, used to register the Unit's
@@ -77,12 +78,16 @@ public class Unit {
 
 	public void setHpBar(Rectangle hpBar) {
 		this.hpBar = hpBar;
+		this.RectSize=hpBar.getWidth();
 	}
 
 	public void updateHpBar() {
 		hpBar.setX(this.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
 		hpBar.setY(this.getY() * TerrainGUI.getImagewidth());
-		hpBar.setWidth(this.getCurrentHP());
+		hpBar.setWidth(this.RectSize-(this.getBaseHP()-this.currentHP));
+		if(!this.isAlive()) {
+			this.hpBar.setOpacity(0.0);
+		}
 
 	}
 

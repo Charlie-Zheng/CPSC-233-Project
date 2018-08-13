@@ -630,6 +630,7 @@ public class Map {
 		// units are not all dead. If an enemy unit is alive, then enemy units are not
 		// all dead
 		for (Unit unit : unitList) {
+			unit.updateHpBar();
 			if (unit.isAlive()) {
 				if (unit.isFriendly())
 					friendiesAllDead = false;
