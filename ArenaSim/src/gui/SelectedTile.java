@@ -114,7 +114,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 							 */
 						}
 					}
-				} else if (mapGUI.findAllAttacks(selectedUnit)[y][x] && mapGUI.getUnitMap()[y][x] != null) {
+				} else if (mapGUI.findAllAttacks(selectedUnit)[y][x] && mapGUI.getUnitMap()[y][x] != null && !mapGUI.getUnitMap()[y][x].isFriendly()) {
 					int[] movementTile = mapGUI.findClosestAttackLocation(selectedUnit, mapGUI.getUnitMap()[y][x]);
 					if (movementTile != null) {
 						mapGUI.moveHero(selectedUnit, movementTile[0] - selectedUnit.getX(),
