@@ -118,7 +118,7 @@ public class GameGUI extends Application {
 		map1.setText("Map_1_1");
 		map1.setFont(Font.font("Comic Sans MS", 25));
 		map1.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
-		//map1.setOnAction(e -> window.setScene(scene));
+		// map1.setOnAction(e -> window.setScene(scene));
 		map1.setOnAction((event) -> {
 			root = new Group();
 			mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
@@ -129,7 +129,7 @@ public class GameGUI extends Application {
 			window.setScene(scene);
 
 		});
-		
+
 		GridPane.setConstraints(map1, 25, 25);
 
 		// picking map 2
@@ -206,48 +206,62 @@ public class GameGUI extends Application {
 
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
-		/*for (Unit unit : mapGUI.getUnitList()) {
-			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(unit.getBaseHP()+(70-unit.getBaseHP()));
-			hpBar.setHeight(10);
-			hpBar.setFill(Color.LIGHTGREEN);
-			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth()+TerrainGUI.getImagewidth()/8);
-			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
-			unit.setHpBar(hpBar);
-			System.out.println(unit.getX() + "and" + unit.getY());
-			mapGUI.display(hpBar);
-		}*/
+
 		this.displayHPBar();
 		primaryStage.show();
+	
+		
 
 	}
 
 	public void displayHPBar() {
 		// Health Point bar for units
-		// this is just the initial stage for showing it. 
-		//The hp bar won't follow the unit
-		
-		//mapGUI.updateUnitsOnMap();
-		
+		// this is just the initial stage for showing it.
+		// The hp bar won't follow the unit
+
+		// mapGUI.updateUnitsOnMap();
+
 		for (Unit unit : mapGUI.getUnitList()) {
 			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(unit.getCurrentHP()+(70-unit.getCurrentHP()));
+			hpBar.setWidth(unit.getCurrentHP() + (70 - unit.getCurrentHP()));
 			hpBar.setHeight(10);
-			
+
 			if (unit.isFriendly() == true) {
 				hpBar.setFill(Color.LIGHTGREEN);
-			}else if (unit.isFriendly() == false) {
+			} else if (unit.isFriendly() == false) {
 				hpBar.setFill(Color.RED);
 			}
-			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth()+TerrainGUI.getImagewidth()/8);
+			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
 			unit.setHpBar(hpBar);
 			
-			System.out.println(unit.getMoveType());
-			//System.out.println(unit.getX() + "and" + unit.getY());
-			
 			mapGUI.display(hpBar);
+			
+
 		}
-		
+
 	}
+
+	public void gameEnd() {
+		if (!mapGUI.gameOver()) {
+			for (Unit unit : mapGUI.getUnitList()) {
+				if ((unit.isFriendly() == false) && (unit.getCurrentHP() == 0)) {
+					Label endGame = new Label();
+					endGame.setText("YOU LOSE...");
+					endGame.setTextFill(Color.web("#f44242"));
+					endGame.setFont(Font.font("Chiller", 50));
+					mapGUI.display(endGame);
+
+				}else if ((!unit.isFriendly() == false) && ((unit.getCurrentHP() == 0))){
+					Label endGame = new Label();
+					endGame.setText("YOU WIN!");
+					endGame.setTextFill(Color.web("#42f44e"));
+					endGame.setFont(Font.font("Berlin Sans FB Demi", 50));
+					mapGUI.display(endGame);
+				}
+			}
+
+		}
+	}
+
 }

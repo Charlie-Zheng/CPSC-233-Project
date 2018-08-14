@@ -46,6 +46,7 @@ public class MapGUI extends Map {
 	private ArrayList<GridPane> unitStatDisplays = new ArrayList<GridPane>();
 	private final int unitDisplayHeight = 75;
 	private boolean isAnimating = false;
+
 	/**
 	 * @return the isAnimating
 	 */
@@ -140,12 +141,6 @@ public class MapGUI extends Map {
 				Label hp = (Label) display.getChildren().get(1);
 				hp.setText("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
 
-				// Text stats = (Text) display.getChildren().get(0);
-				// stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" +
-				// unit.getBaseHP() + "\t\tAtk: "
-				// + unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() +
-				// "\nRange: "
-				// + unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
 			}
 
 		}
@@ -162,9 +157,6 @@ public class MapGUI extends Map {
 			for (int x = 0; x < MAXX; x++) {
 
 				terrainDisplay[y][x] = new ImageView(TerrainGUI.getImage(getTerrainMap()[y][x]));
-
-				// terrainDisplay[y][x].setX(x * TerrainGUI.getImagewidth());
-				// terrainDisplay[y][x].setY(y * TerrainGUI.getImageheight());
 
 				terrain.add(terrainDisplay[y][x], x, y);
 			}
@@ -215,13 +207,6 @@ public class MapGUI extends Map {
 				unitStatDisplay.setStyle("-fx-background-color: #ff8080");
 
 			}
-			// Text stats = new Text();
-			// stats.setText(unit.getName() + "\nHP: " + unit.getCurrentHP() + "/" +
-			// unit.getBaseHP() + "\t\tAtk: "
-			// + unit.getAtk() + "\nSpd: " + unit.getSpd() + "\t\tDef: " + unit.getDef() +
-			// "\nRange: "
-			// + unit.getRange() + "\t\tMove Type: " + unit.getMoveType());
-			// unitStatDisplay.getChildren().add(stats);
 
 			Label name = new Label("Name: " + unit.getName());
 			Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
@@ -288,6 +273,8 @@ public class MapGUI extends Map {
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);
+		
+		
 
 	}
 
