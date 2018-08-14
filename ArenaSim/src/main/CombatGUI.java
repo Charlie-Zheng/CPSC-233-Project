@@ -61,6 +61,10 @@ public class CombatGUI extends Combat {
 
 		if (applyCombat) {
 			addAttackAnimation(initiator, defender);
+			System.out.println(initiator.getName() + " attacks " + defender.getName() + " for " + damage);
+			if (defender.getCurrentHP() <= 0) {
+				System.out.println(defender.getName() + " has been defeated");
+			}
 		}
 		// super.attack(initiator, defender, applyCombat);
 	}
@@ -124,7 +128,6 @@ public class CombatGUI extends Combat {
 			seq.getChildren().clear();
 			mapGUI.setAnimating(false);
 			mapGUI.updateUnitsOnMap();
-			System.out.println("\n1" + (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)));
 			if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
 
 				ai.computerTurn();

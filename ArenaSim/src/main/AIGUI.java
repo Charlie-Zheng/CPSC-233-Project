@@ -45,6 +45,7 @@ public class AIGUI extends AI {
 
 		// Move the hero
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
+		System.out.print(move.toString() + "\n");
 		mapGUI.updateUnitsOnMap();
 		unit.setHasMoved(true);
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];
