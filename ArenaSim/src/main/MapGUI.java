@@ -141,15 +141,19 @@ public class MapGUI extends Map {
 
 			Label endGame = new Label();
 			endGame.setText("YOU LOSE...");
-			endGame.setTextFill(Color.web("#f44242"));
-			endGame.setFont(Font.font("Chiller", 80));
+			endGame.setTextFill(Color.web("#d10826"));
+			endGame.setLayoutX(150);
+			endGame.setLayoutY(350);
+			endGame.setFont(Font.font("Chiller", 100));
 			this.display(endGame);
 
 		} else if (gameOver() == true && enemiesAllDead == true) {
 			Label endGame = new Label();
 			endGame.setText("YOU WIN!");
 			endGame.setTextFill(Color.web("#42f44e"));
-			endGame.setFont(Font.font("Forte", 80));
+			endGame.setLayoutX(150);
+			endGame.setLayoutY(350);
+			endGame.setFont(Font.font("Forte", 100));
 			this.display(endGame);
 		}
 	}
