@@ -1,5 +1,5 @@
 package gui;
-
+//imports the following java libraries
 import java.util.ArrayList;
 
 import javafx.animation.PauseTransition;
@@ -18,6 +18,7 @@ import javafx.util.Duration;
 import logic.Unit;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
+	//initializes and creates the following instance variables
 	private int x, y;
 	private MapGUI mapGUI;
 	private static boolean selectingMove = false;
@@ -25,7 +26,13 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	private static boolean selectingAttack;
 	private ArrayList<StackPane> unitStatDisplays;
 	private CombatGUI combat;
-
+	
+	/**
+	 * {@code determines what tile has been selected}
+	 * @param x is the location of tile at its x coordinate
+	 * @param y is the location of the tile at its y coordinate
+	 * @param mapGUI is the MapGUI object used to determine the possible combat
+	 */
 	public SelectedTile(int x, int y, MapGUI mapGUI) {
 		this.x = x;
 		this.y = y;
@@ -41,11 +48,14 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 	@SuppressWarnings("unused")
 	@Override
+	/**
+	 * this method handles the event of clicking on a unit and moving it around using mouseclicks
+	 */
 	public void handle(MouseEvent e) {
 		if (!mapGUI.isAnimating()) {
 			// Highlights moveable tiles to be blue
-			if (!selectingMove && !selectingAttack) {// what happens when you click while not selecting a move or an
-														// attack
+			if (!selectingMove && !selectingAttack) {
+				// what happens when you click while not selecting a move or an attack
 				mapGUI.updateUnitsOnMap();
 				selectedUnit = mapGUI.getUnitMap()[y][x];
 				if (selectedUnit != null && selectedUnit.isFriendly()) {
@@ -147,7 +157,9 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			}
 		}
 	}
-
+	/**
+	 * This method is used to show who's turn it is.
+	 */
 	/*This method is created to show the player a message telling them who's turn is it between the 
 	  player and the AI, in this method uses a pause transition just to pause the message for a certain 
 	  amount of time, so that user has some time to read the full message regarding the turns. This method is

@@ -208,7 +208,7 @@ public class GameGUI extends Application {
 		scene1 = new Scene(grid, 850, 950);
 		scene1.getStylesheets().addAll("/assets/style.css");
 
-		// this is for the back button of the choosing Stages, dont get confuse
+		// this is for the back button of the choosing Stages, don't get confuse
 		back.setOnAction(e -> window.setScene(scene1));
 
 		primaryStage.setTitle("Arena Sim");

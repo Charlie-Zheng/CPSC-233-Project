@@ -2,7 +2,7 @@
  * 
  */
 package gui;
-
+//imports the following java libraries
 import java.io.PrintStream;
 import java.util.ArrayList;
 import javafx.scene.input.MouseEvent;
@@ -41,6 +41,7 @@ import javafx.event.EventHandler;
  * @author charl
  */
 public class MapGUI extends Map {
+	//initializes the following instance variables
 	private ImageView[][] terrainDisplay;
 	private ImageView[] unitDisplay;
 	private Group root;
@@ -50,22 +51,25 @@ public class MapGUI extends Map {
 	private final int unitDisplayHeight = 75;
 	private boolean isAnimating = false;
 
-	/**
-	 * @return the isAnimating
+	/** is getter method for getting the value of the instance variable isAnimating
+	 * @return the instance variable value of isAnimating
 	 */
 	protected boolean isAnimating() {
 		return isAnimating;
 	}
 
 	/**
-	 * @param isAnimating
-	 *            the isAnimating to set
+	 * {@code this function sets instance variable setAnimating boolean value}
+	 * @param isAnimating value is registered to the instance variable isAnimating
 	 */
 	protected void setAnimating(boolean isAnimating) {
 		this.isAnimating = isAnimating;
 	}
-	//creates instance variable e which is a mouse event
-	//creates a instance variable description which is a new stage.
+	/**
+	 * {@code this function gets the map}
+	 * @param filename is the title of a txt file of a map you want to load
+	 * @param root is the Group instance variable you want it to register in the root instance variable
+	 */
 	public MapGUI(String filename, Group root) {
 		super(filename);
 		this.root = root;
@@ -75,8 +79,8 @@ public class MapGUI extends Map {
 	/**
 	 * adds a blue overlay at the given tile
 	 * 
-	 * @param y
-	 * @param x
+	  * @param y is the tile's y location you want the color to be added at
+	 * @param x is the tile's x location you want the color to be added at
 	 */
 	public void addBlue(int y, int x) {
 		addColour(y, x, Color.hsb(210, 1, 1, 0.3));
@@ -85,8 +89,8 @@ public class MapGUI extends Map {
 	/**
 	 * adds a red overlay at the given tile
 	 * 
-	 * @param y
-	 * @param x
+	 * @param y is the tile's y location you want the color to be added at
+	 * @param x is the tile's x location you want the color to be added at
 	 */
 	public void addRed(int y, int x) {
 		addColour(y, x, Color.hsb(0, 1, 1, 0.3));
@@ -95,8 +99,8 @@ public class MapGUI extends Map {
 	/**
 	 * adds a yellow overlay at the given tile
 	 * 
-	 * @param y
-	 * @param x
+	  * @param y is the tile's y location you want the color to be added at
+	 * @param x is the tile's x location you want the color to be added at 
 	 */
 	public void addYellow(int y, int x) {
 		addColour(y, x, Color.hsb(60, 1, 1, 0.3));
@@ -105,8 +109,8 @@ public class MapGUI extends Map {
 	/**
 	 * adds a green overlay at the given tile
 	 * 
-	 * @param y
-	 * @param x
+	 * @param y is the tile's y location you want the color to be added at
+	 * @param x is the tile's x location you want the color to be added at
 	 */
 	public void addGreen(int y, int x) {
 		addColour(y, x, Color.hsb(30, 1, 1, 0.3));
@@ -115,8 +119,8 @@ public class MapGUI extends Map {
 	/**
 	 * Removes all color overlays at the given tile
 	 * 
-	 * @param y
-	 * @param x
+	 * @param y is the tile's y location you want the color to be removed at
+	 * @param x is the tile's x location you want the color to be removed at
 	 */
 	public void removeColour(int y, int x) {
 		addColour(y, x, Color.hsb(30, 1, 1, 0.0));
@@ -125,9 +129,9 @@ public class MapGUI extends Map {
 	/**
 	 * Adds the given color at the given tile
 	 * 
-	 * @param y
-	 * @param x
-	 * @param color
+	 * @param y a y coordinate tile value you want that color at
+	 * @param x a x coordinate tile value you want that color at
+	 * @param color what color you want that desired tile to be.
 	 */
 	public void addColour(int y, int x, Color color) {
 		colourOverlay[y][x].setFill(color);
@@ -145,14 +149,15 @@ public class MapGUI extends Map {
 	}
 /**
  * Display the given Node on the scene
- * @param toDisplay
+ * @param toDisplay is the Node parameter that you want to display onto the map
+ * which gets added into the current root Group instance variable.
  */
 	public void display(Node toDisplay) {
 		root.getChildren().add(toDisplay);
 	}
 /**
  * Remove the given Node from the scene
- * @param toHide
+ * @param toHide is the Node parameter that will be removed from the current root
  */
 	public void hide(Node toHide) {
 		root.getChildren().remove(toHide);
@@ -251,12 +256,14 @@ public class MapGUI extends Map {
  * Load all the elements on the map, terrain, unit entities, and etc
  */
 	public void loadMapGUI() {
+		//Assigns the values to the following instance variables.
 		terrainDisplay = new ImageView[MAXY][MAXY];
 		unitDisplay = new ImageView[getUnitList().size()];
 		colourOverlay = new Rectangle[MAXY][MAXY];
 		//Load and display the terrain
 		GridPane terrain = new GridPane();
 		TerrainGUI.initializeImages();
+		
 		for (int y = 0; y < MAXY; y++) {
 			for (int x = 0; x < MAXX; x++) {
 
@@ -385,8 +392,9 @@ public class MapGUI extends Map {
 	}
 /**
  * Returns the imageview of the given unit
- * @param unit
- * @return
+ * @param unit is a Unit class instance object, that you want to get the image of.
+ * @return the ImageView object of the desired unit given in the parameters, if that unit
+ * isn't a valid unit, it returns null.
  */
 	public ImageView getUnitImage(Unit unit) {
 		for (int x = 0; x < unitDisplay.length; x++) {
@@ -402,26 +410,24 @@ public class MapGUI extends Map {
  * Display the HP Bar of the units
  */
 	public void displayHPBar() {
-		// Health Point bar for units
-		// this is just the initial stage for showing it.
-		// The hp bar won't follow the unit
-
 		// mapGUI.updateUnitsOnMap();
-
+		//iterates through all the available units
 		for (Unit unit : getUnitList()) {
+			//creates a new rectangle object for each unit
 			Rectangle hpBar = new Rectangle();
 			hpBar.setWidth(unit.getCurrentHP() + (70 - unit.getCurrentHP()));
 			hpBar.setHeight(10);
-
+			//changes the color of the hpBar depending on if its on the player's side or not
 			if (unit.isFriendly() == true) {
 				hpBar.setFill(Color.LIGHTGREEN);
 			} else if (unit.isFriendly() == false) {
 				hpBar.setFill(Color.RED);
 			}
+			//Sets and updates the HpBar's location to be equal to the current Unit
 			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
 			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
 			unit.setHpBar(hpBar);
-
+			//displays the HpBar on the map
 			display(hpBar);
 
 		}
