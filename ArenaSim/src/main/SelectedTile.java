@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -20,6 +23,9 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	private ArrayList<StackPane> unitStatDisplays;
 	private CombatGUI combat;
 
+	
+	
+	
 	public SelectedTile(int x, int y, MapGUI mapGUI) {
 		this.x = x;
 		this.y = y;

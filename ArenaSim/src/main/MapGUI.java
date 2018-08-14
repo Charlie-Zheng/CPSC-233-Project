@@ -27,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -110,6 +111,29 @@ public class MapGUI extends Map {
 		root.getChildren().remove(toHide);
 	}
 
+	public void gameEnd() {
+
+		System.out.println(gameOver());
+		if (gameOver() == true) {
+
+			Label endGame = new Label();
+			endGame.setText("YOU LOSE...");
+			endGame.setTextFill(Color.web("#f44242"));
+			endGame.setFont(Font.font("Chiller", 50));
+			this.display(endGame);
+
+//				}else if ((!unit.isFriendly() == false) && ((unit.getCurrentHP() == 0))){
+//					Label endGame = new Label();
+//					endGame.setText("YOU WIN!");
+//					endGame.setTextFill(Color.web("#42f44e"));
+//					endGame.setFont(Font.font("Berlin Sans FB Demi", 50));
+//					this.display(endGame);
+//				}
+//			}
+
+		}
+	}
+
 	/**
 	 * Updates the images on the GUI to correspond to those on the map
 	 */
@@ -140,7 +164,7 @@ public class MapGUI extends Map {
 				// display.getChildren().clear();
 				Label hp = (Label) display.getChildren().get(1);
 				hp.setText("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
-
+				gameEnd();
 			}
 
 		}
@@ -273,8 +297,6 @@ public class MapGUI extends Map {
 		PrintStream ps = System.out;
 		System.setOut(new TextStreamGUI(consoleText, ps));
 		root.getChildren().add(consoleText);
-		
-		
 
 	}
 

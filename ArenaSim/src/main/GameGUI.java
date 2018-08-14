@@ -242,26 +242,6 @@ public class GameGUI extends Application {
 
 	}
 
-	public void gameEnd() {
-		if (!mapGUI.gameOver()) {
-			for (Unit unit : mapGUI.getUnitList()) {
-				if ((unit.isFriendly() == false) && (unit.getCurrentHP() == 0)) {
-					Label endGame = new Label();
-					endGame.setText("YOU LOSE...");
-					endGame.setTextFill(Color.web("#f44242"));
-					endGame.setFont(Font.font("Chiller", 50));
-					mapGUI.display(endGame);
-
-				}else if ((!unit.isFriendly() == false) && ((unit.getCurrentHP() == 0))){
-					Label endGame = new Label();
-					endGame.setText("YOU WIN!");
-					endGame.setTextFill(Color.web("#42f44e"));
-					endGame.setFont(Font.font("Berlin Sans FB Demi", 50));
-					mapGUI.display(endGame);
-				}
-			}
-
-		}
-	}
+	
 
 }
