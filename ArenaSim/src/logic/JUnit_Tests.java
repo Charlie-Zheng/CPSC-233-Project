@@ -1,10 +1,16 @@
+/**
+ * General test cases file that contains all the tests from the other test files.
+ */
 package logic;
+//imports the following libraries
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 public class JUnit_Tests {
-	
+	/**
+	 * All test cases from the Unit_Test file combined into 1 function
+	 */
 	@Test
 	public void Unit_Test() {
 		//checks the creation of a friendly unit
@@ -102,7 +108,9 @@ public class JUnit_Tests {
 		assertEquals(true,friendly2.hasMoved());
 		assertEquals(true,enemy.hasMoved());
 	}
-	
+	/**
+	 * All test cases from the TerrainType_Test file combined into 1 function
+	 */
 	@Test
 	public void TerrainType_Test() {
 		//checks if it returns the correct string type for a TerrainType
@@ -115,7 +123,9 @@ public class JUnit_Tests {
 		Current=TerrainType.WALL;
 		assertEquals("w",Current.toString());
 	}
-	
+	/**
+	 * All test cases from the MoveType_Test file combined into 1 function
+	 */
 	@Test
 	public void MoveType_Test() {
 		//checks if it returns the correct shortened string values for a enum MoveType value
@@ -132,6 +142,9 @@ public class JUnit_Tests {
 		assertEquals(null,MoveType.getMoveType("d"));
 	}
 
+	/**
+	 * All test cases from the MoveRules_Test file combined into 1 function
+	 */
 	@Test
 	public void MoveRules_Test() {
 		//Checks to see if it returns the right integer values for specific MoveTypes initialMoves
