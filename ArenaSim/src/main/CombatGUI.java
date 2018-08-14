@@ -18,13 +18,29 @@ import javafx.util.Duration;
 public class CombatGUI extends Combat {
 	private MapGUI mapGUI;
 	private SequentialTransition seq;
-	private AIGUI ai ;
+	private AIGUI ai;
+
 	public CombatGUI(MapGUI mapGUI) {
 		this.mapGUI = mapGUI;
 		seq = new SequentialTransition();
-		ai = new AIGUI(mapGUI,this);
+		ai = new AIGUI(mapGUI, this);
 	}
-
+	/**
+	 * This function determines the attacking phase for 2 units in battle, and how
+	 * much damage the defender unit object takes after the initiator unit object
+	 * attacks it. Also adds animations to the mapGUI if applyCombat is true.
+	 * 
+	 * @param initiator
+	 *            is the unit object that is currently attacking against the
+	 *            defender parameter unit.
+	 * @param defender
+	 *            is the unit object that is currently defending against the
+	 *            attacking unit parameter initiator.
+	 * @param applyCombat
+	 *            is a boolean object that determines if it should add animations
+	 *            for the battle between 2 units, such as what unit attacks another,
+	 *            and if the defending unit defender has been defeated.
+	 */
 	@Override
 	protected void attack(Unit initiator, Unit defender, boolean applyCombat) {
 		/*
@@ -50,7 +66,7 @@ public class CombatGUI extends Combat {
 	}
 
 	/**
-	 * This function actually applies the combat results
+	 * This function actually applies the combat results, also adds animations to the GUI
 	 * 
 	 * @param initiator
 	 *            is a Unit class object who is starting the battle against another
@@ -59,6 +75,7 @@ public class CombatGUI extends Combat {
 	 *            is another Unit class object parameter who is defending against
 	 *            the unit attacking it.
 	 */
+	@Override
 	public void doCombat(Unit initiator, Unit defender) {
 		/*
 		 * This function is used to calculate the battle between 2 units that have
@@ -77,6 +94,14 @@ public class CombatGUI extends Combat {
 		}
 	}
 
+	/**
+	 * Adds the attacking animation to the units that are attacking
+	 * 
+	 * @param initiator
+	 *            The attacking unit
+	 * @param defender
+	 *            The defending unit
+	 */
 	private void addAttackAnimation(Unit initiator, Unit defender) {
 		ImageView image = mapGUI.getUnitImage(initiator);
 		Path path = new Path();
@@ -99,13 +124,13 @@ public class CombatGUI extends Combat {
 			seq.getChildren().clear();
 			mapGUI.setAnimating(false);
 			mapGUI.updateUnitsOnMap();
-			System.out.println("\n1"+(!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)));
+			System.out.println("\n1" + (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)));
 			if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
-				
+
 				ai.computerTurn();
-				
+
 			}
-			
+
 		});
 		seq.getChildren().add(pathTransition);
 

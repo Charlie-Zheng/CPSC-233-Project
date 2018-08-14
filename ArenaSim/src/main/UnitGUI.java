@@ -29,7 +29,9 @@ public final class UnitGUI {
 	}
 	
 	
-	
+	/**
+	 * Loads the images of all the unit types, and generates the color effect for enemy or friendly units
+	 */
 	public static void initializeImages() {
 		unitImages[0][0] = new Image("file:src/assets/melee_infantry.png", IMAGEWIDTH, IMAGEHEIGHT, false, true);
 		unitImages[0][1] = new Image("file:src/assets/melee_cavalry.png", IMAGEWIDTH, IMAGEHEIGHT, false, true);
@@ -43,14 +45,22 @@ public final class UnitGUI {
 		friendlyEffect=new DropShadow(20, Color.CORNFLOWERBLUE);
 		enemyEffect = new DropShadow(20,Color.RED);
 	}
-
+	/**
+	 * Adds the faction color (red for enemy, blue for friendly) to the image
+	 * @param unitImage
+	 * @param isFriendly
+	 */
 	public static void applyFactionColor(ImageView unitImage, boolean isFriendly) {
 		if (isFriendly)
 			unitImage.setEffect(friendlyEffect);
 		else
 			unitImage.setEffect(enemyEffect);
 	}
-
+	/**
+	 * Returns the image that represents the given unit
+	 * @param unit
+	 * @return
+	 */
 	public static Image getUnitImage(Unit unit) {
 		int rangeIndex = unit.getRange()-1;
 		if(rangeIndex >1) {

@@ -22,6 +22,11 @@ public class AIGUI extends AI {
 	}
 
 	@Override
+	/**
+	 * Starts the computer's turn, and resets the user's units movements when the AI is done
+	 * 
+	 * @return gameOver
+	 */
 	public boolean computerTurn() {
 
 		boolean gameOver = super.computerTurn();
@@ -30,6 +35,9 @@ public class AIGUI extends AI {
 	}
 
 	@Override
+	/**
+	 * Adds animations instead of printing IA movements 
+	 */
 	protected void applyAIMove(AIMove move) {
 		Unit unit = move.getUnit();
 		int unitX = unit.getX();
@@ -39,7 +47,6 @@ public class AIGUI extends AI {
 		map.moveHero(unitX, unitY, move.getX(), move.getY());
 		mapGUI.updateUnitsOnMap();
 		unit.setHasMoved(true);
-		// Print the movement to the user
 		Unit target = map.getUnitMap()[move.getJ()][move.getI()];
 		if (target != unit) {
 			// Apply the combat if the unit chose to attack

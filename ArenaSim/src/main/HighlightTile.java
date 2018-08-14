@@ -20,13 +20,15 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 	private MapGUI mapGUI;
 	private ArrayList<GridPane> unitStatDisplays;
 
-	public HighlightTile(ImageView image, boolean add) {
-		this.image = image;
-		this.add = add;
-		shadow.setColor(Color.WHITE);
-	}
-
-	public HighlightTile(ImageView image, boolean add, int x, int y, MapGUI mapGUI, ArrayList<GridPane> unitStatDisplays) {
+	/**
+	 * Used to highlight or un-highlight the grid, as well as highlight or
+	 * un-hightlight the corresponding unit box that is hovered
+	 * 
+	 * @param image
+	 * @param add
+	 */
+	public HighlightTile(ImageView image, boolean add, int x, int y, MapGUI mapGUI,
+			ArrayList<GridPane> unitStatDisplays) {
 		this.image = image;
 		this.add = add;
 		shadow.setColor(Color.WHITE);
@@ -37,6 +39,10 @@ public class HighlightTile implements EventHandler<MouseEvent> {
 	}
 
 	@Override
+	/**
+	 * Highlights or un-highlights the hovered tile, as well as the unit stats box
+	 * of the unit being hovered, if a unit is being hovered as well.
+	 */
 	public void handle(MouseEvent e) {
 		if (add)
 			image.setEffect(shadow);

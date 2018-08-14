@@ -58,6 +58,9 @@ public class GameGUI extends Application {
 	}
 
 	@Override
+	/**
+	 * Loads the map, and displays the start menu
+	 */
 	public void start(Stage primaryStage) throws Exception {
 
 		window = primaryStage;
@@ -70,34 +73,32 @@ public class GameGUI extends Application {
 
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(10, 10, 10, 10));
-		
-		//set ID so we can access properties in css style file
+
+		// set ID so we can access properties in css style file
 		grid.setId("pane");
-		
-		//grid settings
+
+		// grid settings
 		grid.setVgap(8);
 		grid.setHgap(10);
-		
-		
-		//Main menu label
+
+		// Main menu label
 		Label label1 = new Label();
 		label1.setText("ARENA SIMULATOR V.1.01 ALPHA");
 		label1.setTextFill(Color.web("#0076a3"));
 		label1.setFont(Font.font("Berlin Sans FB", 18));
 
 		GridPane.setConstraints(label1, 25, 0);
-		
-		//back buttons
+
+		// back buttons
 		Button backButton = new Button();
 		backButton.setText("Back");
 		backButton.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
 		mapGUI.display(backButton);
-		
-		//mouse action event
+
+		// mouse action event
 		backButton.setOnAction(e -> primaryStage.setScene(scene1));
 
-		
-		//play new game
+		// play new game
 		Button button1 = new Button();
 		button1.setText("NEW GAME");
 		button1.setFont(Font.font("Kristen ITC", 25));
@@ -133,7 +134,7 @@ public class GameGUI extends Application {
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
-			this.displayHPBar();
+			mapGUI.displayHPBar();
 			window.setScene(scene);
 
 		});
@@ -152,7 +153,7 @@ public class GameGUI extends Application {
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
-			this.displayHPBar();
+			mapGUI.displayHPBar();
 			window.setScene(scene);
 
 		});
@@ -169,7 +170,7 @@ public class GameGUI extends Application {
 			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
-			this.displayHPBar();
+			mapGUI.displayHPBar();
 			window.setScene(scene);
 
 		});
@@ -215,41 +216,11 @@ public class GameGUI extends Application {
 		primaryStage.sizeToScene();
 		primaryStage.setResizable(false);
 
-		this.displayHPBar();
+		mapGUI.displayHPBar();
 		primaryStage.show();
-	
-		
 
 	}
 
-	public void displayHPBar() {
-		// Health Point bar for units
-		// this is just the initial stage for showing it.
-		// The hp bar won't follow the unit
 
-		// mapGUI.updateUnitsOnMap();
-
-		for (Unit unit : mapGUI.getUnitList()) {
-			Rectangle hpBar = new Rectangle();
-			hpBar.setWidth(unit.getCurrentHP() + (70 - unit.getCurrentHP()));
-			hpBar.setHeight(10);
-
-			if (unit.isFriendly() == true) {
-				hpBar.setFill(Color.LIGHTGREEN);
-			} else if (unit.isFriendly() == false) {
-				hpBar.setFill(Color.RED);
-			}
-			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
-			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
-			unit.setHpBar(hpBar);
-			
-			mapGUI.display(hpBar);
-			
-
-		}
-
-	}
-
-	
 
 }

@@ -73,7 +73,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 					// display the enemy's possible attack range in red. Will need to use
 					// findAvailableMoves along with findRange to determine these tiles
 					boolean[][] AIAttacks = mapGUI.findAllAttacks(selectedUnit);
-					mapGUI.removeAllColorsAndText();
+					mapGUI.removeAllColors();
 					for (int y = 0; y < mapGUI.MAXY; y++) {
 						for (int x = 0; x < mapGUI.MAXX; x++) {
 							if (AIAttacks[y][x])
@@ -83,7 +83,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				}
 			} else if (selectingMove) {
 
-				mapGUI.removeAllColorsAndText();
+				mapGUI.removeAllColors();
 				// User clicked a place to move first
 				if (mapGUI.checkMoveLegal(selectedUnit, x - selectedUnit.getX(), y - selectedUnit.getY())
 						&& !selectedUnit.hasMoved()) {
@@ -116,7 +116,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 						// What happens when you are selecting a move
 						// Move the unit to somewhere or remove all the colors
-						mapGUI.removeAllColorsAndText();
+						mapGUI.removeAllColors();
 					}
 				}
 
@@ -141,7 +141,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				selectedUnit = null;
 				// What happens when you are selecting a move
 				// Move the unit to somewhere or remove all the colors
-				mapGUI.removeAllColorsAndText();
+				mapGUI.removeAllColors();
 			}
 		}
 	}

@@ -51,7 +51,7 @@ public class Map {
 
 	}
 
-	public void updateHeroDeaths() { // check if unit is "alive" or "dead"
+	public void updateUnitsOnMap() { // check if unit is "alive" or "dead"
 		for (int y = 0; y < MAXY; y++) { // loop through y Axis of the 2 dimension map
 			for (int x = 0; x < MAXX; x++) { // loop through X Axis of the 2 dimension map
 				Unit unit = unitMap[y][x];
@@ -160,24 +160,6 @@ public class Map {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return false; // return false otherwise
 		}
-	}
-
-	public boolean checkMoveLegal(int x, int y, int newX, int newY) {
-		try {
-			if (unitMap[y][x] != null) {
-				Unit unit = unitMap[y][x];
-				boolean[][] availableMoves = findAvailableMoves(unit); // calling findAvailableMoves method
-
-				return availableMoves[newY][newX]; // return boolean value by
-													// computing
-													// the position on the map (in
-													// case its off the map)
-			}
-			return false;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return false; // return false otherwise
-		}
-
 	}
 
 	/**
@@ -337,17 +319,16 @@ public class Map {
 	}
 
 	/**
-	 * take 0 parameter
+	 *
 	 * 
-	 * @return an ArrayList of Unit
+	 * @return a 2D array of Units
 	 */
 	public Unit[][] getUnitMap() {
 		return unitMap;
 	}
 
 	/**
-	 * displayMap method: display the map and map of the unit return nothing, takes
-	 * 0 parameter
+	 * displayMap method: display the map and map of the unit
 	 */
 
 	public void displayMap() {
@@ -424,7 +405,14 @@ public class Map {
 		return availableTargets; // return true if thats the case, false otherwise
 
 	}
-
+	/**
+	 * finds the attack range of the unit at the given location
+	 * @param unit
+	 * @param unitX
+	 * @param unitY
+	 * @return
+	 * a boolean[][] with true representing locations the unit can attack
+	 */
 	public boolean[][] findRange(Unit unit, int unitX, int unitY) {
 		boolean[][] availableTargets = new boolean[MAXY][MAXX]; // cannot let the target be outside of the map
 		for (int y = 0; y < MAXY; y++) { // loop through the map on the Y axis
@@ -490,7 +478,11 @@ public class Map {
 		}
 		return null; // else return nothing
 	}
-
+	/**
+	 * Finds all the locations which the unit can attack
+	 * @param unit
+	 * @return
+	 */
 	public boolean[][] findAllAttacks(Unit unit) {
 		boolean[][] allAttacks = new boolean[MAXY][MAXX];
 		boolean[][] availableMoves = findAvailableMoves(unit);
@@ -510,7 +502,13 @@ public class Map {
 		}
 		return allAttacks;
 	}
-
+	/**
+	 * Finds the location that the initiator can attack the defender, prioritizing moving the least for the initiator
+	 * @param initiator
+	 * @param defender
+	 * @return
+	 * Returns an int[] representing the location of the attack location using {x,y}
+	 */
 	public int[] findClosestAttackLocation(Unit initiator, Unit defender) {
 		int y = initiator.getY(); // get unit position of the Y-axis on the 2 dimension list
 		int x = initiator.getX(); // get unit position of the X-axis on the 2 dimension list
@@ -577,17 +575,11 @@ public class Map {
 	}
 
 	/**
-	 * Allows all friendly units to move again
+	 * Allows all  units of the given faction to move again
 	 */
 	public void resetHasMoved(boolean isFriendly) {
 		/*
-		 * This method returns nothing, however this method will execute some every
-		 * important things in order for this game to be playable. First of all this
-		 * method initializes an arrayList which will store objects of the class Unit.
-		 * then it will enter a loop where it will go through a conditional statement
-		 * which is set up for whether or not the movement made in this game was made by
-		 * the units that are available to the player, if it was then it will set all of
-		 * those unit movements back to false.
+		 * Go through evey unit in the list of units, if the unit is of the given faction, allow that unit to move again
 		 */
 
 		for (Unit unit : unitList) {
@@ -597,9 +589,9 @@ public class Map {
 	}
 
 	/**
-	 * Checks if the player still has units to move
+	 * Checks if the given faction still has units to move
 	 * 
-	 * @return True if the player still has units to move
+	 * @return True if the the faction's play still has units to move
 	 */
 	public boolean factionHasUnmovedUnits(boolean isFriendly) {
 		/*

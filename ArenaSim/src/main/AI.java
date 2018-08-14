@@ -47,7 +47,7 @@ public class AI {
 			// Apply the randomly selected move
 			applyAIMove(availableMoves.get(availableMoves.size() - 1));
 			// update the map
-			map.updateHeroDeaths();
+			map.updateUnitsOnMap();
 			// check if the game is over
 			gameOver = map.gameOver();
 
@@ -134,6 +134,18 @@ public class AI {
 
 	}
 
+	/**
+	 * Finds the number of turns to be in a location to attack to the target unit,
+	 * the unit that the AI unit wants to attack, for the given AI unit at the given
+	 * location
+	 * 
+	 * @param unit
+	 * @param y
+	 *            y coordinate to find the distance from
+	 * @param x
+	 *            x coordinate to find the distance from
+	 * @return
+	 */
 	private int distanceToTarget(Unit unit, int y, int x) {
 		// target is the unit that will take the most damage
 		Unit target = findTarget(unit);
@@ -185,10 +197,25 @@ public class AI {
 		return Integer.MAX_VALUE;
 	}
 
+	/**
+	 * Finds the distance to the target unit, the unit that the AI wants to attack,
+	 * for the given move represented by AIMove
+	 * 
+	 * @param move
+	 * @return
+	 */
 	private int distanceToTarget(AIMove move) {
 		return distanceToTarget(move.getUnit(), move.getY(), move.getX());
 	}
 
+	/**
+	 * Finds the target unit, the unit that the AI wants to attack, for the given AI
+	 * unit.
+	 * 
+	 * @param unit
+	 *            the given AI unit
+	 * @return the target unit
+	 */
 	private Unit findTarget(Unit unit) {
 		Unit target = null;
 		int maxDamageDealt = 0;
@@ -202,12 +229,16 @@ public class AI {
 		return target;
 	}
 
+	/**
+	 * sort the moves so that the best move can be chosen
+	 * 
+	 * @param availableMoves
+	 */
 	private void sortMoves(ArrayList<AIMove> availableMoves) {
-		// Returns 1 if m1 is better than m2
-		// Collections.shuffle(availableMoves);
+
 		availableMoves.sort((m1, m2) ->
 
-		{
+		{// Returns 1 if m1 is better than m2
 			Unit[][] unitMap = map.getUnitMap();
 			int[] healthMove1 = combat.calculateCombat(m1.getUnit(), unitMap[m1.getJ()][m1.getI()]);
 			int[] healthMove2 = combat.calculateCombat(m2.getUnit(), unitMap[m2.getJ()][m2.getI()]);

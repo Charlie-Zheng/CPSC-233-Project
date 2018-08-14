@@ -56,14 +56,12 @@ public class MapGUI extends Map {
 	}
 
 	/**
-	 * @param isAnimating the isAnimating to set
+	 * @param isAnimating
+	 *            the isAnimating to set
 	 */
 	protected void setAnimating(boolean isAnimating) {
 		this.isAnimating = isAnimating;
 	}
-
-	MouseEvent e;
-	Stage description = new Stage();
 
 	public MapGUI(String filename, Group root) {
 		super(filename);
@@ -71,62 +69,105 @@ public class MapGUI extends Map {
 
 	}
 
+	/**
+	 * adds a blue overlay at the given tile
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	public void addBlue(int y, int x) {
 		addColour(y, x, Color.hsb(210, 1, 1, 0.3));
 	}
 
+	/**
+	 * adds a red overlay at the given tile
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	public void addRed(int y, int x) {
 		addColour(y, x, Color.hsb(0, 1, 1, 0.3));
 	}
 
+	/**
+	 * adds a yellow overlay at the given tile
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	public void addYellow(int y, int x) {
 		addColour(y, x, Color.hsb(60, 1, 1, 0.3));
 	}
 
+	/**
+	 * adds a green overlay at the given tile
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	public void addGreen(int y, int x) {
 		addColour(y, x, Color.hsb(30, 1, 1, 0.3));
 	}
 
+	/**
+	 * Removes all color overlays at the given tile
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	public void removeColour(int y, int x) {
 		addColour(y, x, Color.hsb(30, 1, 1, 0.0));
 	}
 
+	/**
+	 * Adds the given color at the given tile
+	 * 
+	 * @param y
+	 * @param x
+	 * @param color
+	 */
 	public void addColour(int y, int x, Color color) {
 		colourOverlay[y][x].setFill(color);
 	}
 
-	public void removeAllColorsAndText() {
+	/**
+	 * Removes all colors from all the tiles
+	 */
+	public void removeAllColors() {
 		for (int y = 0; y < MAXY; y++) {
 			for (int x = 0; x < MAXX; x++) {
 				removeColour(y, x);
 			}
 		}
 	}
-
+/**
+ * Display the given Node on the scene
+ * @param toDisplay
+ */
 	public void display(Node toDisplay) {
 		root.getChildren().add(toDisplay);
 	}
-
+/**
+ * Remove the given Node from the scene
+ * @param toHide
+ */
 	public void hide(Node toHide) {
 		root.getChildren().remove(toHide);
 	}
 
 	/**
-	 * gameEnd method tracking if the game is over
-	 * 
-	 * if the game is over AND all friendly unit is dead => display you lose if the
-	 * game is over AND all enemies unit is dead => display you win
+	 * gameEnd method tracking if the game is over if the game is over AND all
+	 * friendly unit is dead => display you lose if the game is over AND all enemies
+	 * unit is dead => display you win
 	 */
 	public void gameEnd() {
 
-		
-
 		boolean enemiesAllDead = true;
 		boolean friendiesAllDead = true;
-		
+
 		// Iterates through the unit list,
 		// Check if whether allies or enemies units are all dead
-		
+
 		for (Unit unit : this.getUnitList()) {
 			unit.updateHpBar();
 			if (unit.isAlive()) {
@@ -136,27 +177,27 @@ public class MapGUI extends Map {
 					enemiesAllDead = false;
 			}
 		}
-		
-		//if the game is over and friendly units all dead
-		
+
+		// if the game is over and friendly units all dead
+
 		if (gameOver() == true && friendiesAllDead == true) {
-			
-			//new label
+
+			// new label
 			Label endGame = new Label();
-			
-			//label properties
+
+			// label properties
 			endGame.setText("YOU LOSE...");
 			endGame.setTextFill(Color.web("#d10826"));
 			endGame.setLayoutX(150);
 			endGame.setLayoutY(350);
 			endGame.setFont(Font.font("Chiller", 100));
-			//display on map GUI
+			// display on map GUI
 			this.display(endGame);
-		
-		//if the game is over and enemies units all dead
+
+			// if the game is over and enemies units all dead
 		} else if (gameOver() == true && enemiesAllDead == true) {
 			Label endGame = new Label();
-			//label properties
+			// label properties
 			endGame.setText("YOU WIN!");
 			endGame.setTextFill(Color.web("#42f44e"));
 			endGame.setLayoutX(150);
@@ -169,6 +210,7 @@ public class MapGUI extends Map {
 	/**
 	 * Updates the images on the GUI to correspond to those on the map
 	 */
+	@Override
 	public void updateUnitsOnMap() {
 
 		for (int x = 0; x < unitDisplay.length; x++) {
@@ -202,11 +244,14 @@ public class MapGUI extends Map {
 		}
 
 	}
-
+/**
+ * Load all the elements on the map
+ */
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[MAXY][MAXY];
 		unitDisplay = new ImageView[getUnitList().size()];
 		colourOverlay = new Rectangle[MAXY][MAXY];
+		//Load and display the terrain
 		GridPane terrain = new GridPane();
 		TerrainGUI.initializeImages();
 		for (int y = 0; y < MAXY; y++) {
@@ -219,6 +264,7 @@ public class MapGUI extends Map {
 
 		}
 		root.getChildren().add(terrain);
+		//Set up the color overlay
 		for (int y = 0; y < MAXY; y++) {
 			for (int x = 0; x < MAXX; x++) {
 				colourOverlay[y][x] = new Rectangle(x * TerrainGUI.getImagewidth(), y * TerrainGUI.getImageheight(),
@@ -234,6 +280,7 @@ public class MapGUI extends Map {
 
 			}
 		}
+		//Load and display the units
 		UnitGUI.initializeImages();
 		int counter = 0;
 		for (Unit unit : getUnitList()) {
@@ -249,6 +296,7 @@ public class MapGUI extends Map {
 			counter++;
 
 		}
+		//Setup and display the stats of all the units
 		counter = 0;
 		for (Unit unit : getUnitList()) {
 			GridPane unitStatDisplay = new GridPane();
@@ -322,6 +370,7 @@ public class MapGUI extends Map {
 			root.getChildren().add(unitStatDisplay);
 			counter++;
 		}
+		//Set up the console area
 		consoleText = new TextArea();
 		consoleText.setLayoutY(MAXY * TerrainGUI.getImagewidth());
 		consoleText.setEditable(false);
@@ -331,7 +380,11 @@ public class MapGUI extends Map {
 		root.getChildren().add(consoleText);
 
 	}
-
+/**
+ * Returns the imageview of the given unit
+ * @param unit
+ * @return
+ */
 	public ImageView getUnitImage(Unit unit) {
 		for (int x = 0; x < unitDisplay.length; x++) {
 			if (x < getUnitList().size()) {
@@ -342,5 +395,33 @@ public class MapGUI extends Map {
 		}
 		return null;
 	}
+/**
+ * Display the HP Bar of the units
+ */
+	public void displayHPBar() {
+		// Health Point bar for units
+		// this is just the initial stage for showing it.
+		// The hp bar won't follow the unit
 
+		// mapGUI.updateUnitsOnMap();
+
+		for (Unit unit : getUnitList()) {
+			Rectangle hpBar = new Rectangle();
+			hpBar.setWidth(unit.getCurrentHP() + (70 - unit.getCurrentHP()));
+			hpBar.setHeight(10);
+
+			if (unit.isFriendly() == true) {
+				hpBar.setFill(Color.LIGHTGREEN);
+			} else if (unit.isFriendly() == false) {
+				hpBar.setFill(Color.RED);
+			}
+			hpBar.setX(unit.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
+			hpBar.setY(unit.getY() * TerrainGUI.getImagewidth());
+			unit.setHpBar(hpBar);
+
+			display(hpBar);
+
+		}
+
+	}
 }
