@@ -119,13 +119,14 @@ public class MapGUI extends Map {
 	 */
 	public void gameEnd() {
 
-		// System.out.println(gameOver());
+		
 
 		boolean enemiesAllDead = true;
 		boolean friendiesAllDead = true;
-		// Iterates through the unit list, if a friendly unit is alive, then friendly
-		// units are not all dead. If an enemy unit is alive, then enemy units are not
-		// all dead
+		
+		// Iterates through the unit list,
+		// Check if whether allies or enemies units are all dead
+		
 		for (Unit unit : this.getUnitList()) {
 			unit.updateHpBar();
 			if (unit.isAlive()) {
@@ -141,14 +142,14 @@ public class MapGUI extends Map {
 			Label endGame = new Label();
 			endGame.setText("YOU LOSE...");
 			endGame.setTextFill(Color.web("#f44242"));
-			endGame.setFont(Font.font("Chiller", 50));
+			endGame.setFont(Font.font("Chiller", 80));
 			this.display(endGame);
 
 		} else if (gameOver() == true && enemiesAllDead == true) {
 			Label endGame = new Label();
 			endGame.setText("YOU WIN!");
 			endGame.setTextFill(Color.web("#42f44e"));
-			endGame.setFont(Font.font("Berlin Sans FB Demi", 50));
+			endGame.setFont(Font.font("Forte", 80));
 			this.display(endGame);
 		}
 	}
