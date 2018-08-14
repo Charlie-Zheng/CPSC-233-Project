@@ -6,7 +6,7 @@ public enum TerrainType {										//enumeration defining the collection of Terr
 	/**
 	 * method to convert terrain type read from the text file to the valid terrain type to display on the map
 	 * take 0 parameter
-	 * return Terrain type as a String
+	 * @return THe Terrain type as a String value
 	 */
 	public String toString() {
 		if (this.equals(TerrainType.TREE)) {					//if terrain is Tree type				

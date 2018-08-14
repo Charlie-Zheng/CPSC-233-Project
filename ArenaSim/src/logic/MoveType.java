@@ -1,7 +1,7 @@
 package logic;
 
 /**
- * A enumeration represetning the movement types in the game, Cavalry, Armor,
+ * A enumeration representing the movement types in the game, Cavalry, Armor,
  * Infantry, and Flier
  */
 public enum MoveType {

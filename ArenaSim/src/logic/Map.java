@@ -99,9 +99,9 @@ public class Map {
 	/**
 	 * Spawning Heroes methods
 	 * 
-	 * @param heroFileName:
+	 * @param heroFileName
 	 *            name of the File java is going to import
-	 * @param isFriendly:
+	 * @param isFriendly
 	 *            checking if the unit is friendly or not
 	 */
 	private void spawnHeroes(String heroFileName, boolean isFriendly) {
@@ -144,12 +144,9 @@ public class Map {
 	/**
 	 * checkMoveLegal method: checking if unit can move to the designated spot.
 	 * 
-	 * @param unit:
-	 *            unit
-	 * @param xOffset:
-	 *            spot on the X axis
-	 * @param yOffset:
-	 *            spot on the Y axis
+	 * @param unit the desired unit you want to check
+	 * @param xOffset spot on the X axis
+	 * @param yOffset spot on the Y axis
 	 * @return boolean value to determine if unit can be moved or not
 	 */
 
@@ -260,10 +257,10 @@ public class Map {
 	 * Moves the given hero at the given location to the new location. Does not
 	 * check legality of move
 	 * 
-	 * @param x
-	 * @param y
-	 * @param newX
-	 * @param newY
+	 * @param x is the unit's previous x location
+	 * @param y is the unit's previous y location
+	 * @param newX is the unit's new x location
+	 * @param newY is the unit's new y location
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
 		// Move only if different locations
@@ -282,8 +279,8 @@ public class Map {
 	 * 
 	 * @param unit:
 	 *            an object of Unit class
-	 * @param xOffset
-	 * @param yOffset
+	 * @param xOffset is how much to move the unit's x by
+	 * @param yOffset is how much to move the unit's y by
 	 */
 	public void moveHero(Unit unit, int xOffset, int yOffset) {
 
@@ -312,7 +309,7 @@ public class Map {
 	}
 
 	/**
-	 * take 0 parameter getTerraingMap method
+	 * take 0 parameter getTerrainMap method
 	 * 
 	 * @return an ArrayList of the map
 	 */
@@ -320,7 +317,7 @@ public class Map {
 		return terrainMap;
 	}
 
-	/**
+	/**a return function for the units
 	 * @return a 2D array of Units
 	 */
 	public Unit[][] getUnitMap() {
@@ -409,9 +406,9 @@ public class Map {
 	/**
 	 * finds the attack range of the unit at the given location
 	 * 
-	 * @param unit
-	 * @param unitX
-	 * @param unitY
+	 * @param unit is a Unit object parameter that is used to find its available attack range
+	 * @param unitX is the current parameter unit's x value
+	 * @param unitY is the current parameter unit's y value
 	 * @return a boolean[][] with true representing locations the unit can attack
 	 */
 	public boolean[][] findRange(Unit unit, int unitX, int unitY) {
@@ -428,10 +425,9 @@ public class Map {
 	}
 
 	/**
-	 * readMap method
+	 * this function reads the map.
 	 * 
-	 * @param mapName
-	 *            as a String
+	 * @param mapName is the String value of the text file we are trying to read
 	 * @return the map. but return null if error occurs
 	 */
 	private TerrainType[][] readMap(String mapName) {
@@ -467,11 +463,10 @@ public class Map {
 	}
 
 	/**
-	 * get Unit name method
+	 * this method returns a certain unit based on its name
 	 * 
-	 * @param unitName,
-	 *            a String value
-	 * @return Unit as an object
+	 * @param unitName is a String value of the a Unit object's name
+	 * @return a Unit object with the same name as the given parameter unitName
 	 */
 	public Unit getUnit(String unitName) {
 		for (Unit unit : unitList) {
@@ -484,8 +479,8 @@ public class Map {
 	/**
 	 * Finds all the locations which the unit can attack
 	 * 
-	 * @param unit
-	 * @return
+	 * @param unit is a Unit object parameter to find all the available attacks of
+	 * @return a boolean 2d array of the unit's parameter's valid available attack moves.
 	 */
 	public boolean[][] findAllAttacks(Unit unit) {
 		boolean[][] allAttacks = new boolean[MAXY][MAXX];
@@ -511,8 +506,8 @@ public class Map {
 	 * Finds the location that the initiator can attack the defender, prioritizing
 	 * moving the least for the initiator
 	 * 
-	 * @param initiator
-	 * @param defender
+	 * @param initiator is a Unit object who is initiating
+	 * @param defender is the Unit object who is defending against a attack by initiator.
 	 * @return Returns an int[] representing the location of the attack location
 	 *         using {x,y}
 	 */
