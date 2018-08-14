@@ -111,10 +111,32 @@ public class MapGUI extends Map {
 		root.getChildren().remove(toHide);
 	}
 
+	/**
+	 * gameEnd method tracking if the game is over
+	 * 
+	 * if the game is over AND all friendly unit is dead => display you lose if the
+	 * game is over AND all enemies unit is dead => display you win
+	 */
 	public void gameEnd() {
 
-		System.out.println(gameOver());
-		if (gameOver() == true) {
+		// System.out.println(gameOver());
+
+		boolean enemiesAllDead = true;
+		boolean friendiesAllDead = true;
+		// Iterates through the unit list, if a friendly unit is alive, then friendly
+		// units are not all dead. If an enemy unit is alive, then enemy units are not
+		// all dead
+		for (Unit unit : this.getUnitList()) {
+			unit.updateHpBar();
+			if (unit.isAlive()) {
+				if (unit.isFriendly())
+					friendiesAllDead = false;
+				else
+					enemiesAllDead = false;
+			}
+		}
+
+		if (gameOver() == true && friendiesAllDead == true) {
 
 			Label endGame = new Label();
 			endGame.setText("YOU LOSE...");
@@ -122,15 +144,12 @@ public class MapGUI extends Map {
 			endGame.setFont(Font.font("Chiller", 50));
 			this.display(endGame);
 
-//				}else if ((!unit.isFriendly() == false) && ((unit.getCurrentHP() == 0))){
-//					Label endGame = new Label();
-//					endGame.setText("YOU WIN!");
-//					endGame.setTextFill(Color.web("#42f44e"));
-//					endGame.setFont(Font.font("Berlin Sans FB Demi", 50));
-//					this.display(endGame);
-//				}
-//			}
-
+		} else if (gameOver() == true && enemiesAllDead == true) {
+			Label endGame = new Label();
+			endGame.setText("YOU WIN!");
+			endGame.setTextFill(Color.web("#42f44e"));
+			endGame.setFont(Font.font("Berlin Sans FB Demi", 50));
+			this.display(endGame);
 		}
 	}
 
