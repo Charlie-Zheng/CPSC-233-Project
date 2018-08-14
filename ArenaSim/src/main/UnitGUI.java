@@ -29,8 +29,10 @@ public final class UnitGUI {
 	}
 	
 	
+
+
 	/**
-	 * Loads the images of all the unit types, and generates the color effect for enemy or friendly units
+	 * Method does not return anything and it initializes the images to use for units
 	 */
 	public static void initializeImages() {
 		unitImages[0][0] = new Image("file:src/assets/melee_infantry.png", IMAGEWIDTH, IMAGEHEIGHT, false, true);

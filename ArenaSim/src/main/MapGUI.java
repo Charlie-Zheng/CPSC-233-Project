@@ -62,7 +62,8 @@ public class MapGUI extends Map {
 	protected void setAnimating(boolean isAnimating) {
 		this.isAnimating = isAnimating;
 	}
-
+	//creates instance variable e which is a mouse event
+	//creates a instance variable description which is a new stage.
 	public MapGUI(String filename, Group root) {
 		super(filename);
 		this.root = root;
