@@ -89,6 +89,11 @@ public class AIMove {
 		
 		
 	}
+	/**
+	 * this function determines if the AI can attack a friendly unit or not, and returns a boolean value
+	 * that dictates if it can or cannot.
+	 * @return true if attack location of x and y are equal to a movement location, else returns false
+	 */
 	public boolean isAttacking() {
 		return !(getI()==getX() && getJ() == getY());
 	}
