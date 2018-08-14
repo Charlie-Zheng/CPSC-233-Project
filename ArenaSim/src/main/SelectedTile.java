@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
+import javafx.animation.PauseTransition;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
 	private int x, y;
@@ -23,9 +25,6 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	private ArrayList<StackPane> unitStatDisplays;
 	private CombatGUI combat;
 
-	
-	
-	
 	public SelectedTile(int x, int y, MapGUI mapGUI) {
 		this.x = x;
 		this.y = y;
@@ -133,8 +132,8 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				if (AttackRange[y][x] && mapGUI.getUnitMap()[y][x] != null && !mapGUI.getUnitMap()[y][x].isFriendly()) {
 					combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
 				} else if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
-
-					new AIGUI(mapGUI,combat).computerTurn();
+					turn();
+					new AIGUI(mapGUI, combat).computerTurn();
 
 				}
 				selectingAttack = false;
@@ -143,6 +142,26 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 				// Move the unit to somewhere or remove all the colors
 				mapGUI.removeAllColorsAndText();
 			}
+		}
+	}
+
+	public void turn() {
+		PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
+		Label playerTurn = new Label("Player's Turn");
+		Label computerTurn = new Label("Computer's Turn");
+		playerTurn.setLayoutX(630);
+		playerTurn.setLayoutY(850);
+		playerTurn.setTextFill((Color.web("#ffffff")));
+		computerTurn.setLayoutX(613);
+		computerTurn.setLayoutY(850);
+		computerTurn.setTextFill((Color.web("#ffffff")));
+		computerTurn.setFont(Font.font("Forte", 30));
+
+		if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
+			mapGUI.display(computerTurn);
+			visiblePause.setOnFinished(event -> mapGUI.hide(computerTurn));
+			visiblePause.play();
+			// mapGUI.hide(computerTurn);
 		}
 	}
 
