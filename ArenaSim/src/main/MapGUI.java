@@ -246,7 +246,7 @@ public class MapGUI extends Map {
 
 	}
 /**
- * Load all the elements on the map
+ * Load all the elements on the map, terrain, unit entities, and etc
  */
 	public void loadMapGUI() {
 		terrainDisplay = new ImageView[MAXY][MAXY];
