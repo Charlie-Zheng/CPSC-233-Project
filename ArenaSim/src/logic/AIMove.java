@@ -32,7 +32,7 @@ public class AIMove {
 
 
 	
-	/**
+	/** a getter method for getting the instance variable's current unit
 	 * @return The unit to move and attack
 	 */
 	public Unit getUnit() {
@@ -41,7 +41,7 @@ public class AIMove {
 
 
 
-	/**
+	/** a getter method for getting the instance variable's current x value
 	 * @return The x coordinates of the movement location
 	 */
 	public int getX() {
@@ -50,7 +50,7 @@ public class AIMove {
 
 
 
-	/**
+	/** a getter method for getting the instance variable's current y value
 	 * @return The y coordinates of the movement location
 	 */
 	public int getY() {
@@ -59,7 +59,7 @@ public class AIMove {
 
 
 
-	/**
+	/** a getter method for getting the instance variable's current x attack value
 	 * @return The x coordinates of the attack location
 	 */
 	public int getI() {
@@ -68,7 +68,7 @@ public class AIMove {
 
 
 
-	/**
+	/**a getter method for getting the instance variable's current y attack value
 	 * @return The y coordinates of the attack location
 	 */
 	public int getJ() {
