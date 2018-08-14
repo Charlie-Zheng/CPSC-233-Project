@@ -89,8 +89,9 @@ public class Map {
 
 			}
 			fileReader.close();
-		} catch (FileNotFoundException e) { // error if Java can't find the map file
-			e.printStackTrace();
+		} catch (Exception e) { // error if Java can't find the map file
+			System.out.println(mapName.substring(0, mapName.indexOf(".")) + "_spawn.txt file is not set up correctly");
+			System.exit(1);
 		}
 
 	}
@@ -132,9 +133,10 @@ public class Map {
 
 			}
 			fileReader.close(); // close the file
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			System.out.println("friendlyHeroes.txt file is not set up correctly");
-			e.printStackTrace(); // error caught
+			System.exit(1);
+			// error caught
 		}
 
 	}
@@ -319,8 +321,6 @@ public class Map {
 	}
 
 	/**
-	 *
-	 * 
 	 * @return a 2D array of Units
 	 */
 	public Unit[][] getUnitMap() {
@@ -405,13 +405,14 @@ public class Map {
 		return availableTargets; // return true if thats the case, false otherwise
 
 	}
+
 	/**
 	 * finds the attack range of the unit at the given location
+	 * 
 	 * @param unit
 	 * @param unitX
 	 * @param unitY
-	 * @return
-	 * a boolean[][] with true representing locations the unit can attack
+	 * @return a boolean[][] with true representing locations the unit can attack
 	 */
 	public boolean[][] findRange(Unit unit, int unitX, int unitY) {
 		boolean[][] availableTargets = new boolean[MAXY][MAXX]; // cannot let the target be outside of the map
@@ -458,7 +459,8 @@ public class Map {
 			fileReader.close(); // close the file
 			return map;
 		} catch (FileNotFoundException e) { // if error occurs
-			e.printStackTrace();
+			System.out.println(mapName + " is not set up correctly");
+			System.exit(1);
 			return null;
 		}
 
@@ -478,8 +480,10 @@ public class Map {
 		}
 		return null; // else return nothing
 	}
+
 	/**
 	 * Finds all the locations which the unit can attack
+	 * 
 	 * @param unit
 	 * @return
 	 */
@@ -502,12 +506,15 @@ public class Map {
 		}
 		return allAttacks;
 	}
+
 	/**
-	 * Finds the location that the initiator can attack the defender, prioritizing moving the least for the initiator
+	 * Finds the location that the initiator can attack the defender, prioritizing
+	 * moving the least for the initiator
+	 * 
 	 * @param initiator
 	 * @param defender
-	 * @return
-	 * Returns an int[] representing the location of the attack location using {x,y}
+	 * @return Returns an int[] representing the location of the attack location
+	 *         using {x,y}
 	 */
 	public int[] findClosestAttackLocation(Unit initiator, Unit defender) {
 		int y = initiator.getY(); // get unit position of the Y-axis on the 2 dimension list
@@ -518,8 +525,7 @@ public class Map {
 
 			boolean[][] availableMoves = new boolean[MAXY][MAXX];
 			availableMoves[y][x] = true; // set value of the position to True to prepare for the loop
-			if (Math.abs(defender.getX() - x) + Math.abs(defender.getY() - y) == initiator
-					.getRange()) {
+			if (Math.abs(defender.getX() - x) + Math.abs(defender.getY() - y) == initiator.getRange()) {
 				int[] temp2 = { x, y };
 				return temp2;
 			}
@@ -575,11 +581,12 @@ public class Map {
 	}
 
 	/**
-	 * Allows all  units of the given faction to move again
+	 * Allows all units of the given faction to move again
 	 */
 	public void resetHasMoved(boolean isFriendly) {
 		/*
-		 * Go through evey unit in the list of units, if the unit is of the given faction, allow that unit to move again
+		 * Go through evey unit in the list of units, if the unit is of the given
+		 * faction, allow that unit to move again
 		 */
 
 		for (Unit unit : unitList) {

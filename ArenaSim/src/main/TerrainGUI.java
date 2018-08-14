@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 
 public final class TerrainGUI {
 	private static final double IMAGEWIDTH = 100;
@@ -16,9 +17,24 @@ public final class TerrainGUI {
 	 * Loads the terrain images
 	 */
 	public static void initializeImages() {
-		terrainImages[0] = new Image("file:src/assets/flat.jpg", IMAGEWIDTH, IMAGEHEIGHT, false, true);
-		terrainImages[1] = new Image("file:src/assets/tree.jpg", IMAGEWIDTH, IMAGEHEIGHT, false, true);
-		terrainImages[2] = new Image("file:src/assets/mountain.jpg", IMAGEWIDTH, IMAGEHEIGHT, false, true);
+		try {
+			terrainImages[0] = new Image("file:src/assets/flat.jpg", IMAGEWIDTH, IMAGEHEIGHT, false, true);
+		} catch (Exception e) {
+			terrainImages[0] = new WritableImage((int) IMAGEWIDTH, (int) IMAGEHEIGHT);
+		}
+		try {
+			terrainImages[1] = new Image("file:src/assets/tree.jpg", IMAGEWIDTH, IMAGEHEIGHT, false, true);
+		} catch (Exception e) {
+			terrainImages[1] = new WritableImage((int) IMAGEWIDTH, (int) IMAGEHEIGHT);
+		}
+		try {
+			terrainImages[2] = new Image("file:src/assets/mountain.jpg", IMAGEWIDTH, IMAGEHEIGHT, false, true);
+		} catch (Exception e) {
+			terrainImages[2] = new WritableImage((int) IMAGEWIDTH, (int) IMAGEHEIGHT);
+		}
+		
+		terrainImages[3] = new WritableImage((int) IMAGEWIDTH, (int) IMAGEHEIGHT);
+
 	}
 
 	/**
