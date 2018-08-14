@@ -147,13 +147,14 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 
 	public void turn() {
 		PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
-		Label playerTurn = new Label("Player's Turn");
+		Label playerTurn = new Label();
 		Label computerTurn = new Label();
-		computerTurn.setText("Computer's" + "\n" + "Turn");
-		playerTurn.setLayoutX(630);
+		playerTurn.setText("Player's" + "\n" + "Turn");
+		playerTurn.setLayoutX(613);
 		playerTurn.setLayoutY(850);
 		playerTurn.setTextFill((Color.web("#124e8e")));
 		playerTurn.setFont(Font.font("Ravie", 30));
+		computerTurn.setText("Computer's" + "\n" + "Turn");
 		computerTurn.setLayoutX(613);
 		computerTurn.setLayoutY(850);
 		computerTurn.setTextFill((Color.web("#124e8e")));

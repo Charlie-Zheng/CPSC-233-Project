@@ -255,6 +255,8 @@ public class MapGUI extends Map {
 	}
 	/**
 	 * {@code this function loads the map, terrains, unit entities, and etc.}
+	 * this method will be called constantly
+	 * ensured that all the unit's stats are being updated for each action
 	 */
 	public void loadMapGUI() {
 		//Assigns the values to the following instance variables.
@@ -295,16 +297,21 @@ public class MapGUI extends Map {
 		}
 		UnitGUI.initializeImages();
 		int counter = 0;
+		//loop through unit list
 		for (Unit unit : getUnitList()) {
+			
+			//get correct images for each unit
 			unitDisplay[counter] = new ImageView();
-
 			unitDisplay[counter].setImage(UnitGUI.getUnitImage(unit));
-
+			//check unit factions and apply corresponding color
 			UnitGUI.applyFactionColor(unitDisplay[counter], unit.isFriendly());
 			unitDisplay[counter].setLayoutX(unit.getX() * TerrainGUI.getImagewidth());
 			unitDisplay[counter].setLayoutY(unit.getY() * TerrainGUI.getImageheight());
 			unitDisplay[counter].setMouseTransparent(true);
+			//add images to dispaly on map
 			root.getChildren().add(unitDisplay[counter]);
+			
+			//counter +1 so, continue on the next unit in the list
 			counter++;
 
 		}
@@ -314,8 +321,11 @@ public class MapGUI extends Map {
 
 			unitStatDisplay.setLayoutX(MAXX * TerrainGUI.getImagewidth());
 			unitStatDisplay.setLayoutY(counter * unitDisplayHeight);
+			
+			//display unit stat's box
 			unitStatDisplay.setPrefSize(250, 75);
-
+			
+			//condition to color the box
 			if (unit.isFriendly()) {
 				unitStatDisplay.setStyle("-fx-background-color: #80bfff");
 			} else {
@@ -323,6 +333,7 @@ public class MapGUI extends Map {
 
 			}
 
+			//creates labels for the stat's boxes
 			Label name = new Label("Name: " + unit.getName());
 			Label hp = new Label("HP: " + unit.getCurrentHP() + "/" + unit.getBaseHP());
 			Label attack = new Label("Atk: " + unit.getAtk());
@@ -331,6 +342,8 @@ public class MapGUI extends Map {
 			Label range = new Label("Range: " + unit.getRange());
 			Label moveType = new Label("Move Type: " + unit.getMoveType());
 			ArrayList<Label> labelList = new ArrayList<Label>();
+			
+			//adding corresponded information in the labels
 			labelList.add(name);
 			labelList.add(hp);
 			labelList.add(attack);
@@ -338,12 +351,16 @@ public class MapGUI extends Map {
 			labelList.add(defense);
 			labelList.add(range);
 			labelList.add(moveType);
+			
+			//info displayed when clicked
 			String[] info = { "The name of the unit", "The unit dies if current hp drops below 1",
 					"The more attack a unit has, the more damage it deals in it's attacks",
 					"If this unit has 5 or more speed than it's oppent, this unit can attack twice",
 					"The more def a unit has, the less damage it takes when it's attacked",
 					"A unit can attack when it is this far away from its target",
 					"Different movement types can enter different terrain, and may experience penalties for entering" };
+			
+			
 			int[] yOffsets = { 15, 15, 32, 32, 49, 49, 66, };
 			int[] xOffsets = { 0, 125, 0, 125, 0, 125, 0 };
 
@@ -365,7 +382,7 @@ public class MapGUI extends Map {
 				}
 
 			}
-
+			//each stats info position
 			moveType.setPrefWidth(125);
 			unitStatDisplay.add(name, 0, 0);
 			unitStatDisplay.add(hp, 1, 0);
