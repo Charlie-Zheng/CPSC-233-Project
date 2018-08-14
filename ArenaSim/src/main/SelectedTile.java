@@ -130,8 +130,10 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			} else if (selectingAttack) {
 				boolean[][] AttackRange = mapGUI.findRange(selectedUnit);
 				if (AttackRange[y][x] && mapGUI.getUnitMap()[y][x] != null && !mapGUI.getUnitMap()[y][x].isFriendly()) {
+					//turn();
 					combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
 				} else if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
+					//The turn method is called to show the player who's turn is it between the player and AI
 					turn();
 					new AIGUI(mapGUI, combat).computerTurn();
 
@@ -145,6 +147,10 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 		}
 	}
 
+	/*This method is created to show the player a message telling them who's turn is it between the 
+	  player and the AI, in this method uses a pause transition just to pause the message for a certain 
+	  amount of time, so that user has some time to read the full message regarding the turns. This method is
+	  called from the handle method implemented in this class, when the user is about to finish with his turn.*/
 	public void turn() {
 		PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
 		Label playerTurn = new Label();
@@ -166,6 +172,13 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 			visiblePause.play();
 			// mapGUI.hide(computerTurn);
 		}
+		
+		/*else
+		{
+			mapGUI.display(playerTurn);
+			visiblePause.setOnFinished(event -> mapGUI.hide(playerTurn));
+			visiblePause.play();
+		}*/
 	}
 
 }
