@@ -148,14 +148,16 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 	public void turn() {
 		PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
 		Label playerTurn = new Label("Player's Turn");
-		Label computerTurn = new Label("Computer's Turn");
+		Label computerTurn = new Label();
+		computerTurn.setText("Computer's" + "\n" + "Turn");
 		playerTurn.setLayoutX(630);
 		playerTurn.setLayoutY(850);
-		playerTurn.setTextFill((Color.web("#ffffff")));
+		playerTurn.setTextFill((Color.web("#124e8e")));
+		playerTurn.setFont(Font.font("Ravie", 30));
 		computerTurn.setLayoutX(613);
 		computerTurn.setLayoutY(850);
-		computerTurn.setTextFill((Color.web("#ffffff")));
-		computerTurn.setFont(Font.font("Forte", 30));
+		computerTurn.setTextFill((Color.web("#124e8e")));
+		computerTurn.setFont(Font.font("Ravie", 30));
 
 		if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
 			mapGUI.display(computerTurn);
