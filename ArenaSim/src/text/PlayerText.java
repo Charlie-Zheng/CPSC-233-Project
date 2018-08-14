@@ -1,9 +1,13 @@
-package main;
+package text;
 
 /*Here we import this classes in order for the this file to operate the way it's supposed to.*/
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import logic.Combat;
+import logic.Map;
+import logic.Unit;
 
 /**
  * A static class which has all of the methods required to go through the

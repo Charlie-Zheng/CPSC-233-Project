@@ -1,7 +1,11 @@
-package main;
+package text;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import logic.AI;
+import logic.Map;
+import logic.Unit;
 
 public class GameText { // new class Game Text
 	private static Map map; // creating new object map

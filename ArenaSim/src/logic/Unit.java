@@ -1,8 +1,9 @@
-package main;
+package logic;
 
 //import javafx.scene.shape.Rectangle;
 import java.util.Arrays;//imports the java library of Arrays
 
+import gui.TerrainGUI;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

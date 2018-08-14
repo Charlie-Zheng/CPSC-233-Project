@@ -1,4 +1,4 @@
-package main;
+package gui;
 
 import java.io.OutputStream;
 import java.io.PrintStream;

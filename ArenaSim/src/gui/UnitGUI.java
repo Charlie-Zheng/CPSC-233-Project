@@ -1,4 +1,4 @@
-package main;
+package gui;
 
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import logic.Unit;
 
 public final class UnitGUI {
 	private static final double IMAGEWIDTH = 100;

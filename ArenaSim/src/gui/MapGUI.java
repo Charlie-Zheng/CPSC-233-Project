@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package gui;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -31,6 +31,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import logic.Map;
+import logic.Unit;
 import javafx.event.EventHandler;
 
 /**

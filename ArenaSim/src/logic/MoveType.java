@@ -1,4 +1,4 @@
-package main;
+package logic;
 
 /**
  * A enumeration represetning the movement types in the game, Cavalry, Armor,

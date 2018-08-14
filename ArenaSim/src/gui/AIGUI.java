@@ -1,7 +1,11 @@
 /**
  * 
  */
-package main;
+package gui;
+
+import logic.AI;
+import logic.AIMove;
+import logic.Unit;
 
 /**
  * @author charl

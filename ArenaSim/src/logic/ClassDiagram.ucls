@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="main.MoveRules" project="ArenaSim" file="/ArenaSim/src/main/MoveRules.java" 
+  <class id="1" language="java" name="logic.MoveRules" project="ArenaSim" file="/ArenaSim/src/logic/MoveRules.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="241" x="361" y="1740"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="2" language="java" name="main.MoveType" project="ArenaSim" file="/ArenaSim/src/main/MoveType.java" 
+  <enumeration id="2" language="java" name="logic.MoveType" project="ArenaSim" file="/ArenaSim/src/logic/MoveType.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="490" y="2367"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="3" language="java" name="main.MapGUI" project="ArenaSim" file="/ArenaSim/src/main/MapGUI.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="gui.MapGUI" project="ArenaSim" file="/ArenaSim/src/gui/MapGUI.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1512" y="2056"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="main.Combat" project="ArenaSim" file="/ArenaSim/src/main/Combat.java" 
+  <class id="4" language="java" name="logic.Combat" project="ArenaSim" file="/ArenaSim/src/logic/Combat.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="207" width="201" x="584" y="302"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="main.GameGUI" project="ArenaSim" file="/ArenaSim/src/main/GameGUI.java" 
+  <class id="5" language="java" name="gui.GameGUI" project="ArenaSim" file="/ArenaSim/src/gui/GameGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="351" width="113" x="1480" y="742"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="main.Map" project="ArenaSim" file="/ArenaSim/src/main/Map.java" binary="false" 
+  <class id="6" language="java" name="logic.Map" project="ArenaSim" file="/ArenaSim/src/logic/Map.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="567" width="234" x="747" y="1133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="main.UnitGUI" project="ArenaSim" file="/ArenaSim/src/main/UnitGUI.java" 
+  <class id="7" language="java" name="gui.UnitGUI" project="ArenaSim" file="/ArenaSim/src/gui/UnitGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="202" y="842"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="8" language="java" name="main.TerrainType" project="ArenaSim" 
-    file="/ArenaSim/src/main/TerrainType.java" binary="false" corner="BOTTOM_RIGHT">    
+  <enumeration id="8" language="java" name="logic.TerrainType" project="ArenaSim" 
+    file="/ArenaSim/src/logic/TerrainType.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="195" y="2395"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="main.AIGUI" project="ArenaSim" file="/ArenaSim/src/main/AIGUI.java" binary="false" 
+  <class id="9" language="java" name="gui.AIGUI" project="ArenaSim" file="/ArenaSim/src/gui/AIGUI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="117" width="155" x="747" y="742"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="main.HighlightTile" project="ArenaSim" 
-    file="/ArenaSim/src/main/HighlightTile.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="gui.HighlightTile" project="ArenaSim" file="/ArenaSim/src/gui/HighlightTile.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="207" width="356" x="1021" y="1133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="main.CombatGUI" project="ArenaSim" file="/ArenaSim/src/main/CombatGUI.java" 
+  <class id="11" language="java" name="gui.CombatGUI" project="ArenaSim" file="/ArenaSim/src/gui/CombatGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="192" x="747" y="549"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,8 +100,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="main.Unit" project="ArenaSim" file="/ArenaSim/src/main/Unit.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="12" language="java" name="logic.Unit" project="ArenaSim" file="/ArenaSim/src/logic/Unit.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="852" y="2234"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -109,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="main.AIMove" project="ArenaSim" file="/ArenaSim/src/main/AIMove.java" 
+  <class id="13" language="java" name="logic.AIMove" project="ArenaSim" file="/ArenaSim/src/logic/AIMove.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="279" width="144" x="521" y="1133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="main.AI" project="ArenaSim" file="/ArenaSim/src/main/AI.java" binary="false" 
+  <class id="14" language="java" name="logic.AI" project="ArenaSim" file="/ArenaSim/src/logic/AI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="225" width="224" x="460" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -127,7 +127,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="main.PlayerText" project="ArenaSim" file="/ArenaSim/src/main/PlayerText.java" 
+  <class id="15" language="java" name="text.PlayerText" project="ArenaSim" file="/ArenaSim/src/text/PlayerText.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="149" x="960" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -136,7 +136,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="main.SelectedTile" project="ArenaSim" file="/ArenaSim/src/main/SelectedTile.java" 
+  <class id="16" language="java" name="gui.SelectedTile" project="ArenaSim" file="/ArenaSim/src/gui/SelectedTile.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="207" width="216" x="1440" y="302"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -145,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="main.TerrainGUI" project="ArenaSim" file="/ArenaSim/src/main/TerrainGUI.java" 
+  <class id="17" language="java" name="gui.TerrainGUI" project="ArenaSim" file="/ArenaSim/src/gui/TerrainGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1445" y="2450"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,8 +154,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="main.TextStreamGUI" project="ArenaSim" 
-    file="/ArenaSim/src/main/TextStreamGUI.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="18" language="java" name="gui.TextStreamGUI" project="ArenaSim" file="/ArenaSim/src/gui/TextStreamGUI.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="218" x="122" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -163,8 +163,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="main.StatInfoDisplay" project="ArenaSim" 
-    file="/ArenaSim/src/main/StatInfoDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="19" language="java" name="gui.StatInfoDisplay" project="ArenaSim" 
+    file="/ArenaSim/src/gui/StatInfoDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="172" x="1480" y="1133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

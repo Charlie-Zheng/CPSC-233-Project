@@ -1,4 +1,4 @@
-package main;
+package gui;
 
 import java.util.ArrayList;
 
@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import logic.Unit;
 
 public class SelectedTile implements EventHandler<MouseEvent> {
 	private int x, y;

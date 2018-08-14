@@ -1,11 +1,8 @@
-package main;
+package logic;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
-
-//import sun.security.provider.DSAPublicKeyImpl;
 
 /**
  * A static class which has all of the methods required to go through the

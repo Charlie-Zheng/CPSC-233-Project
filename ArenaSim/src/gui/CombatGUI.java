@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package gui;
 
 import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
@@ -11,6 +11,8 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
+import logic.Combat;
+import logic.Unit;
 
 /**
  * @author charl

@@ -1,7 +1,8 @@
-package main;
+package gui;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import logic.TerrainType;
 
 public final class TerrainGUI {
 	private static final double IMAGEWIDTH = 100;

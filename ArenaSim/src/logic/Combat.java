@@ -1,4 +1,4 @@
-package main;
+package logic;
 
 /**
  * Creates a Class called Combat that determines a battle between 2 units on

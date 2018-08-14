@@ -1,4 +1,4 @@
-package main;
+package logic;
 
 public enum TerrainType {										//enumeration defining the collection of Terrain type
 	FLAT, TREE, MOUNTAIN, WALL;									//4 types of terrain

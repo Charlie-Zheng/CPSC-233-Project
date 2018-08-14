@@ -1,6 +1,7 @@
-package main;
+package gui;
 
 import javafx.scene.paint.Color;
+import logic.Unit;
 
 import java.util.ArrayList;
 

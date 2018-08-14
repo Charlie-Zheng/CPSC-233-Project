@@ -1,4 +1,4 @@
-package main;
+package logic;
 
 public class AIMove {
 	// Instance variables that the AIMove encapsulates

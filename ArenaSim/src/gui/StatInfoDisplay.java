@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package gui;
 
 import java.util.ArrayList;
 

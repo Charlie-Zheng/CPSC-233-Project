@@ -1,4 +1,4 @@
-package main;
+package gui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -32,6 +32,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import logic.Map;
 
 public class GameGUI extends Application {
 
