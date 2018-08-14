@@ -71,25 +71,34 @@ public class GameGUI extends Application {
 
 		GridPane grid = new GridPane();
 		grid.setPadding(new Insets(10, 10, 10, 10));
+		
+		//set ID so we can access properties in css style file
 		grid.setId("pane");
-
+		
+		//grid settings
 		grid.setVgap(8);
 		grid.setHgap(10);
-
+		
+		
+		//Main menu label
 		Label label1 = new Label();
 		label1.setText("ARENA SIMULATOR V.1.01 ALPHA");
 		label1.setTextFill(Color.web("#0076a3"));
 		label1.setFont(Font.font("Berlin Sans FB", 18));
 
 		GridPane.setConstraints(label1, 25, 0);
-
+		
+		//back buttons
 		Button backButton = new Button();
 		backButton.setText("Back");
 		backButton.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
 		mapGUI.display(backButton);
-
+		
+		//mouse action event
 		backButton.setOnAction(e -> primaryStage.setScene(scene1));
 
+		
+		//play new game
 		Button button1 = new Button();
 		button1.setText("NEW GAME");
 		button1.setFont(Font.font("Kristen ITC", 25));

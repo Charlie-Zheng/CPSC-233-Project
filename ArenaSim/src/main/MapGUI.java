@@ -136,19 +136,27 @@ public class MapGUI extends Map {
 					enemiesAllDead = false;
 			}
 		}
-
+		
+		//if the game is over and friendly units all dead
+		
 		if (gameOver() == true && friendiesAllDead == true) {
-
+			
+			//new label
 			Label endGame = new Label();
+			
+			//label properties
 			endGame.setText("YOU LOSE...");
 			endGame.setTextFill(Color.web("#d10826"));
 			endGame.setLayoutX(150);
 			endGame.setLayoutY(350);
 			endGame.setFont(Font.font("Chiller", 100));
+			//display on map GUI
 			this.display(endGame);
-
+		
+		//if the game is over and enemies units all dead
 		} else if (gameOver() == true && enemiesAllDead == true) {
 			Label endGame = new Label();
+			//label properties
 			endGame.setText("YOU WIN!");
 			endGame.setTextFill(Color.web("#42f44e"));
 			endGame.setLayoutX(150);
