@@ -13,7 +13,7 @@ public class AI {
 	private Combat combat = new Combat();
 
 	/**
-	 * @param map2
+	 * @param inputMap assigns what map the AI would play on
 	 */
 	public AI(Map inputMap) {
 		// TODO Auto-generated constructor stub
@@ -136,12 +136,12 @@ public class AI {
 	 * the unit that the AI unit wants to attack, for the given AI unit at the given
 	 * location
 	 * 
-	 * @param unit
+	 * @param unit the Unit object that will move
 	 * @param y
 	 *            y coordinate to find the distance from
 	 * @param x
 	 *            x coordinate to find the distance from
-	 * @return
+	 * @return the estimated amount turns for the AI unit to attack the desired target
 	 */
 	private int distanceToTarget(Unit unit, int y, int x) {
 		// target is the unit that will take the most damage
@@ -198,8 +198,9 @@ public class AI {
 	 * Finds the distance to the target unit, the unit that the AI wants to attack,
 	 * for the given move represented by AIMove
 	 * 
-	 * @param move
-	 * @return
+	 * @param move is a AIMove object which determines where the AI moves
+	 * @return the estimated amount of turns that it would take for the current unit to
+	 * attack its desired target
 	 */
 	private int distanceToTarget(AIMove move) {
 		return distanceToTarget(move.getUnit(), move.getY(), move.getX());
