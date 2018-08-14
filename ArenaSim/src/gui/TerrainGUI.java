@@ -5,11 +5,14 @@ import javafx.scene.image.WritableImage;
 import logic.TerrainType;
 
 public final class TerrainGUI {
+	//initializes the following class constants
 	private static final double IMAGEWIDTH = 100;
 	private static final double IMAGEHEIGHT = 100;
-
+	//initializes the following image array instance variable terrainImages
 	private static Image[] terrainImages = new Image[4];
-
+	/**
+	 * default constructor for TerrainGUI
+	 */
 	private TerrainGUI() {
 
 	}
@@ -41,17 +44,23 @@ public final class TerrainGUI {
 	/**
 	 * Returns the image of the given terrain
 	 * 
-	 * @param terrain
-	 * @return
+	 * @param terrain is a TerrainType object that you want to get the image of
+	 * @return returns a image from the terrainImages array based on the parameter terrain
 	 */
 	public static Image getImage(TerrainType terrain) {
 		return terrainImages[terrain.ordinal()];
 	}
-
+	/**
+	 * this function returns the value of what the constant IMAGEWIDTH is
+	 * @return the the class constant double value of IMAGEWIDTH
+	 */
 	public static double getImagewidth() {
 		return IMAGEWIDTH;
 	}
-
+	/**
+	 * this function returns the value of what the constant IMAGEHEIGHT is
+	 * @return the the class constant double value of IMAGEHEIGHT
+	 */
 	public static double getImageheight() {
 		return IMAGEHEIGHT;
 	}

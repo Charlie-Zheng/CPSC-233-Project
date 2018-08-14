@@ -1,5 +1,5 @@
 package gui;
-
+//imports the following java libraries
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -10,20 +10,29 @@ import javafx.scene.shape.Rectangle;
 import logic.Unit;
 
 public final class UnitGUI {
+	//initializes and creates the following instance variables/constants
 	private static final double IMAGEWIDTH = 100;
 	private static final double IMAGEHEIGHT = 100;
 	private static Image[][] unitImages = new Image[2][4];
 	private static DropShadow enemyEffect;
 	private static DropShadow friendlyEffect;
-
+	/**
+	 * This function gets what the value of IMAGEWIDTH class constant
+	 * @return the class constant double value IMAGEWIDTH
+	 */
 	public static double getImagewidth() {
 		return IMAGEWIDTH;
 	}
-
+	/**
+	 * {@code This function gets what the value of IMAGEHEIGHT class constant}
+	 * @return the class constant double value IMAGEHEIGHT
+	 */
 	public static double getImageheight() {
 		return IMAGEHEIGHT;
 	}
-
+	/**
+	 * default constructor for the UnitGUI class
+	 */
 	private UnitGUI() {
 
 	}
@@ -73,6 +82,8 @@ public final class UnitGUI {
 		} catch (Exception e) {
 			unitImages[1][3] = new WritableImage((int) IMAGEWIDTH, (int) IMAGEHEIGHT);
 		}
+		//assigns the dropShadow values to the following instance variables, 
+		//for indicating which side the unit is on (blue for player's, red for enemies)
 		friendlyEffect = new DropShadow(20, Color.CORNFLOWERBLUE);
 		enemyEffect = new DropShadow(20, Color.RED);
 	}
@@ -80,8 +91,8 @@ public final class UnitGUI {
 	/**
 	 * Adds the faction color (red for enemy, blue for friendly) to the image
 	 * 
-	 * @param unitImage
-	 * @param isFriendly
+	 * @param unitImage is the image you want to apply the faction color to
+	 * @param isFriendly is a boolean value to determine what faction color the unit would have
 	 */
 	public static void applyFactionColor(ImageView unitImage, boolean isFriendly) {
 		if (isFriendly)
@@ -93,8 +104,8 @@ public final class UnitGUI {
 	/**
 	 * Returns the image that represents the given unit
 	 * 
-	 * @param unit
-	 * @return
+	 * @param unit is a Unit object which you want to get the image from
+	 * @return the image for the following parameter unit
 	 */
 	public static Image getUnitImage(Unit unit) {
 		int rangeIndex = unit.getRange() - 1;

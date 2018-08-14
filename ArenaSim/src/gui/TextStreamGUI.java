@@ -17,7 +17,7 @@ public class TextStreamGUI extends PrintStream {
 	/**
 	 * constructor takes in TextArea of area from GameGUI which is a pre-made TextArea
 	 * @param area a pre-made TextArea from GameGUI.java
-	 * @param out
+	 * @param out is the outputStream for writing output
 	 */
 	public TextStreamGUI(TextArea area, OutputStream out) {
 		super(out); //calls super constructor 
