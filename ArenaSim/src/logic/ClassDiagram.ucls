@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="logic.MoveRules" project="ArenaSim" file="/ArenaSim/src/logic/MoveRules.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="241" x="361" y="1740"/>    
+    <position height="135" width="241" x="1037" y="2118"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <enumeration id="2" language="java" name="logic.MoveType" project="ArenaSim" file="/ArenaSim/src/logic/MoveType.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="490" y="2367"/>    
+    <position height="189" width="178" x="889" y="3782"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </enumeration>  
   <class id="3" language="java" name="gui.MapGUI" project="ArenaSim" file="/ArenaSim/src/gui/MapGUI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1512" y="2056"/>    
+    <position height="513" width="209" x="546" y="2118"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="logic.Combat" project="ArenaSim" file="/ArenaSim/src/logic/Combat.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="201" x="584" y="302"/>    
+    <position height="207" width="201" x="1360" y="338"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="gui.GameGUI" project="ArenaSim" file="/ArenaSim/src/gui/GameGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="113" x="1480" y="742"/>    
+    <position height="387" width="113" x="338" y="1030"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="logic.Map" project="ArenaSim" file="/ArenaSim/src/logic/Map.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="567" width="234" x="747" y="1133"/>    
+    <position height="621" width="234" x="818" y="1457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="gui.UnitGUI" project="ArenaSim" file="/ArenaSim/src/gui/UnitGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="202" y="842"/>    
+    <position height="261" width="237" x="248" y="2118"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <enumeration id="8" language="java" name="logic.TerrainType" project="ArenaSim" 
     file="/ArenaSim/src/logic/TerrainType.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="195" y="2395"/>    
+    <position height="171" width="140" x="778" y="4029"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </enumeration>  
   <class id="9" language="java" name="gui.AIGUI" project="ArenaSim" file="/ArenaSim/src/gui/AIGUI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="117" width="155" x="747" y="742"/>    
+    <position height="153" width="155" x="1085" y="1030"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="gui.HighlightTile" project="ArenaSim" file="/ArenaSim/src/gui/HighlightTile.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="356" x="1021" y="1133"/>    
+    <position height="225" width="356" x="380" y="1457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="gui.CombatGUI" project="ArenaSim" file="/ArenaSim/src/gui/CombatGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="192" x="747" y="549"/>    
+    <position height="189" width="192" x="1065" y="639"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="logic.Unit" project="ArenaSim" file="/ArenaSim/src/logic/Unit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="852" y="2234"/>    
+    <position height="765" width="207" x="818" y="2671"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="logic.AIMove" project="ArenaSim" file="/ArenaSim/src/logic/AIMove.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="279" width="144" x="521" y="1133"/>    
+    <position height="297" width="144" x="1113" y="1457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="logic.AI" project="ArenaSim" file="/ArenaSim/src/logic/AI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="225" width="224" x="460" y="37"/>    
+    <position height="261" width="224" x="1278" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="text.PlayerText" project="ArenaSim" file="/ArenaSim/src/text/PlayerText.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="149" x="960" y="37"/>    
+    <position height="153" width="149" x="1553" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="gui.SelectedTile" project="ArenaSim" file="/ArenaSim/src/gui/SelectedTile.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="216" x="1440" y="302"/>    
+    <position height="261" width="216" x="298" y="338"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="gui.TerrainGUI" project="ArenaSim" file="/ArenaSim/src/gui/TerrainGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1445" y="2450"/>    
+    <position height="207" width="164" x="546" y="3782"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="gui.TextStreamGUI" project="ArenaSim" file="/ArenaSim/src/gui/TextStreamGUI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="218" x="122" y="37"/>    
+    <position height="153" width="218" x="1465" y="3782"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,349 +165,458 @@
   </class>  
   <class id="19" language="java" name="gui.StatInfoDisplay" project="ArenaSim" 
     file="/ArenaSim/src/gui/StatInfoDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="172" x="1480" y="1133"/>    
+    <position height="171" width="172" x="84" y="1457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="20">    
-    <bendpoint x="511" y="302"/>    
-    <bendpoint x="511" y="549"/>    
-    <bendpoint x="532" y="742"/>    
+  <class id="20" language="java" name="java.io.PrintStream" project="CPSC 233 Tutorial" 
+    file="C:/Program Files/Java/jdk1.8.0_66/jre/lib/rt.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="1071" width="237" x="1465" y="2671"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="21" language="java" name="javafx.event.EventHandler" project="ArenaSim" 
+    file="C:/Program Files/Java/jdk1.8.0_66/jre/lib/ext/jfxrt.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="81" width="120" x="67" y="2118"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="22" language="java" name="javafx.application.Application" project="ArenaSim" 
+    file="C:/Program Files/Java/jdk1.8.0_66/jre/lib/ext/jfxrt.jar" binary="true" corner="BOTTOM_RIGHT">    
+    <position height="351" width="229" x="338" y="639"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="23">    
+    <bendpoint x="806" y="338"/>    
+    <bendpoint x="806" y="639"/>    
+    <bendpoint x="806" y="1030"/>    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="21" name="map"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
+      <attribute id="24" name="map"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="24">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="25" name="combatGUI"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <dependency id="26">    
+    <bendpoint x="1612" y="338"/>    
+    <bendpoint x="1532" y="639"/>    
+    <bendpoint x="1453" y="1030"/>    
+    <bendpoint x="1413" y="1457"/>    
+    <bendpoint x="1371" y="2118"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
   <dependency id="27">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="13"/>  
+    <bendpoint x="992" y="338"/>    
+    <bendpoint x="1002" y="639"/>    
+    <bendpoint x="1013" y="1030"/>    
+    <bendpoint x="1082" y="1457"/>    
+    <bendpoint x="964" y="2118"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
   </dependency>  
   <dependency id="28">    
-    <bendpoint x="1745" y="302"/>    
-    <bendpoint x="1745" y="549"/>    
-    <bendpoint x="1745" y="742"/>    
-    <bendpoint x="1745" y="1133"/>    
-    <bendpoint x="1745" y="1740"/>    
-    <end type="SOURCE" refId="15"/>    
+    <bendpoint x="1287" y="1457"/>    
+    <bendpoint x="1006" y="2118"/>    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
   <dependency id="29">    
-    <bendpoint x="469" y="302"/>    
-    <bendpoint x="469" y="549"/>    
-    <bendpoint x="469" y="742"/>    
-    <bendpoint x="469" y="1133"/>    
-    <bendpoint x="632" y="1740"/>    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="30">    
-    <bendpoint x="716" y="1133"/>    
-    <bendpoint x="716" y="1740"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="31">    
-    <bendpoint x="1007" y="1740"/>    
+    <bendpoint x="785" y="2118"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <dependency id="32">    
+  <dependency id="30">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="33">    
+  <dependency id="31">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="34">    
-    <bendpoint x="1428" y="2293"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="17"/>  
+  <dependency id="32">    
+    <bendpoint x="1350" y="1030"/>    
+    <bendpoint x="1392" y="1457"/>    
+    <bendpoint x="1413" y="2118"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="20"/>  
   </dependency>  
-  <dependency id="35">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="36">    
-    <bendpoint x="1449" y="1133"/>    
+  <association id="33">    
+    <bendpoint x="328" y="1457"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="37" name="mapGUI"/>      
-      <multiplicity id="38" minimum="0" maximum="1"/>    
+      <attribute id="34" name="mapGUI"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="39">    
-    <bendpoint x="779" y="1740"/>    
+  <association id="36">    
+    <bendpoint x="827" y="2118"/>    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="40" name="unitMap"/>      
-      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
+      <attribute id="37" name="unitMap"/>      
+      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="42">    
-    <bendpoint x="370" y="2293"/>    
+  <dependency id="39">    
+    <bendpoint x="1633" y="338"/>    
+    <bendpoint x="1633" y="639"/>    
+    <bendpoint x="1633" y="1030"/>    
+    <bendpoint x="1633" y="1457"/>    
+    <bendpoint x="1633" y="2118"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <dependency id="41">    
+    <bendpoint x="1097" y="2671"/>    
+    <bendpoint x="1097" y="3782"/>    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <association id="43">    
-    <bendpoint x="1428" y="742"/>    
-    <bendpoint x="1428" y="1133"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="44" name="mapGUI"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="46">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="12"/>  
+  <realization id="42">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <realization id="43">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="20"/>  
   </dependency>  
-  <association id="47">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="48" name="mapGUI"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="50">    
-    <bendpoint x="1682" y="549"/>    
-    <bendpoint x="1682" y="742"/>    
-    <bendpoint x="1682" y="1133"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="51" name="mapGUI"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="53">    
-    <bendpoint x="695" y="742"/>    
-    <bendpoint x="695" y="1133"/>    
-    <bendpoint x="695" y="1740"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <association id="54">    
-    <bendpoint x="1407" y="1133"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="55" name="mapGUI"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="58" name="terrainMap"/>      
-      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="61" name="ai"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="63">    
-    <bendpoint x="1102" y="549"/>    
+  <dependency id="45">    
+    <bendpoint x="893" y="639"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="9"/>  
   </dependency>  
-  <generalization id="64">    
+  <generalization id="46">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
-  <dependency id="65">    
-    <bendpoint x="1661" y="742"/>    
-    <bendpoint x="1703" y="1133"/>    
-    <bendpoint x="1766" y="1740"/>    
-    <bendpoint x="1766" y="2293"/>    
+  <dependency id="47">    
+    <bendpoint x="848" y="1030"/>    
+    <bendpoint x="349" y="1457"/>    
+    <bendpoint x="217" y="2118"/>    
+    <bendpoint x="217" y="2671"/>    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="17"/>  
   </dependency>  
-  <dependency id="66">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="67">    
-    <bendpoint x="252" y="2293"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="68">    
+  <association id="48">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="69" name="combat"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
+      <attribute id="49" name="combat"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="71">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="72" name="mapGUI"/>      
-      <multiplicity id="73" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="74">    
-    <bendpoint x="1449" y="549"/>    
-    <bendpoint x="1449" y="742"/>    
+  <dependency id="51">    
+    <bendpoint x="597" y="639"/>    
+    <bendpoint x="597" y="1030"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="75">    
+  <dependency id="52">    
+    <bendpoint x="32" y="338"/>    
+    <bendpoint x="32" y="639"/>    
+    <bendpoint x="32" y="1030"/>    
+    <bendpoint x="32" y="1457"/>    
+    <bendpoint x="32" y="2118"/>    
+    <bendpoint x="32" y="2671"/>    
+    <bendpoint x="32" y="3782"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="76">    
-    <bendpoint x="419" y="302"/>    
-    <bendpoint x="419" y="549"/>    
-    <bendpoint x="419" y="742"/>    
-    <bendpoint x="419" y="1133"/>    
+  <dependency id="53">    
+    <bendpoint x="1308" y="338"/>    
+    <bendpoint x="1308" y="639"/>    
+    <bendpoint x="1308" y="1030"/>    
+    <bendpoint x="1308" y="1457"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="77">    
+  <dependency id="54">    
+    <bendpoint x="1474" y="639"/>    
+    <bendpoint x="1474" y="1030"/>    
+    <bendpoint x="1474" y="1457"/>    
+    <bendpoint x="1474" y="2118"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="55">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <association id="78">    
-    <bendpoint x="674" y="1740"/>    
+  <association id="56">    
+    <bendpoint x="985" y="2118"/>    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="79" name="unit"/>      
-      <multiplicity id="80" minimum="0" maximum="1"/>    
+      <attribute id="57" name="unit"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="81">    
+  <dependency id="59">    
+    <bendpoint x="1308" y="2118"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <association id="60">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="82" name="map"/>      
-      <multiplicity id="83" minimum="0" maximum="1"/>    
+      <attribute id="61" name="map"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="84">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="17"/>  
-  </dependency>  
-  <dependency id="85">    
-    <bendpoint x="532" y="549"/>    
-    <bendpoint x="511" y="742"/>    
-    <bendpoint x="490" y="1133"/>    
-    <bendpoint x="653" y="1740"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <association id="86">    
-    <bendpoint x="1724" y="549"/>    
-    <bendpoint x="1724" y="742"/>    
-    <bendpoint x="1724" y="1133"/>    
-    <bendpoint x="1724" y="1740"/>    
+  <generalization id="63">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="22"/>  
+  </generalization>  
+  <association id="64">    
+    <bendpoint x="286" y="639"/>    
+    <bendpoint x="286" y="1030"/>    
+    <bendpoint x="286" y="1457"/>    
+    <bendpoint x="515" y="2118"/>    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="87" name="selectedUnit"/>      
-      <multiplicity id="88" minimum="0" maximum="1"/>    
+      <attribute id="65" name="selectedUnit"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="89">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="90" name="moveType"/>      
-      <multiplicity id="91" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="92">    
-    <bendpoint x="53" y="302"/>    
-    <bendpoint x="53" y="549"/>    
-    <bendpoint x="53" y="742"/>    
-    <bendpoint x="53" y="1133"/>    
-    <bendpoint x="53" y="1740"/>    
-    <bendpoint x="53" y="2293"/>    
+  <dependency id="67">    
+    <bendpoint x="1329" y="338"/>    
+    <bendpoint x="1350" y="639"/>    
+    <bendpoint x="1392" y="1030"/>    
+    <bendpoint x="1434" y="1457"/>    
+    <bendpoint x="1434" y="2118"/>    
+    <bendpoint x="1434" y="2671"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <association id="93">    
-    <bendpoint x="969" y="302"/>    
-    <bendpoint x="969" y="549"/>    
-    <bendpoint x="969" y="742"/>    
+  <association id="68">    
+    <bendpoint x="1013" y="338"/>    
+    <bendpoint x="872" y="639"/>    
+    <bendpoint x="827" y="1030"/>    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="94" name="map"/>      
-      <multiplicity id="95" minimum="0" maximum="1"/>    
+      <attribute id="69" name="map"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="96">    
-    <bendpoint x="553" y="549"/>    
-    <bendpoint x="553" y="302"/>    
+  <generalization id="71">    
+    <bendpoint x="1287" y="639"/>    
+    <bendpoint x="1287" y="338"/>    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="14"/>  
   </generalization>  
-  <dependency id="97">    
-    <bendpoint x="490" y="302"/>    
-    <bendpoint x="490" y="549"/>    
-    <bendpoint x="490" y="742"/>    
+  <dependency id="72">    
+    <bendpoint x="1350" y="1457"/>    
+    <bendpoint x="1392" y="2118"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="73">    
+    <bendpoint x="1034" y="338"/>    
+    <bendpoint x="1034" y="639"/>    
+    <bendpoint x="1034" y="1030"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="13"/>  
   </dependency>  
-  <association id="98">    
-    <bendpoint x="758" y="1740"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="99" name="unitList"/>      
-      <multiplicity id="100" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="101">    
-    <bendpoint x="391" y="2293"/>    
+  <dependency id="74">    
+    <bendpoint x="1076" y="2671"/>    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <dependency id="102">    
-    <bendpoint x="737" y="1740"/>    
-    <bendpoint x="718" y="2293"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="103">    
+  <association id="75">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="104" name="combat"/>      
-      <multiplicity id="105" minimum="0" maximum="1"/>    
+      <attribute id="76" name="combat"/>      
+      <multiplicity id="77" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="79">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="80" name="combatGUI"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="82">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="83">    
+    <bendpoint x="1591" y="338"/>    
+    <bendpoint x="1591" y="639"/>    
+    <bendpoint x="1591" y="1030"/>    
+    <bendpoint x="1591" y="1457"/>    
+    <bendpoint x="1591" y="2118"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="84">    
+    <bendpoint x="555" y="2671"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="85">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="86">    
+    <bendpoint x="869" y="1030"/>    
+    <bendpoint x="766" y="1457"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="87" name="mapGUI"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="90">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="91" name="mapGUI"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <bendpoint x="307" y="639"/>    
+    <bendpoint x="307" y="1030"/>    
+    <bendpoint x="307" y="1457"/>    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="94" name="mapGUI"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="96">    
+    <bendpoint x="1287" y="1030"/>    
+    <bendpoint x="1329" y="1457"/>    
+    <bendpoint x="1329" y="2118"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="97">    
+    <bendpoint x="787" y="1457"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="98" name="mapGUI"/>      
+      <multiplicity id="99" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <bendpoint x="806" y="2118"/>    
+    <bendpoint x="787" y="2671"/>    
+    <bendpoint x="787" y="3782"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="101" name="terrainMap"/>      
+      <multiplicity id="102" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="104" name="ai"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="107">    
+    <bendpoint x="534" y="2671"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="108">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="109" name="mapGUI"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="111">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="112">    
+    <bendpoint x="1371" y="639"/>    
+    <bendpoint x="1371" y="1030"/>    
+    <bendpoint x="1371" y="1457"/>    
+    <bendpoint x="1350" y="2118"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="113">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="114" name="moveType"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <bendpoint x="848" y="2118"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="117" name="unitList"/>      
+      <multiplicity id="118" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="119">    
+    <bendpoint x="53" y="639"/>    
+    <bendpoint x="53" y="1030"/>    
+    <bendpoint x="53" y="1457"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="21"/>  
+  </realization>  
+  <dependency id="120">    
+    <bendpoint x="943" y="2118"/>    
+    <bendpoint x="1055" y="2671"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
