@@ -61,7 +61,7 @@ public class CombatGUI extends Combat {
 
 		if (applyCombat) {
 			addAttackAnimation(initiator, defender);
-			
+			System.out.println(initiator.getName() + " attacks " + defender.getName() + " for " + damage);
 			if (defender.getCurrentHP() <= 0) {
 				System.out.println(defender.getName() + " has been defeated");
 			}
