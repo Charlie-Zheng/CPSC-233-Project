@@ -15,6 +15,7 @@ public class Unit {
 	/*-Initializes a integer array called baseStats which determines the basic attributes of the current unit,
 	 * 1st Int = Health Points, 2nd Int = Attack Points, 3rd Int =Speed Points, 4th Int = Defense Points. 
 	 * -Creates a integer variable called currentHP, which is used to register the currentHP value.
+	 * -Creates a Rectangle variable called hpBar, used to assign the hpBar and update it according to its HP value
 	 * -Creates a integer variable called range, which is used for determining the range of how far the 
 	 *  current unit is able to attack.
 	 * -Creates a MoveType class variable called moveType, used to determine how far the unit can move.
@@ -30,11 +31,12 @@ public class Unit {
 	private MoveType moveType;
 	private boolean isFriendly;
 	private boolean hasMoved;
-	private double RectSize=0;
 	private int x = 0;
 	private int y = 0;
-	private String name = "";// Initializes the String variable name to be empty, used to register the Unit's
-	// name.
+	// Initializes the String variable name to be empty, used to register the Unit's name.
+	private String name = "";
+	// Initializes the double variable RectWidth, used to register the hpBar rectangle's width value
+	private double RectWidth=0;
 
 	/**
 	 * Copy constructor for the Unit Class that takes a Unit class object as a
@@ -75,16 +77,27 @@ public class Unit {
 		this.name = unit.name;
 		this.hpBar = unit.hpBar;
 	}
-
+	/**
+	 * {@code assigns a hpBar to the current unit object}
+	 * @param hpBar is a Rectangle object which is the current unit's hpBar.
+	 */
 	public void setHpBar(Rectangle hpBar) {
+		//assigns the instance variable hpBar to reference the Rectangle parameter hpBar
+		//assigns the instance variable RectWidth, to be the width of the referenced hpBar value
 		this.hpBar = hpBar;
-		this.RectSize=hpBar.getWidth();
+		this.RectWidth=hpBar.getWidth();
 	}
-
+	/**
+	 * {@code this function updates the hpBar of the current unit object and its location,
+	 * every time the unit moves or takes damage, and dies.}
+	 */
 	public void updateHpBar() {
+		//sets the x and y value of the hpBar rectangle to be the location of the current unit
+		//updates the width to be the possible damage that the unit has taken
 		hpBar.setX(this.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
 		hpBar.setY(this.getY() * TerrainGUI.getImagewidth());
-		hpBar.setWidth(this.RectSize-(this.getBaseHP()-this.currentHP));
+		hpBar.setWidth(this.RectWidth-(this.getBaseHP()-this.currentHP));
+		//if the unit is not alive, it sets the hpBar's opacity to 0 to make it disappear
 		if(!this.isAlive()) {
 			this.hpBar.setOpacity(0.0);
 		}
@@ -412,7 +425,10 @@ public class Unit {
 				+ "  Atk: " + getAtk() + "  Spd: " + getSpd() + "  Def: " + getDef() + "  Range: " + range
 				+ "  Move Type: " + moveType;
 	}
-
+	/**
+	 * {@code determiens if the unit is alive or not}
+	 * @return True for if its currentHP integer value is greater than 0, else returns False.
+	 */
 	public boolean isAlive() {
 		return currentHP > 0;
 	}
