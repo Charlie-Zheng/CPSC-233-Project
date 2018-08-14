@@ -61,7 +61,6 @@ public class GameGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		window = primaryStage;
-		// System.out.println(javafx.scene.text.Font.getFamilies());
 		boolean gameOver = false;
 
 		root = new Group();
