@@ -213,7 +213,7 @@ public class MapGUI extends Map {
 	 */
 	@Override
 	public void updateUnitsOnMap() {
-
+		super.updateUnitsOnMap();
 		for (int x = 0; x < unitDisplay.length; x++) {
 			unitDisplay[x].setVisible(false);
 			GridPane display = unitStatDisplays.get(x);
