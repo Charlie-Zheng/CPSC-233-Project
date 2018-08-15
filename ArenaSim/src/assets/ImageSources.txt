@@ -1,3 +1,5 @@
 Unit images sourced from Fire Emblem Wikia, and are images of unit sprites in Fire Emblem Heroes
 
 flat.jpg sourced from https://www.deviantart.com/hhh316/art/Seamless-ground-texture-183190001
+tree.jpg sourced from https://www.deviantart.com/schwarzenacht/art/PandaMaru-MV-nature1-578144379
+mountain.jpg sourced from https://opengameart.org/content/worldmapoverworld-tileset
