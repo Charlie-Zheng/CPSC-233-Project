@@ -99,8 +99,11 @@ public class PlayerText {
 			map.displayMap();
 			System.out.print("Please select a friendly unit by entering its name: ");
 			selectedUnit = GameText.unitNameInput();
-			while (!selectedUnit.isFriendly()) {
-				System.out.println("That is not a friendly unit");
+			while (!selectedUnit.isFriendly() || selectedUnit.hasMoved()) {
+				if (!selectedUnit.isFriendly())
+					System.out.println("That is not a friendly unit");
+				else
+					System.out.println("That unit cannot move again");
 				selectedUnit = GameText.unitNameInput();
 			}
 			System.out.println("The selected unit is: \n" + selectedUnit);
@@ -129,9 +132,6 @@ public class PlayerText {
 
 		return gameOver;
 	}
-
-
-
 
 	/**
 	 * Prompts the user for a move and returns if the move is legal for the given
@@ -174,8 +174,6 @@ public class PlayerText {
 
 		return false;
 	}
-
-
 
 	/**
 	 * This method is created to check for valid inputs for when the player has to
