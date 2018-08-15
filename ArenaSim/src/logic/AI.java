@@ -156,7 +156,8 @@ public class AI {
 		queue.add(temp); // add temp as the first value in the queue
 		TerrainType[][] terrainMap = map.getTerrainMap();
 		Unit[][] unitMap = map.getUnitMap();
-		while (!queue.isEmpty()) { // checking if the queue is empty or not
+		int counter = 0;
+		while (!queue.isEmpty() && counter <10000) { // checking if the queue is empty or not
 			int[] values = queue.remove(); // start again with the new loop, delete the first temp element
 			for (int i = 0; i < 4; i++) { // 4 directions to move, so loop from 0 to 3
 				int newX = values[0] + (int) Math.round(Math.cos(i / 2d * Math.PI)); // math to calculate where is
@@ -189,6 +190,7 @@ public class AI {
 					}
 				}
 			}
+			counter++;
 		}
 
 		return Integer.MAX_VALUE;
