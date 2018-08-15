@@ -132,7 +132,6 @@ public class GameGUI extends Application {
 		map1.setOnAction((event) -> {
 			root = new Group();
 			mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
-			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
 			mapGUI.displayHPBar();

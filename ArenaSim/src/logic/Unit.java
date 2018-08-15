@@ -4,7 +4,6 @@ package logic;
 import java.util.Arrays;//imports the java library of Arrays
 
 import gui.TerrainGUI;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Unit {
