@@ -73,7 +73,7 @@ public class MapGUI extends Map {
 	public MapGUI(String filename, Group root) {
 		super(filename);
 		this.root = root;
-
+		loadMapGUI();
 	}
 
 	/**

@@ -145,6 +145,7 @@ public class SelectedTile implements EventHandler<MouseEvent> {
 					combat.doCombat(selectedUnit, mapGUI.getUnitMap()[y][x]);
 				} else if (!mapGUI.gameOver() && !mapGUI.factionHasUnmovedUnits(true)) {
 					//The turn method is called to show the player who's turn is it between the player and AI
+					System.out.println("position2");
 					turn();
 					new AIGUI(mapGUI, combat).computerTurn();
 

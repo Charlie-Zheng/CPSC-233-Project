@@ -125,7 +125,7 @@ public class GameGUI extends Application {
 
 		// buttons for maps picking
 		Button map1 = new Button();
-		map1.setText("Map_1_1");
+		map1.setText("HARD");
 		map1.setFont(Font.font("Comic Sans MS", 25));
 		map1.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		// map1.setOnAction(e -> window.setScene(scene));
@@ -144,14 +144,13 @@ public class GameGUI extends Application {
 
 		// picking map 2
 		Button map2 = new Button();
-		map2.setText("Map_1_2");
+		map2.setText("MEDIUM");
 		map2.setFont(Font.font("Comic Sans MS", 25));
 		map2.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		GridPane.setConstraints(map2, 25, 27);
 		map2.setOnAction((event) -> {
 			root = new Group();
 			mapGUI = new MapGUI("src/assets/map_1_2.txt", root);
-			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
 			mapGUI.displayHPBar();
@@ -161,14 +160,13 @@ public class GameGUI extends Application {
 
 		// picking map 3
 		Button map3 = new Button();
-		map3.setText("Map_1_3");
+		map3.setText("EASY");
 		map3.setFont(Font.font("Comic Sans MS", 25));
 		map3.setStyle("-fx-background-color: linear-gradient(#66ff8c, #6666ff)");
 		GridPane.setConstraints(map3, 25, 29);
 		map3.setOnAction((event) -> {
 			root = new Group();
 			mapGUI = new MapGUI("src/assets/map_1_3.txt", root);
-			mapGUI.loadMapGUI();
 			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
 			mapGUI.display(backButton);
 			mapGUI.displayHPBar();

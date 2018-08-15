@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -38,9 +39,14 @@ public class Map {
 	 *            take 1 string parameter
 	 */
 	public Map(String TerrainFile) {
+		
+		loadMap(TerrainFile);
+	}
+	
+	protected void loadMap(String TerrainFile) {
 		// read map from text file
 		// adding units from the file
-		terrainMap = readMap(TerrainFile); // call the method ReadMap -> read positions of the terrain on the 2
+		readMap(TerrainFile); // call the method ReadMap -> read positions of the terrain on the 2
 											// dimension list
 		readHeroSpawns(TerrainFile); // call the method readHeroSpawns -> read positions of all the units
 
@@ -48,7 +54,6 @@ public class Map {
 		// boolean value
 		spawnHeroes("src/assets/friendlyHeroes.txt", true); // boolean value is true -> spawn friendly units only
 		spawnHeroes("src/assets/enemyHeroes.txt", false); // boolean value is false -> spawn enemies only
-
 	}
 
 	public void updateUnitsOnMap() { // check if unit is "alive" or "dead"
@@ -72,7 +77,6 @@ public class Map {
 
 	private void readHeroSpawns(String mapName) {
 		File mapFile = new File(mapName.substring(0, mapName.indexOf(".")) + "_spawn.txt");
-
 		try {
 			Scanner fileReader = new Scanner(mapFile); // try to find the map file
 			for (int lineNum = 0; lineNum < MAXY; lineNum++) { // loop through each line in the map
@@ -144,9 +148,12 @@ public class Map {
 	/**
 	 * checkMoveLegal method: checking if unit can move to the designated spot.
 	 * 
-	 * @param unit the desired unit you want to check
-	 * @param xOffset spot on the X axis
-	 * @param yOffset spot on the Y axis
+	 * @param unit
+	 *            the desired unit you want to check
+	 * @param xOffset
+	 *            spot on the X axis
+	 * @param yOffset
+	 *            spot on the Y axis
 	 * @return boolean value to determine if unit can be moved or not
 	 */
 
@@ -257,10 +264,14 @@ public class Map {
 	 * Moves the given hero at the given location to the new location. Does not
 	 * check legality of move
 	 * 
-	 * @param x is the unit's previous x location
-	 * @param y is the unit's previous y location
-	 * @param newX is the unit's new x location
-	 * @param newY is the unit's new y location
+	 * @param x
+	 *            is the unit's previous x location
+	 * @param y
+	 *            is the unit's previous y location
+	 * @param newX
+	 *            is the unit's new x location
+	 * @param newY
+	 *            is the unit's new y location
 	 */
 	public void moveHero(int x, int y, int newX, int newY) {
 		// Move only if different locations
@@ -279,8 +290,10 @@ public class Map {
 	 * 
 	 * @param unit:
 	 *            an object of Unit class
-	 * @param xOffset is how much to move the unit's x by
-	 * @param yOffset is how much to move the unit's y by
+	 * @param xOffset
+	 *            is how much to move the unit's x by
+	 * @param yOffset
+	 *            is how much to move the unit's y by
 	 */
 	public void moveHero(Unit unit, int xOffset, int yOffset) {
 
@@ -317,7 +330,9 @@ public class Map {
 		return terrainMap;
 	}
 
-	/**a return function for the units
+	/**
+	 * a return function for the units
+	 * 
 	 * @return a 2D array of Units
 	 */
 	public Unit[][] getUnitMap() {
@@ -406,9 +421,13 @@ public class Map {
 	/**
 	 * finds the attack range of the unit at the given location
 	 * 
-	 * @param unit is a Unit object parameter that is used to find its available attack range
-	 * @param unitX is the current parameter unit's x value
-	 * @param unitY is the current parameter unit's y value
+	 * @param unit
+	 *            is a Unit object parameter that is used to find its available
+	 *            attack range
+	 * @param unitX
+	 *            is the current parameter unit's x value
+	 * @param unitY
+	 *            is the current parameter unit's y value
 	 * @return a boolean[][] with true representing locations the unit can attack
 	 */
 	public boolean[][] findRange(Unit unit, int unitX, int unitY) {
@@ -427,10 +446,10 @@ public class Map {
 	/**
 	 * this function reads the map.
 	 * 
-	 * @param mapName is the String value of the text file we are trying to read
-	 * @return the map. but return null if error occurs
+	 * @param mapName
+	 *            is the String value of the text file we are trying to read
 	 */
-	private TerrainType[][] readMap(String mapName) {
+	private void readMap(String mapName) {
 		File mapFile = new File(mapName); // create new Object as the map name
 
 		try {
@@ -441,10 +460,11 @@ public class Map {
 																		// blank space, add them to a new Array
 				for (int x = 0; x < MAXX; x++) {
 					for (TerrainType terrain : TerrainType.values()) { // get value of that terrain
-						if (lineArray[x] != null && lineArray[x].equals(terrain.toString())) { // compare what inside
-																								// the list to the
-																								// terrain.
+						if (lineArray[x].equals(terrain.toString())) { // compare what inside
+																		// the list to the
+																		// terrain.
 							map[lineNum][x] = terrain;
+						
 							break; // If we find a terrain type, stop the loop
 						}
 					}
@@ -453,11 +473,10 @@ public class Map {
 
 			}
 			fileReader.close(); // close the file
-			return map;
-		} catch (FileNotFoundException e) { // if error occurs
+			terrainMap = map;
+		} catch (Exception e) { // if error occurs
 			System.out.println(mapName + " is not set up correctly");
 			System.exit(1);
-			return null;
 		}
 
 	}
@@ -465,7 +484,8 @@ public class Map {
 	/**
 	 * this method returns a certain unit based on its name
 	 * 
-	 * @param unitName is a String value of the a Unit object's name
+	 * @param unitName
+	 *            is a String value of the a Unit object's name
 	 * @return a Unit object with the same name as the given parameter unitName
 	 */
 	public Unit getUnit(String unitName) {
@@ -479,8 +499,10 @@ public class Map {
 	/**
 	 * Finds all the locations which the unit can attack
 	 * 
-	 * @param unit is a Unit object parameter to find all the available attacks of
-	 * @return a boolean 2d array of the unit's parameter's valid available attack moves.
+	 * @param unit
+	 *            is a Unit object parameter to find all the available attacks of
+	 * @return a boolean 2d array of the unit's parameter's valid available attack
+	 *         moves.
 	 */
 	public boolean[][] findAllAttacks(Unit unit) {
 		boolean[][] allAttacks = new boolean[MAXY][MAXX];
@@ -506,8 +528,10 @@ public class Map {
 	 * Finds the location that the initiator can attack the defender, prioritizing
 	 * moving the least for the initiator
 	 * 
-	 * @param initiator is a Unit object who is initiating
-	 * @param defender is the Unit object who is defending against a attack by initiator.
+	 * @param initiator
+	 *            is a Unit object who is initiating
+	 * @param defender
+	 *            is the Unit object who is defending against a attack by initiator.
 	 * @return Returns an int[] representing the location of the attack location
 	 *         using {x,y}
 	 */

@@ -48,6 +48,9 @@ public final class TerrainGUI {
 	 * @return returns a image from the terrainImages array based on the parameter terrain
 	 */
 	public static Image getImage(TerrainType terrain) {
+		if(terrain==null) {
+			return getImage(TerrainType.FLAT);
+		}
 		return terrainImages[terrain.ordinal()];
 	}
 	/**

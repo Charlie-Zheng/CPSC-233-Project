@@ -2,6 +2,7 @@
  * 
  */
 package gui;
+
 //imports the following java libraries
 import logic.AI;
 import logic.AIMove;
@@ -11,13 +12,17 @@ import logic.Unit;
  * @author charl
  */
 public class AIGUI extends AI {
-	//creates the following instance variables
+	// creates the following instance variables
 	protected CombatGUI combatGUI;
 	protected MapGUI mapGUI;
+
 	/**
 	 * a constructor for the AIGUI
-	 * @param mapGUI the mapGUI object/map that you want to register
-	 * @param combatGUI the CombatGUI object you want to register
+	 * 
+	 * @param mapGUI
+	 *            the mapGUI object/map that you want to register
+	 * @param combatGUI
+	 *            the CombatGUI object you want to register
 	 */
 	public AIGUI(MapGUI mapGUI, CombatGUI combatGUI) {
 		// TODO Auto-generated constructor stub
@@ -28,12 +33,13 @@ public class AIGUI extends AI {
 
 	@Override
 	/**
-	 * Starts the computer's turn, and resets the user's units movements when the AI is done
+	 * Starts the computer's turn, and resets the user's units movements when the AI
+	 * is done
 	 * 
 	 * @return gameOver returns true if its the computer's turn
 	 */
 	public boolean computerTurn() {
-
+		System.out.println("testing");
 		boolean gameOver = super.computerTurn();
 		mapGUI.resetHasMoved(true);
 		return gameOver;
@@ -41,7 +47,7 @@ public class AIGUI extends AI {
 
 	@Override
 	/**
-	 * Adds animations instead of printing IA movements 
+	 * Adds animations instead of printing IA movements
 	 */
 	protected void applyAIMove(AIMove move) {
 		Unit unit = move.getUnit();
