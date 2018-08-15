@@ -2,11 +2,11 @@ To run from command line:
 
 navigate to ./ArenaSim/
 then run 
-	javac -d ./bin/ -cp ./src/main/*.java
+	javac -d ./bin/ -cp ./src/logic/*.java -cp ./src/text/*.java -cp ./src/gui/*.java
 to run the text version, use:
-	java -cp ./bin/ main.GameText
+	java -cp ./bin/ text.GameText
 to run the GUI version, use:
-	java -cp ./bin/ main.GameGUI
+	java -cp ./bin/ gui.GameGUI
 	
 	
-Class diagram is located at ./ArenaSim/src/main/ClassDiagram.png
+Class diagram is located at ./ArenaSim/src/logic/ClassDiagram.png
