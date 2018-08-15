@@ -105,7 +105,17 @@ public class GameGUI extends Application {
 		button1.setFont(Font.font("Kristen ITC", 25));
 		button1.setStyle("-fx-background-color: linear-gradient(#99bbff, #99ff99)");
 		GridPane.setConstraints(button1, 25, 25);
-		button1.setOnAction(e -> window.setScene(scene));
+		button1.setOnAction((event) -> {
+			root = new Group();
+			mapGUI = new MapGUI("src/assets/map_1_1.txt", root);
+			mapGUI.loadMapGUI();
+			scene = new Scene(root, Color.hsb(255 * 0.0, 0, 0.5, 1));
+			mapGUI.display(backButton);
+			mapGUI.displayHPBar();
+			window.setScene(scene);
+
+		});
+		//button1.setOnAction(e -> window.setScene(scene));
 
 		// Button 2 stuffs
 		Button button2 = new Button();
