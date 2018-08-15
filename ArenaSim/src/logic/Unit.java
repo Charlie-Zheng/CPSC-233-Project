@@ -27,7 +27,7 @@ public class Unit {
 	private int[] baseStats = { 1, 0, 0, 0 };// default unit has 1 HP, 0 in every other stat
 	// {HP, Atk, Spd, Def}
 	private int currentHP;
-	private Rectangle hpBar;
+	private Rectangle hpBar=null;
 	private int range;
 	private MoveType moveType;
 	private boolean isFriendly;
@@ -95,12 +95,14 @@ public class Unit {
 	public void updateHpBar() {
 		//sets the x and y value of the hpBar rectangle to be the location of the current unit
 		//updates the width to be the possible damage that the unit has taken
+		if(this.hpBar!=null) {
 		hpBar.setX(this.getX() * TerrainGUI.getImagewidth() + TerrainGUI.getImagewidth() / 8);
 		hpBar.setY(this.getY() * TerrainGUI.getImagewidth());
 		hpBar.setWidth(this.RectWidth-(this.getBaseHP()-this.currentHP));
 		//if the unit is not alive, it sets the hpBar's opacity to 0 to make it disappear
 		if(!this.isAlive()) {
 			this.hpBar.setOpacity(0.0);
+		}
 		}
 
 	}
